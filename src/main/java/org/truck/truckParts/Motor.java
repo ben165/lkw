@@ -1,4 +1,4 @@
 package org.truck.truckParts;
 
-public class Clutch {
+public class Motor {
 }
