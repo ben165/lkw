@@ -4,7 +4,7 @@ public class Mirror {
     Camera camera;
     Lidar lidar;
 
-    Mirror() {
+    public Mirror() {
         this.camera = new Camera();
         this.lidar = new Lidar();
     }
