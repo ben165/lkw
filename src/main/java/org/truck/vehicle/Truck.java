@@ -1,43 +1,63 @@
 package org.truck.vehicle;
 
-import org.truck.parts.Blinker;
+import org.truck.parts.Blinkers;
 import org.truck.parts.Brakelight;
 import org.truck.parts.axle.FixedAxle;
-import org.truck.parts.axle.WheelAxle;
+import org.truck.parts.axle.TurningAxle;
+import org.truck.trailerParts.ConnectorClutch;
 import org.truck.truckParts.*;
 
+import java.util.Arrays;
+
 public class Truck {
-    private TruckChassis truckChassis;
-    private Cabin cabin;
-    private Motor motor;
-    private WheelAxle frontAxle;
-    private FixedAxle[] backAxles;
-    private Headlight[] headlights;
-    private Mirror[] mirrors;
-    private Blinker[] leftBlinkers;
-    private Blinker[] rightBlinkers;
-    private Brakelight[] brakelights;
+    private final TruckChassis truckChassis;
+    private final ConnectorClutch connectorClutch;
+    private final Cabin cabin;
+    private final Motor motor;
+    private final TurningAxle frontAxle;
+    private final FixedAxle[] backAxles;
+    private final Headlight[] headLights;
+    private final Mirror[] mirrors;
+    private final Blinkers frontBlinkers;
+    private final Blinkers tailBlinkers;
+    private final Brakelight[] brakeLights;
 
 
     private Truck(Builder builder) {
-        
+        this.truckChassis = builder.truckChassis;
+        this.connectorClutch = builder.connectorClutch;
+        this.cabin = builder.cabin;
+        this.motor = builder.motor;
+        this.frontAxle = builder.frontAxle;
+        this.backAxles = builder.backAxles;
+        this.headLights = builder.headLights;
+        this.mirrors = builder.mirrors;
+        this.frontBlinkers = builder.frontBlinkers;
+        this.tailBlinkers = builder.tailBlinkers;
+        this.brakeLights = builder.brakeLights;
     }
 
     public static class Builder {
         private TruckChassis truckChassis;
+        private ConnectorClutch connectorClutch;
         private Cabin cabin;
         private Motor motor;
-        private WheelAxle frontAxle;
+        private TurningAxle frontAxle;
         private FixedAxle[] backAxles;
-        private Headlight[] headlights;
+        private Headlight[] headLights;
         private Mirror[] mirrors;
-        private Blinker[] leftBlinkers;
-        private Blinker[] rightBlinkers;
+        private Blinkers frontBlinkers;
+        private Blinkers tailBlinkers;
         private Brakelight[] brakeLights;
 
 
         public Builder truckChassis() {
             this.truckChassis = new TruckChassis();
+            return this;
+        }
+
+        public Builder connectorClutch() {
+            this.connectorClutch = new ConnectorClutch();
             return this;
         }
 
@@ -52,21 +72,22 @@ public class Truck {
         }
 
         public Builder frontAxle() {
-            this.frontAxle = new WheelAxle();
+            this.frontAxle = new TurningAxle();
             return this;
         }
 
-        public Builder backAxles() {
-            this.backAxles = new FixedAxle[2];
-            this.backAxles[0] = new FixedAxle();
-            this.backAxles[1] = new FixedAxle();
+        public Builder backAxles(int axles) {
+            this.backAxles = new FixedAxle[axles];
+            for (int i=0; i<axles; i++) {
+                backAxles[i] = new FixedAxle();
+            }
             return this;
         }
 
         public Builder headlights() {
-            this.headlights = new Headlight[2];
-            this.headlights[0] = new Headlight();
-            this.headlights[1] = new Headlight();
+            this.headLights = new Headlight[2];
+            this.headLights[0] = new Headlight();
+            this.headLights[1] = new Headlight();
             return this;
         }
 
@@ -77,17 +98,13 @@ public class Truck {
             return this;
         }
 
-        public Builder leftBlinkers() {
-            this.leftBlinkers = new Blinker[2];
-            this.leftBlinkers[0] = new Blinker();
-            this.leftBlinkers[1] = new Blinker();
+        public Builder frontBlinkers() {
+            this.frontBlinkers = new Blinkers();
             return this;
         }
 
-        public Builder rightBlinkers() {
-            this.rightBlinkers = new Blinker[2];
-            this.rightBlinkers[0] = new Blinker();
-            this.rightBlinkers[1] = new Blinker();
+        public Builder tailBlinkers() {
+            this.tailBlinkers = new Blinkers();
             return this;
         }
 
@@ -103,6 +120,20 @@ public class Truck {
         }
     }
 
-
-
+    @Override
+    public String toString() {
+        return "Truck{" +
+                "truckChassis=" + truckChassis + "\n" +
+                ", connectorClutch=" + connectorClutch + "\n" +
+                ", cabin=" + cabin + "\n" +
+                ", motor=" + motor + "\n" +
+                ", frontAxle=" + frontAxle + "\n" +
+                ", backAxles=" + Arrays.toString(backAxles) + "\n" +
+                ", headLights=" + Arrays.toString(headLights) + "\n" +
+                ", mirrors=" + Arrays.toString(mirrors) + "\n" +
+                ", frontBlinkers=" + frontBlinkers + "\n" +
+                ", tailBlinkers=" + tailBlinkers + "\n" +
+                ", brakeLights=" + Arrays.toString(brakeLights) + "\n" +
+                '}';
+    }
 }

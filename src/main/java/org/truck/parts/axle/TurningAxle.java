@@ -1,7 +1,7 @@
 package org.truck.parts.axle;
 
-public class FixedAxle extends AbstractAxle{
-    public FixedAxle() {
+public class TurningAxle extends AbstractAxle{
+    public TurningAxle() {
         super();
     }
 
