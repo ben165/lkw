@@ -1,32 +1,15 @@
 package org.truck.vehicle;
 
+import org.truck.helper.SimpleBuilder;
+
 public class Main {
     public static void main(String[] args) {
-        Truck truck = new Truck.Builder()
-                .truckMediator()
-                .truckChassis()
-                .connectorClutch()
-                .cabin()
-                .motor()
-                .frontAxle()
-                .backAxles(2)
-                .headlights()
-                .mirrors()
-                .frontBlinkers()
-                .tailBlinkers()
-                .brakeLights()
-                .build();
-
-        Trailor trailor = new Trailor.Builder()
-                .trailerChassis()
-                .trailerCoupler()
-                .loadingArea()
-                .backAxles(2)
-                .brakeLights()
-                .tailBlinkers()
-                .build();
+        Truck truck = SimpleBuilder.createTruck(2);
+        Trailor trailor = SimpleBuilder.createTrailer();
 
         System.out.println(truck);
+
+        System.out.println(truck.truckMediator.toString());
 
         System.out.println();
 

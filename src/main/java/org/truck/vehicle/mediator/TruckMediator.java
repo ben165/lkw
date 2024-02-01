@@ -7,6 +7,8 @@ import org.truck.parts.axle.TurningAxle;
 import org.truck.truckParts.Headlight;
 import org.truck.truckParts.Mirror;
 
+import java.util.Arrays;
+
 public class TruckMediator implements ITruckMediator{
 
     Headlight[] headlights;
@@ -93,5 +95,18 @@ public class TruckMediator implements ITruckMediator{
     public void lidar(boolean status) {
         mirrors[0].setLidarStatus(status);
         mirrors[1].setLidarStatus(status);
+    }
+
+    @Override
+    public String toString() {
+        return "TruckMediator{" +"\n" +
+                "headlights=" + Arrays.toString(headlights) + "\n" +
+                ", brakelights=" + Arrays.toString(brakelights) +"\n" +
+                ", frontIndicators=" + frontIndicators +"\n" +
+                ", tailIndicators=" + tailIndicators +"\n" +
+                ", mirrors=" + Arrays.toString(mirrors) +"\n" +
+                ", frontAxle=" + frontAxle +"\n" +
+                ", backAxles=" + Arrays.toString(backAxles) +"\n" +
+                '}';
     }
 }

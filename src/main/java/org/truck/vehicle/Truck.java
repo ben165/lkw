@@ -138,7 +138,6 @@ public class Truck {
         }
     }
 
-
     @Override
     public String toString() {
         return "Truck{" +
