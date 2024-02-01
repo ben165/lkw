@@ -4,7 +4,7 @@ public class Brake {
     int percentage = 0;
 
     public int getPercentage() {
-        return percentage;
+        return this.percentage;
     }
 
     public void setPercentage(int percentage) {

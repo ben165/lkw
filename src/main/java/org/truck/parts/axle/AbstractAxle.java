@@ -11,5 +11,11 @@ public abstract class AbstractAxle {
         brakes[1] = new Brake();
     }
 
-    abstract void brake(int percentage);
+    public void setBrake(int percentage) {
+        brakes[0].setPercentage(percentage);
+        brakes[1].setPercentage(percentage);
+    }
+    public int getBrake() {
+        return brakes[0].getPercentage();
+    }
 }

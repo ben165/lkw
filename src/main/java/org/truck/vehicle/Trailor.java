@@ -22,7 +22,7 @@ public class Trailor {
         this.trailerCoupler = builder.trailerCoupler;
         this.loadingArea = builder.loadingArea;
         this.backAxles = builder.backAxles;
-        this.brakelights = builder.brakeLights;
+        this.brakelights = builder.brakelights;
         this.tailBlinker = builder.tailIndicators;
     }
 
@@ -31,7 +31,7 @@ public class Trailor {
         private TrailerCoupler trailerCoupler;
         private LoadingArea loadingArea;
         private FixedAxle[] backAxles;
-        private Brakelight[] brakeLights;
+        private Brakelight[] brakelights;
         private Indicators tailIndicators;
 
         public Builder trailerChassis() {
@@ -55,9 +55,9 @@ public class Trailor {
             return this;
         }
         public Builder brakeLights() {
-            this.brakeLights = new Brakelight[2];
-            this.brakeLights[0] = new Brakelight();
-            this.brakeLights[1] = new Brakelight();
+            this.brakelights = new Brakelight[2];
+            this.brakelights[0] = new Brakelight();
+            this.brakelights[1] = new Brakelight();
             return this;
         }
 
