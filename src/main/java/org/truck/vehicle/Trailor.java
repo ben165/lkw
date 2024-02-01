@@ -1,6 +1,6 @@
 package org.truck.vehicle;
 
-import org.truck.parts.Blinkers;
+import org.truck.parts.Indicators;
 import org.truck.parts.Brakelight;
 import org.truck.parts.axle.FixedAxle;
 import org.truck.trailerParts.LoadingArea;
@@ -15,7 +15,7 @@ public class Trailor {
     private final LoadingArea loadingArea;
     private final FixedAxle[] backAxles;
     private final Brakelight[] brakelights;
-    private final Blinkers tailBlinker;
+    private final Indicators tailBlinker;
 
     private Trailor (Builder builder) {
         this.trailerChassis = builder.trailerChassis;
@@ -23,7 +23,7 @@ public class Trailor {
         this.loadingArea = builder.loadingArea;
         this.backAxles = builder.backAxles;
         this.brakelights = builder.brakeLights;
-        this.tailBlinker = builder.tailBlinkers;
+        this.tailBlinker = builder.tailIndicators;
     }
 
     public static class Builder {
@@ -32,7 +32,7 @@ public class Trailor {
         private LoadingArea loadingArea;
         private FixedAxle[] backAxles;
         private Brakelight[] brakeLights;
-        private Blinkers tailBlinkers;
+        private Indicators tailIndicators;
 
         public Builder trailerChassis() {
             this.trailerChassis = new TrailerChassis();
@@ -62,7 +62,7 @@ public class Trailor {
         }
 
         public Builder tailBlinkers() {
-            this.tailBlinkers = new Blinkers();
+            this.tailIndicators = new Indicators();
             return this;
         }
 

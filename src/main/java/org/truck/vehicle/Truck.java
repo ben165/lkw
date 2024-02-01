@@ -1,6 +1,6 @@
 package org.truck.vehicle;
 
-import org.truck.parts.Blinkers;
+import org.truck.parts.Indicators;
 import org.truck.parts.Brakelight;
 import org.truck.parts.axle.FixedAxle;
 import org.truck.parts.axle.TurningAxle;
@@ -18,8 +18,8 @@ public class Truck {
     private final FixedAxle[] backAxles;
     private final Headlight[] headLights;
     private final Mirror[] mirrors;
-    private final Blinkers frontBlinkers;
-    private final Blinkers tailBlinkers;
+    private final Indicators frontIndicators;
+    private final Indicators tailIndicators;
     private final Brakelight[] brakeLights;
 
 
@@ -32,8 +32,8 @@ public class Truck {
         this.backAxles = builder.backAxles;
         this.headLights = builder.headLights;
         this.mirrors = builder.mirrors;
-        this.frontBlinkers = builder.frontBlinkers;
-        this.tailBlinkers = builder.tailBlinkers;
+        this.frontIndicators = builder.frontIndicators;
+        this.tailIndicators = builder.tailIndicators;
         this.brakeLights = builder.brakeLights;
     }
 
@@ -46,8 +46,8 @@ public class Truck {
         private FixedAxle[] backAxles;
         private Headlight[] headLights;
         private Mirror[] mirrors;
-        private Blinkers frontBlinkers;
-        private Blinkers tailBlinkers;
+        private Indicators frontIndicators;
+        private Indicators tailIndicators;
         private Brakelight[] brakeLights;
 
 
@@ -99,12 +99,12 @@ public class Truck {
         }
 
         public Builder frontBlinkers() {
-            this.frontBlinkers = new Blinkers();
+            this.frontIndicators = new Indicators();
             return this;
         }
 
         public Builder tailBlinkers() {
-            this.tailBlinkers = new Blinkers();
+            this.tailIndicators = new Indicators();
             return this;
         }
 
@@ -131,8 +131,8 @@ public class Truck {
                 ", backAxles=" + Arrays.toString(backAxles) + "\n" +
                 ", headLights=" + Arrays.toString(headLights) + "\n" +
                 ", mirrors=" + Arrays.toString(mirrors) + "\n" +
-                ", frontBlinkers=" + frontBlinkers + "\n" +
-                ", tailBlinkers=" + tailBlinkers + "\n" +
+                ", frontIndicators=" + frontIndicators + "\n" +
+                ", tailIndicators=" + tailIndicators + "\n" +
                 ", brakeLights=" + Arrays.toString(brakeLights) + "\n" +
                 '}';
     }
