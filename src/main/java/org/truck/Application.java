@@ -15,7 +15,11 @@ public class Application {
         centralUnit.cameraOn();
         centralUnit.brake(20);
 
+        System.out.println("Turn left indicators");
         centralUnit.indicatorOn(0);
-
+        System.out.println("Turn off all indicators");
+        centralUnit.indicatorOff();
+        System.out.println("Turn on right indicators");
+        centralUnit.indicatorOn(1);
     }
 }

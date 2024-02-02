@@ -4,7 +4,7 @@ import org.truck.vehicle.mediator.TruckMediator;
 
 public class IndicatorOff implements ICommand{
 
-    TruckMediator truckMediator;
+    private final TruckMediator truckMediator;
 
     public IndicatorOff(TruckMediator truckMediator) {
         this.truckMediator = truckMediator;

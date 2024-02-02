@@ -3,7 +3,7 @@ package org.truck.commands;
 import org.truck.vehicle.mediator.TruckMediator;
 
 public class LidarOn implements ICommand{
-    TruckMediator truckMediator;
+    private final TruckMediator truckMediator;
 
     public LidarOn(TruckMediator truckMediator) {
         this.truckMediator = truckMediator;

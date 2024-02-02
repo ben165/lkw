@@ -4,7 +4,7 @@ import org.truck.vehicle.mediator.TruckMediator;
 
 public class IndicatorOn implements ICommand{
 
-    TruckMediator truckMediator;
+    private final TruckMediator truckMediator;
 
     public IndicatorOn(TruckMediator truckMediator) {
         this.truckMediator = truckMediator;
@@ -17,8 +17,6 @@ public class IndicatorOn implements ICommand{
 
     @Override
     public void execute(int nr) {
-        truckMediator.indicateOff();
-
         // 0 = left, 1 = right
         if (nr == 0) {
             truckMediator.indicateLeft();

@@ -8,7 +8,6 @@ public class Control {
     }
 
     public void action() {
-        // je nach dem...
         command.execute();
     }
 

@@ -4,7 +4,7 @@ import org.truck.vehicle.mediator.TruckMediator;
 
 public class Brake implements ICommand{
 
-    TruckMediator truckMediator;
+    private final TruckMediator truckMediator;
 
     public Brake(TruckMediator truckMediator) {
         this.truckMediator = truckMediator;
