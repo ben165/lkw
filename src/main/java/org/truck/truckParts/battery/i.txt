@@ -1,0 +1,3 @@
+Eine Batterie besteht aus 500 Hauptzellen. Eine Hauptzelle besteht aus
+100 Subzellen. Eine Subzelle hat 5 Zellen. Das Attribut energy einer Zelle kann die Werte 0 (entladen)
+oder 1 (geladen) annehmen.
