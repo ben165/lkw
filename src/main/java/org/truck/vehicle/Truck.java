@@ -138,6 +138,64 @@ public class Truck {
         }
     }
 
+    public boolean checkTruckBuilder() {
+
+        // Chassis
+        if (this.truckChassis == null) {
+            return false;
+        }
+        // Motor
+        if (this.motor == null) {
+            return false;
+        }
+        // frontAxle
+        if (this.frontAxle == null) {
+            return false;
+        }
+        // backAxle(s)
+        for (int i=0; i < backAxles.length; i++) {
+            if (backAxles[i] == null) {
+                return false;
+            }
+        }
+        // Indicators front
+        if (this.frontIndicators == null) {
+            return false;
+        }
+        // Indicators tail
+        if (this.tailIndicators == null) {
+            return false;
+        }
+        // BrakeLights
+        if (this.brakelights[0] == null || this.brakelights[1] == null) {
+            return false;
+        }
+        // ConnectorClutch
+        if (this.connectorClutch == null) {
+            return false;
+        }
+        // Cabin
+        if (this.cabin == null) {
+            return false;
+        }
+        // Mirrors
+        if (this.mirrors[0] == null || this.mirrors[1] == null) {
+            return false;
+        }
+
+
+        if (mirrors[0].getCamera() == null) {
+            return false;
+        }
+
+        if (mirrors[1].getCamera() == null) {
+            return false;
+        }
+
+        return true;
+
+    }
+
     @Override
     public String toString() {
         return "Truck{" +

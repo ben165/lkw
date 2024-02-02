@@ -25,5 +25,11 @@ public class Mirror {
         return lidar.getStatus();
     }
 
+    public Camera getCamera() {
+        return camera;
+    }
 
+    public Lidar getLidar() {
+        return lidar;
+    }
 }
