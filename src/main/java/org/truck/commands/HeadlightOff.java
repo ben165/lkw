@@ -2,29 +2,20 @@ package org.truck.commands;
 
 import org.truck.vehicle.mediator.TruckMediator;
 
-public class BlinkerOn implements ICommand{
-
+public class HeadlightOff implements ICommand{
     TruckMediator truckMediator;
 
-    BlinkerOn(TruckMediator truckMediator) {
+    public HeadlightOff(TruckMediator truckMediator) {
         this.truckMediator = truckMediator;
     }
-
     @Override
     public void execute() {
-        //not implemented
+        this.truckMediator.headLights(false);
     }
 
     @Override
     public void execute(int nr1) {
-        truckMediator.indicateOff();
-
-        // 0 = left, 1 = right
-        if (nr1 == 0) {
-            truckMediator.indicateLeft();
-        } else if (nr1 == 1) {
-            truckMediator.indicateRight();
-        }
+        //not implemented
     }
 
     @Override

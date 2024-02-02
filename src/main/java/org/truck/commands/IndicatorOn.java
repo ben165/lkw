@@ -2,21 +2,29 @@ package org.truck.commands;
 
 import org.truck.vehicle.mediator.TruckMediator;
 
-public class Brake implements ICommand{
+public class IndicatorOn implements ICommand{
 
     TruckMediator truckMediator;
 
-    public Brake(TruckMediator truckMediator) {
+    public IndicatorOn(TruckMediator truckMediator) {
         this.truckMediator = truckMediator;
     }
+
     @Override
     public void execute() {
         //not implemented
     }
 
     @Override
-    public void execute(int percentage) {
-        this.truckMediator.brake(percentage);
+    public void execute(int nr) {
+        truckMediator.indicateOff();
+
+        // 0 = left, 1 = right
+        if (nr == 0) {
+            truckMediator.indicateLeft();
+        } else if (nr == 1) {
+            truckMediator.indicateRight();
+        }
     }
 
     @Override
