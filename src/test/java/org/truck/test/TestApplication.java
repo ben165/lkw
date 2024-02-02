@@ -20,8 +20,13 @@ public class TestApplication {
 
     @Test
     @Order(1)
-    public void builderCheckTest() {
+    public void truckBuilderCheckTest() {
         assertNotNull(truck);
+    }
+
+    @Order(2)
+    public void trailerBuilderCheckTest() {
+        assertNotNull(trailer);
     }
 
 }
