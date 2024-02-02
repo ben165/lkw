@@ -8,18 +8,9 @@ public class BrakeLightOn implements ICommand{
     public BrakeLightOn(TruckMediator truckMediator) {
         this.truckMediator = truckMediator;
     }
+
     @Override
-    public void execute() {
+    public void execute(int... numbers) {
         this.truckMediator.brakeLights(true);
-    }
-
-    @Override
-    public void execute(int nr1) {
-        //not implemented
-    }
-
-    @Override
-    public void execute(int nr1, int nr2) {
-        //not implemented
     }
 }

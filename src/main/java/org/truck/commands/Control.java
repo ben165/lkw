@@ -15,7 +15,7 @@ public class Control {
         command.execute(nr1);
     }
 
-    public void action(int nr1,int nr2) {
+    public void action(int nr1, int nr2) {
         command.execute(nr1, nr2);
     }
 

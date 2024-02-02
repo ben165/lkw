@@ -43,7 +43,7 @@ public class Truck {
     }
 
     public static class Builder {
-        TruckMediator truckMediator;
+        private TruckMediator truckMediator;
         private int amountBackAxles;
         private TruckChassis truckChassis;
         private ConnectorClutch connectorClutch;

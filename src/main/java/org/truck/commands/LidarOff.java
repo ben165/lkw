@@ -9,19 +9,8 @@ public class LidarOff implements ICommand{
         this.truckMediator = truckMediator;
     }
 
-
     @Override
-    public void execute() {
+    public void execute(int... numbers) {
         this.truckMediator.lidar(false);
-    }
-
-    @Override
-    public void execute(int nr1) {
-        //not implemented
-    }
-
-    @Override
-    public void execute(int nr1, int nr2) {
-        //not implemented
     }
 }

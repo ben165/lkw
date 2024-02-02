@@ -13,8 +13,6 @@ public class CentralUnit {
     private final ICommand brakeLightsOn;
     private final ICommand cameraOn;
     private final ICommand cameraOff;
-    private final ICommand headlightsOn;
-    private final ICommand headlightsOff;
     private final ICommand indicatorOn;
     private final ICommand indicatorOff;
     private final ICommand lidarOff;
@@ -30,9 +28,6 @@ public class CentralUnit {
 
         cameraOff = new CameraOff(this.mediator);
         cameraOn = new CameraOn(this.mediator);
-
-        headlightsOff = new HeadlightOff(this.mediator);
-        headlightsOn = new HeadlightOn(this.mediator);
 
         indicatorOff = new IndicatorOff(this.mediator);
         indicatorOn = new IndicatorOn(this.mediator);
@@ -78,15 +73,6 @@ public class CentralUnit {
         control.action();
     }
 
-    public void headlightsOn() {
-        control.setCommand(headlightsOn);
-        control.action();
-    }
-
-    public void headlightsOff() {
-        control.setCommand(headlightsOff);
-        control.action();
-    }
     public void lidarOff() {
         control.setCommand(lidarOff);
         control.action();

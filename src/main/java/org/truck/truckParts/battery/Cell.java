@@ -1,7 +1,7 @@
 package org.truck.truckParts.battery;
 
 public abstract class Cell {
-    int status; // 1 or 0 for loaded or empty
+    protected int status = 0;
     public abstract void add(Cell cell);
     public abstract Cell getChild(int i);
     public void unload() {

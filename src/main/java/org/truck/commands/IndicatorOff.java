@@ -9,18 +9,9 @@ public class IndicatorOff implements ICommand{
     public IndicatorOff(TruckMediator truckMediator) {
         this.truckMediator = truckMediator;
     }
+
     @Override
-    public void execute() {
+    public void execute(int... numbers) {
         truckMediator.indicateOff();
-    }
-
-    @Override
-    public void execute(int nr1) {
-        //not implemented
-    }
-
-    @Override
-    public void execute(int nr1, int nr2) {
-        //not implemented
     }
 }
