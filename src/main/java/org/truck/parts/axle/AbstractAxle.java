@@ -18,4 +18,8 @@ public abstract class AbstractAxle {
     public int getBrake() {
         return brakes[0].getPercentage();
     }
+
+    public abstract void turnRight(int angle);
+    public abstract void turnLeft(int angle);
+    public abstract int getAngle();
 }

@@ -47,22 +47,30 @@ public class TruckMediator implements ITruckMediator{
         this.backAxles = backAxles;
     }
 
+    public void indicateOff() {
+        frontIndicators.setRightBlinker(false);
+        tailIndicators.setRightBlinker(false);
+
+        frontIndicators.setLeftBlinker(false);
+        tailIndicators.setLeftBlinker(false);
+    }
+
     @Override
     public void indicateRight() {
-        frontIndicators.setLeftBlinker(true);
-        frontIndicators.setRightBlinker(false);
+        frontIndicators.setRightBlinker(true);
+        tailIndicators.setRightBlinker(true);
 
-        tailIndicators.setLeftBlinker(true);
+        frontIndicators.setLeftBlinker(false);
         tailIndicators.setLeftBlinker(false);
     }
 
     @Override
     public void indicateLeft() {
-        frontIndicators.setLeftBlinker(false);
-        frontIndicators.setRightBlinker(true);
-
-        tailIndicators.setLeftBlinker(false);
+        frontIndicators.setLeftBlinker(true);
         tailIndicators.setLeftBlinker(true);
+
+        frontIndicators.setRightBlinker(false);
+        tailIndicators.setRightBlinker(false);
     }
 
     @Override
