@@ -1,4 +1,5 @@
 package org.truck.truckParts;
 
-public class Hitch {
+public class Hitch{
+    private final
 }

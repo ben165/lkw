@@ -1,10 +1,11 @@
 package org.truck;
 
 import org.truck.commands.*;
+import org.truck.observer.IPalletListener;
 import org.truck.vehicle.Truck;
 import org.truck.vehicle.mediator.TruckMediator;
 
-public class CentralUnit {
+public class CentralUnit implements IPalletListener {
     private final Truck truck;
     private final Control control = new Control();
     private final TruckMediator mediator;
@@ -81,5 +82,12 @@ public class CentralUnit {
     public void lidarOn() {
         control.setCommand(lidarOn);
         control.action();
+    }
+
+    @Override
+    public void palletDetected(int location) {
+        if (location < 8) {
+            System.out.println("Ladeplatz " + location +" belegt.");
+        }
     }
 }

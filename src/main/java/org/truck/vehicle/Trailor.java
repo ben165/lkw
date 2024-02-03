@@ -3,7 +3,7 @@ package org.truck.vehicle;
 import org.truck.parts.Indicators;
 import org.truck.parts.Brakelight;
 import org.truck.parts.axle.FixedAxle;
-import org.truck.trailerParts.LoadingArea;
+import org.truck.trailerParts.Loading.LoadingArea;
 import org.truck.trailerParts.TrailerChassis;
 import org.truck.trailerParts.TrailerCoupler;
 
