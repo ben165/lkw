@@ -19,6 +19,7 @@ public class SimpleBuilder {
                 .frontBlinkers()
                 .tailBlinkers()
                 .brakeLights()
+                .hitch()
                 .build();
     }
 

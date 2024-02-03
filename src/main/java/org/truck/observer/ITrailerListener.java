@@ -1,5 +1,5 @@
 package org.truck.observer;
 
 public interface ITrailerListener {
-    void palletDetected();
+    void trailerDetected(String s);
 }

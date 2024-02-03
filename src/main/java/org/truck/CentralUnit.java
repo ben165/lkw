@@ -2,10 +2,11 @@ package org.truck;
 
 import org.truck.commands.*;
 import org.truck.observer.IPalletListener;
+import org.truck.observer.ITrailerListener;
 import org.truck.vehicle.Truck;
 import org.truck.vehicle.mediator.TruckMediator;
 
-public class CentralUnit implements IPalletListener {
+public class CentralUnit implements ITrailerListener {
     private final Truck truck;
     private final Control control = new Control();
     private final TruckMediator mediator;
@@ -84,10 +85,12 @@ public class CentralUnit implements IPalletListener {
         control.action();
     }
 
+    public void setHitch() {
+
+    }
+
     @Override
-    public void palletDetected(int location) {
-        if (location < 8) {
-            System.out.println("Ladeplatz " + location +" belegt.");
-        }
+    public void trailerDetected(String s) {
+
     }
 }

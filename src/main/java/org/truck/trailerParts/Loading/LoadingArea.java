@@ -9,6 +9,7 @@ public class LoadingArea {
 
     }
 
+
     public void loadTrailer() {
         LoadingScheme l = Json.readParameters();
         System.out.println(l);

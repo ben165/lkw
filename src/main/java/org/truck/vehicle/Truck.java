@@ -28,6 +28,7 @@ public class Truck {
     private final Indicators frontIndicators;
     private final Indicators tailIndicators;
     private final Brakelight[] brakelights;
+    public final Hitch hitch;
 
 
     private Truck(Builder builder) {
@@ -45,6 +46,7 @@ public class Truck {
         this.frontIndicators = builder.frontIndicators;
         this.tailIndicators = builder.tailIndicators;
         this.brakelights = builder.brakelights;
+        this.hitch = builder.hitch;
     }
 
     public static class Builder {
@@ -62,6 +64,7 @@ public class Truck {
         private Indicators frontIndicators;
         private Indicators tailIndicators;
         private Brakelight[] brakelights;
+        private Hitch hitch;
 
         public Builder truckMediator() {
             this.truckMediator = new TruckMediator();
@@ -141,6 +144,11 @@ public class Truck {
             this.brakelights[LEFT.ordinal()] = new Brakelight();
             this.brakelights[RIGHT.ordinal()] = new Brakelight();
             this.truckMediator.setBrakelight(this.brakelights);
+            return this;
+        }
+
+        public Builder hitch() {
+            this.hitch = new Hitch();
             return this;
         }
 

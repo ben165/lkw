@@ -1,5 +1,11 @@
 package org.truck.truckParts;
 
+import org.truck.observer.TrailerDetector;
+
 public class Hitch{
-    private final
+
+    public Hitch() {
+        TrailerDetector trailerDetector = new TrailerDetector();
+
+    }
 }
