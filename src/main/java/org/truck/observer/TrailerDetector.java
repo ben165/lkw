@@ -9,9 +9,9 @@ public class TrailerDetector {
         listenerList = new ArrayList<>();
     }
 
-    public void falseAlarm() {
+    public void trailerConnected() {
         for (ITrailerListener listener : listenerList) {
-            listener.trailerDetected("SmokeDetector #1");
+            listener.trailerDetected("Trailer connected");
         }
     }
 

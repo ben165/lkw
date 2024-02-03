@@ -1,5 +1,7 @@
 package org.truck.vehicle;
 
+import org.truck.CentralUnit;
+import org.truck.observer.TrailerDetector;
 import org.truck.parts.Indicators;
 import org.truck.parts.Brakelight;
 import org.truck.parts.axle.FixedAxle;
@@ -17,7 +19,6 @@ public class Truck {
     public final TruckMediator truckMediator;
     private final int amountBackAxles;
     private final TruckChassis truckChassis;
-    private final ConnectorClutch connectorClutch;
     private final Cabin cabin;
     private final Motor motor;
     private final Battery battery;
@@ -29,13 +30,13 @@ public class Truck {
     private final Indicators tailIndicators;
     private final Brakelight[] brakelights;
     public final Hitch hitch;
+    private CentralUnit centralUnit;
 
 
     private Truck(Builder builder) {
         this.truckMediator = builder.truckMediator;
         this.amountBackAxles = builder.amountBackAxles;
         this.truckChassis = builder.truckChassis;
-        this.connectorClutch = builder.connectorClutch;
         this.cabin = builder.cabin;
         this.motor = builder.motor;
         this.battery = builder.battery;
@@ -53,7 +54,6 @@ public class Truck {
         private TruckMediator truckMediator;
         private int amountBackAxles;
         private TruckChassis truckChassis;
-        private ConnectorClutch connectorClutch;
         private Cabin cabin;
         private Motor motor;
         private Battery battery;
@@ -72,11 +72,6 @@ public class Truck {
         }
         public Builder truckChassis() {
             this.truckChassis = new TruckChassis();
-            return this;
-        }
-
-        public Builder connectorClutch() {
-            this.connectorClutch = new ConnectorClutch();
             return this;
         }
 
@@ -157,6 +152,19 @@ public class Truck {
         }
     }
 
+    public void setCentralUnit(CentralUnit centralUnit) {
+        this.centralUnit = centralUnit;
+    }
+
+    public void connectTrailerToHitch(Trailor trailor) {
+        hitch.setConnected(true);
+        hitch.setTrailor(trailor);
+        TrailerDetector trailerDetector = new TrailerDetector();
+        trailerDetector.addListener(centralUnit);
+        trailerDetector.trailerConnected();
+    }
+
+
     public boolean checkTruckBuilder() {
 
         // Chassis
@@ -193,10 +201,6 @@ public class Truck {
         if (this.brakelights[LEFT.ordinal()] == null || this.brakelights[RIGHT.ordinal()] == null) {
             return false;
         }
-        // ConnectorClutch
-        if (this.connectorClutch == null) {
-            return false;
-        }
         // Cabin
         if (this.cabin == null) {
             return false;
@@ -213,9 +217,13 @@ public class Truck {
         if (this.mirrors[LEFT.ordinal()].getLidar() == null || this.mirrors[RIGHT.ordinal()].getLidar() == null) {
             return false;
         }
-
+        // Hitch
+        if (this.hitch == null) {
+            return false;
+        }
         return true;
     }
+
 
     @Override
     public String toString() {
@@ -223,7 +231,6 @@ public class Truck {
                 "truckMediator" + truckMediator + "\n" +
                 "amountBackAxles=" + amountBackAxles + "\n" +
                 "truckChassis=" + truckChassis + "\n" +
-                ", connectorClutch=" + connectorClutch + "\n" +
                 ", cabin=" + cabin + "\n" +
                 ", motor=" + motor + "\n" +
                 ", frontAxle=" + frontAxle + "\n" +

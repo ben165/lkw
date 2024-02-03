@@ -91,6 +91,6 @@ public class CentralUnit implements ITrailerListener {
 
     @Override
     public void trailerDetected(String s) {
-
+        System.out.println(s);
     }
 }

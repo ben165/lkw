@@ -8,7 +8,6 @@ public class SimpleBuilder {
         return new Truck.Builder()
                 .truckMediator()
                 .truckChassis()
-                .connectorClutch()
                 .cabin()
                 .motor()
                 .battery()
