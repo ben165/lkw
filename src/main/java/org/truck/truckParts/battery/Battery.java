@@ -8,7 +8,7 @@ public class Battery extends ACell{
     private final int amountSubCells = 100;
     private final int amountCells = 5;
     private final List<ACell> mainCells = new ArrayList<>();
-    Battery() {
+    public Battery() {
         for (int k=0; k<amountMainCells; k++) {
             MainCell mainCell = new MainCell();
             mainCells.add(mainCell);
@@ -43,8 +43,9 @@ public class Battery extends ACell{
     public void setStatus(int status) {}
 
 
-    int sum = 0;
+
     public int getAvailableEnergy() {
+        int sum = 0;
         for (int i=0; i<amountMainCells; i++) {
             for (int j=0; j<amountSubCells; j++) {
                 for (int k=0; k<amountCells; k++) {
@@ -56,4 +57,25 @@ public class Battery extends ACell{
         return sum;
     }
 
+    public void unload(int energy) {
+        if (energy <= 0) {
+            return;
+        }
+
+        int sum = 0;
+        for (int i=0; i<amountMainCells; i++) {
+            for (int j=0; j<amountSubCells; j++) {
+                for (int k=0; k<amountCells; k++) {
+                    var temp = mainCells.get(i).getChild(j).getChild(k).getStatus();
+                    if (temp == 1) {
+                        sum += 1;
+                        mainCells.get(i).getChild(j).getChild(k).setStatus(0);
+                        if (sum == energy) {
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

@@ -6,6 +6,7 @@ import org.truck.parts.axle.FixedAxle;
 import org.truck.parts.axle.TurningAxle;
 import org.truck.trailerParts.ConnectorClutch;
 import org.truck.truckParts.*;
+import org.truck.truckParts.battery.Battery;
 import org.truck.vehicle.mediator.TruckMediator;
 
 import static org.truck.helper.PositionEnum.*;
@@ -19,6 +20,7 @@ public class Truck {
     private final ConnectorClutch connectorClutch;
     private final Cabin cabin;
     private final Motor motor;
+    private final Battery battery;
     private final TurningAxle frontAxle;
     private final FixedAxle[] backAxles;
     private final Headlight[] headLights;
@@ -35,6 +37,7 @@ public class Truck {
         this.connectorClutch = builder.connectorClutch;
         this.cabin = builder.cabin;
         this.motor = builder.motor;
+        this.battery = builder.battery;
         this.frontAxle = builder.frontAxle;
         this.backAxles = builder.backAxles;
         this.headLights = builder.headLights;
@@ -51,6 +54,7 @@ public class Truck {
         private ConnectorClutch connectorClutch;
         private Cabin cabin;
         private Motor motor;
+        private Battery battery;
         private TurningAxle frontAxle;
         private FixedAxle[] backAxles;
         private Headlight[] headLights;
@@ -80,6 +84,11 @@ public class Truck {
 
         public Builder motor() {
             this.motor = new Motor();
+            return this;
+        }
+
+        public Builder battery() {
+            this.battery = new Battery();
             return this;
         }
 
@@ -148,6 +157,10 @@ public class Truck {
         }
         // Motor
         if (this.motor == null) {
+            return false;
+        }
+        // Battery
+        if (this.battery == null) {
             return false;
         }
         // frontAxle

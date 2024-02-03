@@ -6,8 +6,9 @@ public class Main {
         Battery bat = new Battery();
 
         var temp = bat.getAvailableEnergy();
-
         System.out.println(temp);
-
+        bat.unload(260000);
+        temp = bat.getAvailableEnergy();
+        System.out.println(temp);
     }
 }

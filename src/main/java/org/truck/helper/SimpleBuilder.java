@@ -11,6 +11,7 @@ public class SimpleBuilder {
                 .connectorClutch()
                 .cabin()
                 .motor()
+                .battery()
                 .frontAxle()
                 .backAxles(2)
                 .headlights()
