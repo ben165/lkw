@@ -1,5 +1,5 @@
 package org.truck.helper;
 
-public enum IndicatorEnum {
+public enum PositionEnum {
     LEFT, RIGHT;
 }

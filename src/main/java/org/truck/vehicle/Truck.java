@@ -8,6 +8,8 @@ import org.truck.trailerParts.ConnectorClutch;
 import org.truck.truckParts.*;
 import org.truck.vehicle.mediator.TruckMediator;
 
+import static org.truck.helper.PositionEnum.*;
+
 import java.util.Arrays;
 
 public class Truck {
@@ -99,16 +101,16 @@ public class Truck {
 
         public Builder headlights() {
             this.headLights = new Headlight[2];
-            this.headLights[0] = new Headlight();
-            this.headLights[1] = new Headlight();
+            this.headLights[LEFT.ordinal()] = new Headlight();
+            this.headLights[RIGHT.ordinal()] = new Headlight();
             this.truckMediator.setHeadlight(this.headLights);
             return this;
         }
 
         public Builder mirrors() {
             this.mirrors = new Mirror[2];
-            this.mirrors[0] = new Mirror();
-            this.mirrors[1] = new Mirror();
+            this.mirrors[LEFT.ordinal()] = new Mirror();
+            this.mirrors[RIGHT.ordinal()] = new Mirror();
             this.truckMediator.setMirrors(this.mirrors);
             return this;
         }
@@ -127,8 +129,8 @@ public class Truck {
 
         public Builder brakeLights() {
             this.brakelights = new Brakelight[2];
-            this.brakelights[0] = new Brakelight();
-            this.brakelights[1] = new Brakelight();
+            this.brakelights[LEFT.ordinal()] = new Brakelight();
+            this.brakelights[RIGHT.ordinal()] = new Brakelight();
             this.truckMediator.setBrakelight(this.brakelights);
             return this;
         }
@@ -167,7 +169,7 @@ public class Truck {
             return false;
         }
         // BrakeLights
-        if (this.brakelights[0] == null || this.brakelights[1] == null) {
+        if (this.brakelights[LEFT.ordinal()] == null || this.brakelights[RIGHT.ordinal()] == null) {
             return false;
         }
         // ConnectorClutch
@@ -179,21 +181,19 @@ public class Truck {
             return false;
         }
         // Mirrors
-        if (this.mirrors[0] == null || this.mirrors[1] == null) {
+        if (this.mirrors[LEFT.ordinal()] == null || this.mirrors[RIGHT.ordinal()] == null) {
             return false;
         }
-
-
-        if (mirrors[0].getCamera() == null) {
+        // Cameras
+        if (this.mirrors[LEFT.ordinal()].getCamera() == null || this.mirrors[RIGHT.ordinal()].getCamera() == null) {
             return false;
         }
-
-        if (mirrors[1].getCamera() == null) {
+        // Lidars
+        if (this.mirrors[LEFT.ordinal()].getLidar() == null || this.mirrors[RIGHT.ordinal()].getLidar() == null) {
             return false;
         }
 
         return true;
-
     }
 
     @Override

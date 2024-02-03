@@ -1,13 +1,20 @@
 package org.truck.truckParts.battery;
 
-public abstract class Cell {
-    protected int status = 0;
-    public abstract void add(Cell cell);
-    public abstract Cell getChild(int i);
-    public void unload() {
-        this.status = 0;
+public class Cell extends ACell{
+    private int status = 0;
+    @Override
+    public void add(ACell cell) {}
+
+    @Override
+    public ACell getChild(int i) {
+        return null;
     }
-    public void load() {
-        this.status = 1;
+
+    public int getStatus() {
+        return this.status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

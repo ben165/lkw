@@ -3,7 +3,7 @@ package org.truck;
 import org.truck.helper.SimpleBuilder;
 import org.truck.vehicle.Trailor;
 import org.truck.vehicle.Truck;
-import static org.truck.helper.IndicatorEnum.*;
+import static org.truck.helper.PositionEnum.*;
 
 public class Application {
     public static void main(String[] args) {
