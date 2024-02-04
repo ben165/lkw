@@ -1,4 +1,4 @@
-package org.truck.vehicle.mediator;
+package org.truck.truckParts.mediator;
 
 import org.truck.parts.Brakelight;
 import org.truck.parts.Indicators;

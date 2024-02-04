@@ -1,11 +1,11 @@
 package org.truck.truckParts;
 
 import org.truck.observer.TrailerDetector;
-import org.truck.vehicle.Trailor;
+import org.truck.vehicle.Trailer;
 
 public class Hitch{
     private boolean connected = false;
-    Trailor trailor;
+    Trailer trailer;
     TrailerDetector trailerDetector;
     public Hitch() {
         trailerDetector = new TrailerDetector();
@@ -27,11 +27,11 @@ public class Hitch{
         this.trailerDetector = trailerDetector;
     }
 
-    public Trailor getTrailor() {
-        return trailor;
+    public Trailer getTrailor() {
+        return trailer;
     }
 
-    public void setTrailor(Trailor trailor) {
-        this.trailor = trailor;
+    public void setTrailor(Trailer trailer) {
+        this.trailer = trailer;
     }
 }

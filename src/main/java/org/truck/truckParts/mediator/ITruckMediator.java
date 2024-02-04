@@ -1,4 +1,4 @@
-package org.truck.vehicle.mediator;
+package org.truck.truckParts.mediator;
 
 public interface ITruckMediator {
     void indicateOff();

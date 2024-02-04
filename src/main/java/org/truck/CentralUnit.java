@@ -4,9 +4,9 @@ import org.truck.commands.*;
 import org.truck.observer.IPalletListener;
 import org.truck.observer.ITrailerListener;
 import org.truck.vehicle.Truck;
-import org.truck.vehicle.mediator.TruckMediator;
+import org.truck.truckParts.mediator.TruckMediator;
 
-public class CentralUnit implements ITrailerListener {
+public class CentralUnit implements ITrailerListener, IPalletListener {
     private boolean trailerIsConnected = false;
     private final Truck truck;
     private final Control control = new Control();
@@ -95,9 +95,14 @@ public class CentralUnit implements ITrailerListener {
     }
 
     @Override
-    public String trailerDetected(String s) {
-        System.out.println("Trailer detected");
+    public boolean trailerDetected(boolean status) {
+        System.out.println("Trailer connection: " + status);
         this.trailerIsConnected = true;
-        return s;
+        return true;
+    }
+
+    @Override
+    public void palletDetected(int location) {
+        System.out.println("Pallet placed on location: " + location);
     }
 }

@@ -6,10 +6,9 @@ import org.truck.parts.Indicators;
 import org.truck.parts.Brakelight;
 import org.truck.parts.axle.FixedAxle;
 import org.truck.parts.axle.TurningAxle;
-import org.truck.trailerParts.ConnectorClutch;
 import org.truck.truckParts.*;
 import org.truck.truckParts.battery.Battery;
-import org.truck.vehicle.mediator.TruckMediator;
+import org.truck.truckParts.mediator.TruckMediator;
 
 import static org.truck.helper.PositionEnum.*;
 
@@ -156,12 +155,15 @@ public class Truck {
         this.centralUnit = centralUnit;
     }
 
-    public void connectTrailerToHitch(Trailor trailor) {
+    public void connectTrailerToHitch(Trailer trailer) {
         hitch.setConnected(true);
-        hitch.setTrailor(trailor);
+        hitch.setTrailor(trailer);
         TrailerDetector trailerDetector = new TrailerDetector();
         trailerDetector.addListener(centralUnit);
         trailerDetector.trailerConnected();
+
+        // Needed for loading sensors
+        trailer.loadingArea.setCentralUnit(centralUnit);
     }
 
 

@@ -1,6 +1,6 @@
 package org.truck.helper;
 
-import org.truck.vehicle.Trailor;
+import org.truck.vehicle.Trailer;
 import org.truck.vehicle.Truck;
 
 public class SimpleBuilder {
@@ -22,8 +22,8 @@ public class SimpleBuilder {
                 .build();
     }
 
-    static public Trailor createTrailer() {
-        return new Trailor.Builder()
+    static public Trailer createTrailer() {
+        return new Trailer.Builder()
                 .trailerChassis()
                 .trailerCoupler()
                 .loadingArea()

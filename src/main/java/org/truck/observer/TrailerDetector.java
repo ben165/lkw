@@ -11,7 +11,7 @@ public class TrailerDetector {
 
     public void trailerConnected() {
         for (ITrailerListener listener : listenerList) {
-            listener.trailerDetected("Trailer connected");
+            listener.trailerDetected(true);
         }
     }
 

@@ -5,7 +5,7 @@ import org.truck.helper.SimpleBuilder;
 public class Main {
     public static void main(String[] args) {
         Truck truck = SimpleBuilder.createTruck(2);
-        Trailor trailor = SimpleBuilder.createTrailer();
+        Trailer trailer = SimpleBuilder.createTrailer();
 
         System.out.println(truck);
 
@@ -13,6 +13,6 @@ public class Main {
 
         System.out.println();
 
-        System.out.println(trailor);
+        System.out.println(trailer);
     }
 }
