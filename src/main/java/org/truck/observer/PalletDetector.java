@@ -9,6 +9,12 @@ public class PalletDetector {
         listenerList = new ArrayList<>();
     }
 
+    public void palletDetected(int location) {
+        for (IPalletListener listener : listenerList) {
+            listener.palletDetected(location);
+        }
+    }
+
     public void addListener(IPalletListener listener) {
         listenerList.add(listener);
     }

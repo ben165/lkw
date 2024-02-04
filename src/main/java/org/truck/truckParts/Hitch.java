@@ -1,11 +1,11 @@
 package org.truck.truckParts;
 
+import org.truck.CentralUnit;
 import org.truck.observer.TrailerDetector;
 import org.truck.vehicle.Trailer;
 
 public class Hitch{
     private boolean connected = false;
-    Trailer trailer;
     TrailerDetector trailerDetector;
     public Hitch() {
         trailerDetector = new TrailerDetector();
@@ -17,21 +17,10 @@ public class Hitch{
 
     public void setConnected(boolean connected) {
         this.connected = connected;
+        trailerDetector.trailerConnected();
     }
 
-    public TrailerDetector getTrailerDetector() {
-        return trailerDetector;
-    }
-
-    public void setTrailerDetector(TrailerDetector trailerDetector) {
-        this.trailerDetector = trailerDetector;
-    }
-
-    public Trailer getTrailor() {
-        return trailer;
-    }
-
-    public void setTrailor(Trailer trailer) {
-        this.trailer = trailer;
+    public void setCentralUnit(CentralUnit centralUnit) {
+        trailerDetector.addListener(centralUnit);
     }
 }

@@ -1,6 +1,8 @@
 package org.truck;
 
 import org.truck.commands.*;
+import org.truck.entity.LoadingScheme;
+import org.truck.helper.Json;
 import org.truck.observer.IPalletListener;
 import org.truck.observer.ITrailerListener;
 import org.truck.vehicle.Truck;
@@ -96,13 +98,25 @@ public class CentralUnit implements ITrailerListener, IPalletListener {
 
     @Override
     public boolean trailerDetected(boolean status) {
-        System.out.println("Trailer connection: " + status);
+        System.out.println("Method in CU: Trailer connection: " + status);
         this.trailerIsConnected = true;
         return true;
     }
 
     @Override
     public void palletDetected(int location) {
-        System.out.println("Pallet placed on location: " + location);
+        System.out.println("Method in CU: Pallet placed on location: " + location);
+    }
+
+    public void loadTrailer() {
+        if (this.trailerIsConnected) {
+            LoadingScheme loadingScheme = Json.readParameters();
+
+            var l = loadingScheme.getLeft();
+            var r = loadingScheme.getRight();
+
+            System.out.println(l);
+            System.out.println(r);
+        }
     }
 }

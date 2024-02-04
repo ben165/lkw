@@ -16,6 +16,7 @@ import java.util.Arrays;
 
 public class Truck {
     public final TruckMediator truckMediator;
+    private Trailer trailer;
     private final int amountBackAxles;
     private final TruckChassis truckChassis;
     private final Cabin cabin;
@@ -156,15 +157,15 @@ public class Truck {
     }
 
     public void connectTrailerToHitch(Trailer trailer) {
+        this.trailer = trailer;
+        hitch.setCentralUnit(centralUnit);
         hitch.setConnected(true);
-        hitch.setTrailor(trailer);
-        TrailerDetector trailerDetector = new TrailerDetector();
-        trailerDetector.addListener(centralUnit);
-        trailerDetector.trailerConnected();
 
         // Needed for loading sensors
         trailer.loadingArea.setCentralUnit(centralUnit);
     }
+
+
 
 
     public boolean checkTruckBuilder() {

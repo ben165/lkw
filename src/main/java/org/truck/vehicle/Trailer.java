@@ -7,7 +7,6 @@ import org.truck.trailerParts.Loading.LoadingArea;
 import org.truck.trailerParts.TrailerChassis;
 import org.truck.trailerParts.TrailerCoupler;
 import org.truck.trailerParts.mediator.TrailerMediator;
-import org.truck.truckParts.mediator.TruckMediator;
 
 import java.util.Arrays;
 
