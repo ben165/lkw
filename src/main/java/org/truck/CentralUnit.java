@@ -1,5 +1,6 @@
 package org.truck;
 
+import com.google.common.hash.Hashing;
 import org.truck.commands.*;
 import org.truck.entity.LoadingScheme;
 import org.truck.helper.Json;
@@ -8,6 +9,8 @@ import org.truck.observer.ITrailerListener;
 import org.truck.vehicle.Trailer;
 import org.truck.vehicle.Truck;
 import org.truck.truckParts.mediator.TruckMediator;
+
+import java.nio.charset.StandardCharsets;
 
 public class CentralUnit implements ITrailerListener, IPalletListener {
     private boolean trailerIsConnected = false;
@@ -89,6 +92,16 @@ public class CentralUnit implements ITrailerListener, IPalletListener {
         control.setCommand(lidarOn);
         control.action();
     }
+
+
+    public boolean Receiver(String password) {
+        String sha256Hex = Hashing.sha256()
+                .hashString("Kodiak2024", StandardCharsets.UTF_8)
+                .toString();
+
+        return password.equals(sha256Hex);
+    }
+
 
     public boolean isTrailerIsConnected() {
         return trailerIsConnected;

@@ -38,7 +38,14 @@ public class Application {
         System.out.println("\nTrailer connected? Answer: " + centralUnit.isTrailerIsConnected());
 
         System.out.println("\n\n!! LOADING CHECK !!\n");
-
+        System.out.println("Loading trailer now...");
         centralUnit.loadTrailer();
+
+
+        System.out.println("\n\n!! KEY CHECK !!\n\n");
+        Key key = new Key();
+        System.out.println("Key korrekt? " + centralUnit.Receiver(key.SendSignal()));
+        System.out.println("Key korrekt? " + centralUnit.Receiver(key.SendWrongSignal()));
+
     }
 }

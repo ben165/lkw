@@ -1,5 +1,4 @@
 package org.truck.helper;
-
 import com.google.gson.Gson;
 import org.truck.entity.LoadingScheme;
 import java.io.IOException;
