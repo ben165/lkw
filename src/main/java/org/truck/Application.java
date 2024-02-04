@@ -27,7 +27,12 @@ public class Application {
 
         // Trailer Connection Check
         truck.setCentralUnit(centralUnit);
+
+        var a = centralUnit.isTrailerIsConnected();
+        System.out.println(a);
         truck.connectTrailerToHitch(trailor);
+        a = centralUnit.isTrailerIsConnected();
+        System.out.println(a);
 
     }
 }

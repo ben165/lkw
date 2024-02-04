@@ -7,6 +7,7 @@ import org.truck.vehicle.Truck;
 import org.truck.vehicle.mediator.TruckMediator;
 
 public class CentralUnit implements ITrailerListener {
+    private boolean trailerIsConnected = false;
     private final Truck truck;
     private final Control control = new Control();
     private final TruckMediator mediator;
@@ -89,8 +90,14 @@ public class CentralUnit implements ITrailerListener {
 
     }
 
+    public boolean isTrailerIsConnected() {
+        return trailerIsConnected;
+    }
+
     @Override
-    public void trailerDetected(String s) {
-        System.out.println(s);
+    public String trailerDetected(String s) {
+        System.out.println("Trailer detected");
+        this.trailerIsConnected = true;
+        return s;
     }
 }
