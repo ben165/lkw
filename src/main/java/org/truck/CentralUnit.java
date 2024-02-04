@@ -5,11 +5,13 @@ import org.truck.entity.LoadingScheme;
 import org.truck.helper.Json;
 import org.truck.observer.IPalletListener;
 import org.truck.observer.ITrailerListener;
+import org.truck.vehicle.Trailer;
 import org.truck.vehicle.Truck;
 import org.truck.truckParts.mediator.TruckMediator;
 
 public class CentralUnit implements ITrailerListener, IPalletListener {
     private boolean trailerIsConnected = false;
+    Trailer trailer;
     private final Truck truck;
     private final Control control = new Control();
     private final TruckMediator mediator;
@@ -88,18 +90,15 @@ public class CentralUnit implements ITrailerListener, IPalletListener {
         control.action();
     }
 
-    public void setHitch() {
-
-    }
-
     public boolean isTrailerIsConnected() {
         return trailerIsConnected;
     }
 
     @Override
-    public boolean trailerDetected(boolean status) {
-        System.out.println("Method in CU: Trailer connection: " + status);
+    public boolean trailerDetected(Trailer trailer) {
+        System.out.println("Method in CU: Trailer connection: " + trailer.hashCode());
         this.trailerIsConnected = true;
+        this.trailer = trailer;
         return true;
     }
 
@@ -110,13 +109,7 @@ public class CentralUnit implements ITrailerListener, IPalletListener {
 
     public void loadTrailer() {
         if (this.trailerIsConnected) {
-            LoadingScheme loadingScheme = Json.readParameters();
-
-            var l = loadingScheme.getLeft();
-            var r = loadingScheme.getRight();
-
-            System.out.println(l);
-            System.out.println(r);
+            trailer.loadingArea.loadTrailer();
         }
     }
 }

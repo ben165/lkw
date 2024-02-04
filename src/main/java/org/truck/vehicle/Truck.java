@@ -156,13 +156,17 @@ public class Truck {
         this.centralUnit = centralUnit;
     }
 
-    public void connectTrailerToHitch(Trailer trailer) {
+    public Trailer connectTrailerToHitch(Trailer trailer) {
         this.trailer = trailer;
-        hitch.setCentralUnit(centralUnit);
-        hitch.setConnected(true);
 
         // Needed for loading sensors
+        hitch.setCentralUnit(centralUnit);
+        hitch.setConnected(trailer);
+
+        // Needed for sensors
         trailer.loadingArea.setCentralUnit(centralUnit);
+
+        return trailer;
     }
 
 

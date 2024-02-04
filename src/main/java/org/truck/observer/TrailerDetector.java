@@ -1,5 +1,7 @@
 package org.truck.observer;
 
+import org.truck.vehicle.Trailer;
+
 import java.util.ArrayList;
 
 public class TrailerDetector {
@@ -9,9 +11,9 @@ public class TrailerDetector {
         listenerList = new ArrayList<>();
     }
 
-    public void trailerConnected() {
+    public void trailerConnected(Trailer trailer) {
         for (ITrailerListener listener : listenerList) {
-            listener.trailerDetected(true);
+            listener.trailerDetected(trailer);
         }
     }
 

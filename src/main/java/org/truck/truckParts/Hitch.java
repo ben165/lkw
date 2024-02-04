@@ -15,9 +15,9 @@ public class Hitch{
         return connected;
     }
 
-    public void setConnected(boolean connected) {
-        this.connected = connected;
-        trailerDetector.trailerConnected();
+    public void setConnected(Trailer trailer) {
+        this.connected = true;
+        trailerDetector.trailerConnected(trailer);
     }
 
     public void setCentralUnit(CentralUnit centralUnit) {

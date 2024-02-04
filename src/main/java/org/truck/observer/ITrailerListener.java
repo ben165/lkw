@@ -1,5 +1,7 @@
 package org.truck.observer;
 
+import org.truck.vehicle.Trailer;
+
 public interface ITrailerListener {
-    boolean trailerDetected(boolean status);
+    boolean trailerDetected(Trailer trailer);
 }

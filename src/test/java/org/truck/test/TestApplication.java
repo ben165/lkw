@@ -12,20 +12,27 @@ public class TestApplication {
     private Truck truck;
     private Trailer trailer;
 
-    // TEST 01
-    // SimpleBuilder creates a truck and a trailer with the Builder pattern. See in helper package class "SimpleBuilder".
+
     @BeforeEach
     public void setup() {
         truck = SimpleBuilder.createTruck(2);
         trailer = SimpleBuilder.createTrailer();
     }
 
-    // TEST 02
-    // Same with the trailer
+    // TEST 01
+    // SimpleBuilder creates a truck and a trailer with the Builder pattern. See in helper package class "SimpleBuilder".
     @Test
     @Order(1)
     public void truckBuilderTests() {
         assertTrue(truck.checkTruckBuilder());
+    }
+
+    // TEST 02
+    // Same with the trailer
+    @Test()
+    @Order(2)
+    public void test2() {
+        assertTrue(trailer.checkTrailerBuilder());
     }
 
     //TEST 03

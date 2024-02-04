@@ -3,9 +3,11 @@ package org.truck.trailerParts.Loading;
 import org.truck.CentralUnit;
 import org.truck.entity.LoadingScheme;
 import org.truck.helper.Json;
+import org.truck.observer.PalletDetector;
 
 public class LoadingArea {
     CentralUnit centralUnit;
+    PalletDetector palletDetector = new PalletDetector();
     Pallet[] palletArray = new Pallet[16];
 
     public LoadingArea(){
@@ -14,6 +16,7 @@ public class LoadingArea {
 
     public void setCentralUnit(CentralUnit centralUnit) {
         this.centralUnit = centralUnit;
+        palletDetector.addListener(centralUnit);
     }
 
     public void placePallet(int position) {
@@ -25,16 +28,25 @@ public class LoadingArea {
         LoadingScheme plan = Json.readParameters();
 
         // Flatmapping
+        int counter = 0;
+        int isLoaded;
+
+        // Left site
         for (int i=0; i<plan.getLeft().size(); i++) {
-            int isLoaded = plan.getLeft().get(i);
-            System.out.println( isLoaded );
-            if( isLoaded == 1) {
-
+            isLoaded = plan.getLeft().get(i);
+            if (isLoaded != 0) {
+                palletDetector.palletDetected(counter);
             }
-
+            counter++;
         }
+
+        // Right site
         for (int i=0; i<plan.getRight().size(); i++) {
-            System.out.println( plan.getRight().get(i) );
+            isLoaded = plan.getRight().get(i);
+            if (isLoaded != 0) {
+                palletDetector.palletDetected(counter);
+            }
+            counter++;
         }
     }
 }
