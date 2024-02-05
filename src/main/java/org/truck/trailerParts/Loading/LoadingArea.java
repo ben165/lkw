@@ -24,29 +24,19 @@ public class LoadingArea {
         this.palletArray[position] = pallet;
     }
 
-    public void loadTrailer() {
-        LoadingScheme plan = Json.readParameters();
+    public void loadTrailer(String loadingPlan) {
+        LoadingScheme plan = Json.readParameters(loadingPlan);
 
-        // Flatmapping
-        int counter = 0;
-        int isLoaded;
-
-        // Left site
+        // Flatmapping and filling with Pallets
         for (int i=0; i<plan.getLeft().size(); i++) {
-            isLoaded = plan.getLeft().get(i);
-            if (isLoaded != 0) {
-                palletDetector.palletDetected(counter);
+            if (plan.getLeft().get(i) == 1) {
+                palletDetector.palletDetected(i);
+                palletArray[i] = new Pallet();
             }
-            counter++;
-        }
-
-        // Right site
-        for (int i=0; i<plan.getRight().size(); i++) {
-            isLoaded = plan.getRight().get(i);
-            if (isLoaded != 0) {
-                palletDetector.palletDetected(counter);
+            if (plan.getRight().get(i) == 1) {
+                palletDetector.palletDetected(i+8);
+                palletArray[i+8] = new Pallet();
             }
-            counter++;
         }
     }
 }

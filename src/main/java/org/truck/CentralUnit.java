@@ -2,8 +2,7 @@ package org.truck;
 
 import com.google.common.hash.Hashing;
 import org.truck.commands.*;
-import org.truck.entity.LoadingScheme;
-import org.truck.helper.Json;
+import org.truck.helper.LoadPlanFlat;
 import org.truck.observer.IPalletListener;
 import org.truck.observer.ITrailerListener;
 import org.truck.vehicle.Trailer;
@@ -11,6 +10,7 @@ import org.truck.vehicle.Truck;
 import org.truck.truckParts.mediator.TruckMediator;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 
 public class CentralUnit implements ITrailerListener, IPalletListener {
     private boolean trailerIsConnected = false;
@@ -27,6 +27,9 @@ public class CentralUnit implements ITrailerListener, IPalletListener {
     private final ICommand indicatorOff;
     private final ICommand lidarOff;
     private final ICommand lidarOn;
+    private int[] realLoadingPlan;
+    private final int[] actualLoadingPlan = new int[16];
+
     public CentralUnit(Truck truck) {
         this.truck = truck;
         this.mediator = truck.truckMediator;
@@ -44,6 +47,8 @@ public class CentralUnit implements ITrailerListener, IPalletListener {
 
         lidarOff = new LidarOff(this.mediator);
         lidarOn = new LidarOn(this.mediator);
+
+        Arrays.fill(actualLoadingPlan, 0);
     }
 
     public void brake(int percentage) {
@@ -117,12 +122,28 @@ public class CentralUnit implements ITrailerListener, IPalletListener {
 
     @Override
     public void palletDetected(int location) {
-        System.out.println("Method in CU: Pallet placed on location: " + location);
+        //System.out.println("Method in CU: Pallet placed on location: " + location);
+        actualLoadingPlan[location] = 1;
+        //System.out.println("Correct? " + intLoadingPlan[location]);
     }
 
-    public void loadTrailer() {
+    public void loadTrailer(String loadingPlan) {
         if (this.trailerIsConnected) {
-            trailer.loadingArea.loadTrailer();
+            LoadPlanFlat loadPlanFlat = new LoadPlanFlat();
+            this.realLoadingPlan = loadPlanFlat.flatIntMap("loadingPlan.json");
+
+            // Loading happening, sensors informs CU
+            trailer.loadingArea.loadTrailer(loadingPlan);
         }
+    }
+
+    public boolean checkLoading() {
+        for (int i = 0; i< realLoadingPlan.length; i++) {
+            if (realLoadingPlan[i] != actualLoadingPlan[i]) {
+                System.out.println(realLoadingPlan[i] + " != " + actualLoadingPlan[i]);
+                return false;
+            }
+        }
+        return true;
     }
 }

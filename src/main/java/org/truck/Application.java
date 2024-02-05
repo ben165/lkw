@@ -39,8 +39,12 @@ public class Application {
 
         System.out.println("\n\n!! LOADING CHECK !!\n");
         System.out.println("Loading trailer now...");
-        centralUnit.loadTrailer();
 
+        centralUnit.loadTrailer("loadingPlan.json");
+        System.out.println("LoadingCorrect?: " + centralUnit.checkLoading() );
+
+        centralUnit.loadTrailer("loadingPlanWrong.json");
+        System.out.println("LoadingCorrect?: " + centralUnit.checkLoading() );
 
         System.out.println("\n\n!! KEY CHECK !!\n\n");
         Key key = new Key();

@@ -6,8 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class Json {
-    static String filename = "loadingPlan.json";
-    public static LoadingScheme readParameters() {
+    public static LoadingScheme readParameters(String filename) {
         String jsonStr = readFile(filename);
         Gson gson = new Gson();
         return gson.fromJson(jsonStr, LoadingScheme.class);
