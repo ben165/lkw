@@ -19,10 +19,12 @@ public class LoadingArea {
         palletDetector.addListener(centralUnit);
     }
 
-    public void placePallet(int position) {
-        Pallet pallet = new Pallet();
-        this.palletArray[position] = pallet;
-        palletDetector.palletDetected(position);
+    public void placePallet(int position, int isPallet) {
+        if (isPallet == 1) {
+            Pallet pallet = new Pallet();
+            this.palletArray[position] = pallet;
+        }
+        palletDetector.palletDetected(position, isPallet);
     }
 
     /*

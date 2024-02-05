@@ -119,10 +119,13 @@ public class TestApplication {
         truck.connectTrailerToHitch(trailer);
         assertTrue(centralUnit.isTrailerIsConnected());
 
-        // Loading detection
-        assertTrue(centralUnit.checkLoading());
+        // Correct loading detection
+        trailer.loadTrailer("loadingPlan.json");
+        assertTrue(centralUnit.loadingResult());
 
-        // Wrong loading plan
+        // Wrong loading detection
+        trailer.loadTrailer("loadingPlanWrong.json");
+        assertFalse(centralUnit.loadingResult());
     }
 
     // TEST 06

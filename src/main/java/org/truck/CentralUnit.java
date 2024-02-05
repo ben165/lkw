@@ -11,7 +11,6 @@ import org.truck.vehicle.Trailer;
 import org.truck.vehicle.Truck;
 import org.truck.truckParts.mediator.TruckMediator;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 
 public class CentralUnit implements ITrailerListener, IPalletListener {
     private boolean trailerIsConnected = false;
@@ -32,9 +31,9 @@ public class CentralUnit implements ITrailerListener, IPalletListener {
     private final ICommand moveStraight;
     private final ICommand turnLeft;
     private final ICommand turnRight;
-    private int[] realLoadingPlan;
-    private final int[] actualLoadingPlan = new int[16];
+    private LoadPlanFlat loadPlanFlat;
     private final State state;
+    boolean isLoadingCorrect;
 
 
     public CentralUnit(Truck truck) {
@@ -60,8 +59,6 @@ public class CentralUnit implements ITrailerListener, IPalletListener {
         moveStraight = new MoveStraight(truck);
         turnLeft = new TurnLeft(truck);
         turnRight = new TurnRight(truck);
-
-        Arrays.fill(actualLoadingPlan, 0);
 
         state = new State();
         state.setState(new Inactive());
@@ -170,23 +167,27 @@ public class CentralUnit implements ITrailerListener, IPalletListener {
         System.out.println("Method in CU: Trailer connection: " + trailer.hashCode());
         this.trailerIsConnected = true;
         this.trailer = trailer;
+        this.isLoadingCorrect = true;
     }
 
     @Override
-    public void palletDetected(int location) {
-        //System.out.println("Method in CU: Pallet placed on location: " + location);
-        actualLoadingPlan[location] = 1;
-        //System.out.println("Correct? " + intLoadingPlan[location]);
+    public void palletDetected(int location, int isPallet) {
+        if (loadPlanFlat == null) {
+            loadPlanFlat = new LoadPlanFlat("loadingPlan.json");
+        }
+
+        if(loadPlanFlat.getInfo(location) != isPallet) {
+            System.out.println("\nLoading wrong on place " + location + "\n");
+            isLoadingCorrect = false;
+        }
+
+        if(location == 15) {
+            System.out.println("\nLoading finished\n");
+        }
     }
 
-    public boolean checkLoading() {
-        for (int i = 0; i< realLoadingPlan.length; i++) {
-            if (realLoadingPlan[i] != actualLoadingPlan[i]) {
-                System.out.println(realLoadingPlan[i] + " != " + actualLoadingPlan[i]);
-                return false;
-            }
-        }
-        return true;
+    public boolean loadingResult() {
+        return isLoadingCorrect;
     }
 
     public State getState() {

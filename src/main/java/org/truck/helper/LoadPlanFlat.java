@@ -24,8 +24,8 @@ public class LoadPlanFlat {
         }
     }
 
-    public boolean isPallet(int i) {
-        return intPlanArray[i] == 1;
+    public int getInfo(int i) {
+        return intPlanArray[i];
     }
 
     public int[] getIntPlanArray() {

@@ -17,6 +17,9 @@ public class Application {
 
         truck.connectTrailerToHitch(trailer);
 
+        trailer.loadTrailer("loadingPlan.json");
+        centralUnit.loadingResult();
+
     }
 
 
