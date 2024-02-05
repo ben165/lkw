@@ -19,5 +19,4 @@ public class Key {
     public String sendWrongSignal() {
         return "F0F0";
     }
-
 }

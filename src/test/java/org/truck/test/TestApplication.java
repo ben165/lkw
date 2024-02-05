@@ -1,10 +1,13 @@
 package org.truck.test;
 
+import com.google.common.hash.Hashing;
 import org.junit.jupiter.api.*;
 import org.truck.CentralUnit;
 import org.truck.Key;
 import org.truck.vehicle.Trailer;
 import org.truck.vehicle.Truck;
+
+import java.nio.charset.StandardCharsets;
 
 import static org.truck.helper.PositionEnum.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -129,9 +132,103 @@ public class TestApplication {
     }
 
     // TEST 06
-    //
+    // Commands
+    /*
+     MoveStraight (percen-
+    tage), TurnLeft(degree,percentage), TurnRight (degree,percentage). von der Zentraleinheit
+    werden in korrektes Verhalten umgesetzt.
+    */
+
     @Test()
     @Order(6)
-    public void test6() {}
+    public void test6() {
+        // Left indicators
+        centralUnit.indicatorOn(LEFT.ordinal());
+        assertTrue(truck.getFrontIndicators().isLeftBlinker());
+        assertTrue(truck.getTailIndicators().isLeftBlinker());
+
+        // Right indicators
+        centralUnit.indicatorOn(RIGHT.ordinal());
+        assertTrue(truck.getFrontIndicators().isRightBlinker());
+        assertTrue(truck.getTailIndicators().isRightBlinker());
+
+        // Brake light
+        centralUnit.brakeLightsOn();
+        assertTrue(truck.getBrakelights()[LEFT.ordinal()].isStatus());
+        assertTrue(truck.getBrakelights()[RIGHT.ordinal()].isStatus());
+
+        // Brake light off
+        centralUnit.brakeLightsOff();
+        assertFalse(truck.getBrakelights()[LEFT.ordinal()].isStatus());
+        assertFalse(truck.getBrakelights()[RIGHT.ordinal()].isStatus());
+
+        // Camera on
+        centralUnit.cameraOn();
+        assertTrue(truck.getMirrors()[LEFT.ordinal()].getCamera().getIsOn());
+        assertTrue(truck.getMirrors()[RIGHT.ordinal()].getCamera().getIsOn());
+
+        // Camera off
+        centralUnit.cameraOff();
+        assertFalse(truck.getMirrors()[LEFT.ordinal()].getCamera().getIsOn());
+        assertFalse(truck.getMirrors()[RIGHT.ordinal()].getCamera().getIsOn());
+
+        // Lidar on
+        centralUnit.lidarOn();
+        assertTrue(truck.getMirrors()[LEFT.ordinal()].getLidar().getIsOn());
+        assertTrue(truck.getMirrors()[RIGHT.ordinal()].getLidar().getIsOn());
+
+        // Lidar off
+        centralUnit.lidarOff();
+        assertFalse(truck.getMirrors()[LEFT.ordinal()].getLidar().getIsOn());
+        assertFalse(truck.getMirrors()[RIGHT.ordinal()].getLidar().getIsOn());
+
+        // Brake percentage check
+        centralUnit.brake(50);
+
+        assertEquals(50, truck.getFrontAxle().getBrake());
+
+        for (int i=0; i < truck.getBackAxles().length; i++) {
+            assertEquals(50, truck.getBackAxles()[i].getBrake());
+        }
+
+        // Engine Start
+        centralUnit.engineOn();
+        assertTrue(truck.getEngine().isEngineOn());
+        centralUnit.engineOff();
+        assertFalse(truck.getEngine().isEngineOn());
+    }
+
+
+    // TEST 07
+    // Key Check
+    @Test()
+    @Order(7)
+    public void test7() {
+        Key key = new Key();
+
+        String sha256Hex = Hashing.sha256()
+                .hashString("Kodiak2024", StandardCharsets.UTF_8)
+                .toString();
+
+        assertEquals(sha256Hex, key.sendSignal());
+
+        assertFalse(centralUnit.getState().getState().stateAsBoolean());
+        // Turn on
+        centralUnit.receiver(key.sendSignal());
+        assertTrue(centralUnit.getState().getState().stateAsBoolean());
+        // Turn off
+        centralUnit.receiver(key.sendSignal());
+        assertFalse(centralUnit.getState().getState().stateAsBoolean());
+
+        // Trying to turn on with wrong key
+        centralUnit.receiver(key.sendWrongSignal());
+        assertFalse(centralUnit.getState().getState().stateAsBoolean());
+
+        // Trying to turn off with the wrong key
+        centralUnit.receiver(key.sendSignal()); //turn on
+        assertTrue(centralUnit.getState().getState().stateAsBoolean());
+        centralUnit.receiver(key.sendWrongSignal());
+        assertTrue(centralUnit.getState().getState().stateAsBoolean());
+    }
 
 }

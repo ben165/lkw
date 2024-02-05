@@ -14,11 +14,11 @@ public class Indicators {
 
     public void setLeftBlinker(boolean status) {
         this.leftBlinker = status;
-        System.out.println("Left indicator "+ this.hashCode() +": " + this.leftBlinker);
+        //System.out.println("Left indicator "+ this.hashCode() +": " + this.leftBlinker);
     }
 
     public void setRightBlinker(boolean status) {
         this.rightBlinker = status;
-        System.out.println("Right indicator " + this.hashCode() + ": " + this.rightBlinker);
+        //System.out.println("Right indicator " + this.hashCode() + ": " + this.rightBlinker);
     }
 }

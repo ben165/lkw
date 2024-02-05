@@ -174,8 +174,24 @@ public class Truck {
         return frontAxle;
     }
 
+    public FixedAxle[] getBackAxles() {
+        return backAxles;
+    }
+
     public Mirror[] getMirrors() {
         return mirrors;
+    }
+
+    public Indicators getFrontIndicators() {
+        return frontIndicators;
+    }
+
+    public Indicators getTailIndicators() {
+        return tailIndicators;
+    }
+
+    public Brakelight[] getBrakelights() {
+        return brakelights;
     }
 
     public boolean checkTruckBuilder() {

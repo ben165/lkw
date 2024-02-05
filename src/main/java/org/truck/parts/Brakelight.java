@@ -9,6 +9,6 @@ public class Brakelight {
 
     public void setStatus(boolean status) {
         this.status = status;
-        System.out.println("Brakelight: " + this.hashCode() + " Status: " + status);
+        //System.out.println("Brakelight: " + this.hashCode() + " Status: " + status);
     }
 }
