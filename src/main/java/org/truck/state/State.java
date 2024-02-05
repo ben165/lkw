@@ -11,7 +11,7 @@ public class State{
         this.state = state;
     }
 
-    public void promote() {
+    public void change() {
         state.change(this);
     }
 

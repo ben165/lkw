@@ -8,6 +8,7 @@ public class SimpleBuilder {
         return new Truck.Builder()
                 .truckMediator()
                 .truckChassis()
+                .hitch()
                 .cabin()
                 .motor()
                 .battery()
@@ -18,12 +19,12 @@ public class SimpleBuilder {
                 .frontBlinkers()
                 .tailBlinkers()
                 .brakeLights()
-                .hitch()
                 .build();
     }
 
     static public Trailer createTrailer() {
         return new Trailer.Builder()
+                .trailerMediator()
                 .trailerChassis()
                 .trailerCoupler()
                 .loadingArea()

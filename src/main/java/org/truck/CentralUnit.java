@@ -1,20 +1,22 @@
 package org.truck;
 
 import com.google.common.hash.Hashing;
+import com.sun.tools.jconsole.JConsoleContext;
 import org.truck.commands.*;
 import org.truck.helper.LoadPlanFlat;
 import org.truck.observer.IPalletListener;
 import org.truck.observer.ITrailerListener;
+import org.truck.state.Inactive;
+import org.truck.state.State;
 import org.truck.vehicle.Trailer;
 import org.truck.vehicle.Truck;
 import org.truck.truckParts.mediator.TruckMediator;
-
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 public class CentralUnit implements ITrailerListener, IPalletListener {
     private boolean trailerIsConnected = false;
-    Trailer trailer;
+    private Trailer trailer;
     private final Truck truck;
     private final Control control = new Control();
     private final TruckMediator mediator;
@@ -27,8 +29,12 @@ public class CentralUnit implements ITrailerListener, IPalletListener {
     private final ICommand indicatorOff;
     private final ICommand lidarOff;
     private final ICommand lidarOn;
+    private final ICommand engineStart;
+    private final ICommand engineShutdown;
     private int[] realLoadingPlan;
     private final int[] actualLoadingPlan = new int[16];
+    private State state;
+
 
     public CentralUnit(Truck truck) {
         this.truck = truck;
@@ -48,7 +54,13 @@ public class CentralUnit implements ITrailerListener, IPalletListener {
         lidarOff = new LidarOff(this.mediator);
         lidarOn = new LidarOn(this.mediator);
 
+        engineStart = new EngineStart(truck);
+        engineShutdown = new EngineShutdown(truck);
+
         Arrays.fill(actualLoadingPlan, 0);
+
+        state = new State();
+        state.setState(new Inactive());
     }
 
     public void brake(int percentage) {
@@ -99,12 +111,24 @@ public class CentralUnit implements ITrailerListener, IPalletListener {
     }
 
 
-    public boolean Receiver(String password) {
+    public void receiver(String password) {
         String sha256Hex = Hashing.sha256()
                 .hashString("Kodiak2024", StandardCharsets.UTF_8)
                 .toString();
 
-        return password.equals(sha256Hex);
+        if (password.equals(sha256Hex)) {
+            state.change();
+
+            if (state.getState().stateAsBoolean()) {
+                mediator.camera(true);
+                mediator.lidar(true);
+                control.setCommand(engineStart);
+            } else {
+                mediator.camera(true);
+                mediator.lidar(true);
+                control.setCommand(engineShutdown);
+            }
+        }
     }
 
 
@@ -145,5 +169,9 @@ public class CentralUnit implements ITrailerListener, IPalletListener {
             }
         }
         return true;
+    }
+
+    public State getState() {
+        return state;
     }
 }

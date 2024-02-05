@@ -15,12 +15,35 @@ public class TestApplication {
 
     @BeforeEach
     public void setup() {
-        truck = SimpleBuilder.createTruck(2);
-        trailer = SimpleBuilder.createTrailer();
+        Truck truck = new Truck.Builder()
+                .truckMediator()
+                .truckChassis()
+                .hitch()
+                .cabin()
+                .motor()
+                .battery()
+                .frontAxle()
+                .backAxles(2)
+                .headlights()
+                .mirrors()
+                .frontBlinkers()
+                .tailBlinkers()
+                .brakeLights()
+                .build();
+
+        Trailer trailer = new Trailer.Builder()
+                .trailerMediator()
+                .trailerChassis()
+                .trailerCoupler()
+                .loadingArea()
+                .backAxles(2)
+                .brakeLights()
+                .tailBlinkers()
+                .build();
     }
 
     // TEST 01
-    // SimpleBuilder creates a truck and a trailer with the Builder pattern. See in helper package class "SimpleBuilder".
+    // Builder test truck
     @Test
     @Order(1)
     public void truckBuilderTests() {
@@ -28,7 +51,7 @@ public class TestApplication {
     }
 
     // TEST 02
-    // Same with the trailer
+    // Builder test trailer
     @Test()
     @Order(2)
     public void test2() {

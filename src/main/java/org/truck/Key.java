@@ -12,11 +12,11 @@ public class Key {
                 .toString();
     }
 
-    public String SendSignal() {
+    public String sendSignal() {
         return sha256Hex;
     }
 
-    public String SendWrongSignal() {
+    public String sendWrongSignal() {
         return "F0F0";
     }
 

@@ -2,16 +2,13 @@ package org.truck.state;
 
 public class Inactive implements IState{
     public void change(State state) {
-        System.out.println("active -> inactive");
+        System.out.println("inactive -> active");
         state.setState(new Active());
     }
 
-    public void print() {
-        System.out.println("Inactive");
-    }
-
-    public String toString() {
-        return "active";
+    @Override
+    public boolean stateAsBoolean() {
+        return false;
     }
 
 }

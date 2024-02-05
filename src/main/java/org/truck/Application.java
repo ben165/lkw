@@ -14,6 +14,25 @@ public class Application {
 
         CentralUnit centralUnit = new CentralUnit(truck);
 
+        System.out.println("\n\n!! KEY CHECK !!\n\n");
+        Key key = new Key();
+        //System.out.println("Key korrekt? " + centralUnit.Receiver(key.SendSignal()));
+        //System.out.println("Key korrekt? " + centralUnit.Receiver(key.SendWrongSignal()));
+
+        System.out.println(centralUnit.getState().getState().stateAsBoolean());
+        centralUnit.receiver(key.sendSignal());
+        System.out.println(centralUnit.getState().getState().stateAsBoolean());
+        centralUnit.receiver(key.sendSignal());
+    }
+
+
+    public void test01() {
+        // Builder
+        Truck truck = SimpleBuilder.createTruck(2);
+        Trailer trailer = SimpleBuilder.createTrailer();
+
+        CentralUnit centralUnit = new CentralUnit(truck);
+
         // Command and mediator check
         System.out.println("\n\n!!! COMMAND AND MEDIATOR CHECK !!!\n");
         centralUnit.cameraOn();
@@ -46,10 +65,6 @@ public class Application {
         centralUnit.loadTrailer("loadingPlanWrong.json");
         System.out.println("LoadingCorrect?: " + centralUnit.checkLoading() );
 
-        System.out.println("\n\n!! KEY CHECK !!\n\n");
-        Key key = new Key();
-        System.out.println("Key korrekt? " + centralUnit.Receiver(key.SendSignal()));
-        System.out.println("Key korrekt? " + centralUnit.Receiver(key.SendWrongSignal()));
-
     }
+
 }

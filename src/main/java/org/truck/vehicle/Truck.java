@@ -169,8 +169,9 @@ public class Truck {
         return trailer;
     }
 
-
-
+    public Motor getMotor() {
+        return motor;
+    }
 
     public boolean checkTruckBuilder() {
 
