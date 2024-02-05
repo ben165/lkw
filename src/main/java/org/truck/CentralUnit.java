@@ -1,7 +1,6 @@
 package org.truck;
 
 import com.google.common.hash.Hashing;
-import com.sun.tools.jconsole.JConsoleContext;
 import org.truck.commands.*;
 import org.truck.helper.LoadPlanFlat;
 import org.truck.observer.IPalletListener;
@@ -31,9 +30,12 @@ public class CentralUnit implements ITrailerListener, IPalletListener {
     private final ICommand lidarOn;
     private final ICommand engineStart;
     private final ICommand engineShutdown;
+    private final ICommand moveStraight;
+    private final ICommand turnLeft;
+    private final ICommand turnRight;
     private int[] realLoadingPlan;
     private final int[] actualLoadingPlan = new int[16];
-    private State state;
+    private final State state;
 
 
     public CentralUnit(Truck truck) {
@@ -56,6 +58,10 @@ public class CentralUnit implements ITrailerListener, IPalletListener {
 
         engineStart = new EngineStart(truck);
         engineShutdown = new EngineShutdown(truck);
+
+        moveStraight = new MoveStraight(truck);
+        turnLeft = new TurnLeft(truck);
+        turnRight = new TurnRight(truck);
 
         Arrays.fill(actualLoadingPlan, 0);
 
@@ -110,6 +116,30 @@ public class CentralUnit implements ITrailerListener, IPalletListener {
         control.action();
     }
 
+    public void engineOn() {
+        control.setCommand(engineStart);
+        control.action();
+    }
+
+    public void engineOff() {
+        control.setCommand(engineShutdown);
+        control.action();
+    }
+
+    public void moveStraight() {
+        control.setCommand(moveStraight);
+        control.action();
+    }
+
+    public void turnLeft(int angle) {
+        control.setCommand(turnLeft);
+        control.action(angle);
+    }
+
+    public void turnRight(int angle) {
+        control.setCommand(turnRight);
+        control.action(angle);
+    }
 
     public void receiver(String password) {
         String sha256Hex = Hashing.sha256()
@@ -120,13 +150,15 @@ public class CentralUnit implements ITrailerListener, IPalletListener {
             state.change();
 
             if (state.getState().stateAsBoolean()) {
-                mediator.camera(true);
-                mediator.lidar(true);
-                control.setCommand(engineStart);
+                cameraOn();
+                lidarOn();
+                engineOn();
+                moveStraight();
             } else {
-                mediator.camera(true);
-                mediator.lidar(true);
-                control.setCommand(engineShutdown);
+                cameraOff();
+                lidarOff();
+                engineOff();
+                moveStraight();
             }
         }
     }

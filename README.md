@@ -11,13 +11,20 @@ Matrikelnummer:  XXX
 
 ## Fortschritt
 
-| Pattern      | Code | Test |
-|--------------|------|------|
-| Builder 1+2  | 100% | 100% |
-| Mediator 1+2 | 50%  | -    |
-| Command      | 90%  | 0%   |
-| Composite    | 90%  | 0%   |
-| State        | 50%  | 0%   |
-| Observer     | 70%  | 0%   |
+| Patterns     | Code |
+|--------------|------|
+| Builder 1+2  | 100% |
+| Mediator 1+2 | 50%  |
+| Command      | 100% |
+| Composite    | 90%  |
+| State        | 100% |
+| Observer     | 100% |
+
+| Tests | Check |
+|-------|-------|
+| 1     | ok    |
+| 2     | ok    |
+| 3     | ok    |
+| 4     | ok    |
 
 ## Anmerkungen

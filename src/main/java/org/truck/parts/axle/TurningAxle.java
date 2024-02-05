@@ -1,6 +1,7 @@
 package org.truck.parts.axle;
 
 public class TurningAxle extends AbstractAxle{
+    private int angle;
 
     public TurningAxle() {
         super();
@@ -8,17 +9,17 @@ public class TurningAxle extends AbstractAxle{
 
     @Override
     public void turnRight(int angle) {
-        //not possible
+        this.angle = angle;
     }
 
     @Override
     public void turnLeft(int angle) {
-        //not possible
+        this.angle = angle;
     }
 
     @Override
     public int getAngle() {
-        return 0;
+        return this.angle;
     }
 
 }

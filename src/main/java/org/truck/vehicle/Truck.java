@@ -1,7 +1,6 @@
 package org.truck.vehicle;
 
 import org.truck.CentralUnit;
-import org.truck.observer.TrailerDetector;
 import org.truck.parts.Indicators;
 import org.truck.parts.Brakelight;
 import org.truck.parts.axle.FixedAxle;
@@ -20,7 +19,7 @@ public class Truck {
     private final int amountBackAxles;
     private final TruckChassis truckChassis;
     private final Cabin cabin;
-    private final Motor motor;
+    private final Engine engine;
     private final Battery battery;
     private final TurningAxle frontAxle;
     private final FixedAxle[] backAxles;
@@ -38,7 +37,7 @@ public class Truck {
         this.amountBackAxles = builder.amountBackAxles;
         this.truckChassis = builder.truckChassis;
         this.cabin = builder.cabin;
-        this.motor = builder.motor;
+        this.engine = builder.engine;
         this.battery = builder.battery;
         this.frontAxle = builder.frontAxle;
         this.backAxles = builder.backAxles;
@@ -55,7 +54,7 @@ public class Truck {
         private int amountBackAxles;
         private TruckChassis truckChassis;
         private Cabin cabin;
-        private Motor motor;
+        private Engine engine;
         private Battery battery;
         private TurningAxle frontAxle;
         private FixedAxle[] backAxles;
@@ -80,8 +79,8 @@ public class Truck {
             return this;
         }
 
-        public Builder motor() {
-            this.motor = new Motor();
+        public Builder engine() {
+            this.engine = new Engine();
             return this;
         }
 
@@ -156,7 +155,7 @@ public class Truck {
         this.centralUnit = centralUnit;
     }
 
-    public Trailer connectTrailerToHitch(Trailer trailer) {
+    public void connectTrailerToHitch(Trailer trailer) {
         this.trailer = trailer;
 
         // Needed for loading sensors
@@ -165,12 +164,18 @@ public class Truck {
 
         // Needed for sensors
         trailer.loadingArea.setCentralUnit(centralUnit);
-
-        return trailer;
     }
 
-    public Motor getMotor() {
-        return motor;
+    public Engine getEngine() {
+        return engine;
+    }
+
+    public TurningAxle getFrontAxle() {
+        return frontAxle;
+    }
+
+    public Mirror[] getMirrors() {
+        return mirrors;
     }
 
     public boolean checkTruckBuilder() {
@@ -179,8 +184,8 @@ public class Truck {
         if (this.truckChassis == null) {
             return false;
         }
-        // Motor
-        if (this.motor == null) {
+        // Engine
+        if (this.engine == null) {
             return false;
         }
         // Battery
@@ -240,7 +245,7 @@ public class Truck {
                 "amountBackAxles=" + amountBackAxles + "\n" +
                 "truckChassis=" + truckChassis + "\n" +
                 ", cabin=" + cabin + "\n" +
-                ", motor=" + motor + "\n" +
+                ", engine=" + engine + "\n" +
                 ", frontAxle=" + frontAxle + "\n" +
                 ", backAxles=" + Arrays.toString(backAxles) + "\n" +
                 ", headLights=" + Arrays.toString(headLights) + "\n" +

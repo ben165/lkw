@@ -11,6 +11,6 @@ public class LidarOn implements ICommand{
 
     @Override
     public void execute(int... numbers) {
-        this.truckMediator.camera(true);
+        this.truckMediator.lidar(true);
     }
 }

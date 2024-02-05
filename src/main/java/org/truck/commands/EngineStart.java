@@ -1,15 +1,15 @@
 package org.truck.commands;
 
-import org.truck.truckParts.Motor;
+import org.truck.truckParts.Engine;
 import org.truck.vehicle.Truck;
 
 public class EngineStart implements ICommand{
-    Motor motor;
+    Engine engine;
     public EngineStart(Truck truck) {
-        motor = truck.getMotor();
+        engine = truck.getEngine();
     }
     @Override
     public void execute(int... numbers) {
-        motor.setStatus(false);
+        engine.setEngineOn(true);
     }
 }

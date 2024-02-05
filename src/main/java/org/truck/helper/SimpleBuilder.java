@@ -10,7 +10,7 @@ public class SimpleBuilder {
                 .truckChassis()
                 .hitch()
                 .cabin()
-                .motor()
+                .engine()
                 .battery()
                 .frontAxle()
                 .backAxles(2)

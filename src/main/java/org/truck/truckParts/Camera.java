@@ -1,15 +1,15 @@
 package org.truck.truckParts;
 
 public class Camera {
-    boolean status = false;
+    boolean isOn = false;
     public Camera() {
     }
 
-    public boolean getStatus() {
-        return status;
+    public boolean getIsOn() {
+        return isOn;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setIsOn(boolean status) {
+        this.isOn = status;
     }
 }

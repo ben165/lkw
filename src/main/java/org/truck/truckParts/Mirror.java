@@ -10,19 +10,19 @@ public class Mirror {
     }
 
     public void setCameraStatus(boolean status) {
-        camera.setStatus(status);
+        camera.setIsOn(status);
     }
 
     public void setLidarStatus(boolean status) {
-        lidar.setStatus(status);
+        lidar.setIsOn(status);
     }
 
     public boolean getCameraStatus() {
-        return camera.getStatus();
+        return camera.getIsOn();
     }
 
     public boolean getLidarStatus() {
-        return lidar.getStatus();
+        return lidar.getIsOn();
     }
 
     public Camera getCamera() {
