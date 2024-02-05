@@ -13,6 +13,20 @@ public class Application {
         Trailer trailer = SimpleBuilder.createTrailer();
 
         CentralUnit centralUnit = new CentralUnit(truck);
+        truck.setCentralUnit(centralUnit);
+
+        truck.connectTrailerToHitch(trailer);
+
+    }
+
+
+    public void test02() {
+
+        // Builder
+        Truck truck = SimpleBuilder.createTruck(2);
+        Trailer trailer = SimpleBuilder.createTrailer();
+
+        CentralUnit centralUnit = new CentralUnit(truck);
 
         System.out.println("\n\n!! KEY CHECK !!\n\n");
         Key key = new Key();
@@ -23,8 +37,8 @@ public class Application {
         centralUnit.receiver(key.sendSignal());
         System.out.println(centralUnit.getState().getState().stateAsBoolean());
         centralUnit.receiver(key.sendSignal());
-    }
 
+    }
 
     public void test01() {
         // Builder
@@ -58,12 +72,6 @@ public class Application {
 
         System.out.println("\n\n!! LOADING CHECK !!\n");
         System.out.println("Loading trailer now...");
-
-        centralUnit.loadTrailer("loadingPlan.json");
-        System.out.println("LoadingCorrect?: " + centralUnit.checkLoading() );
-
-        centralUnit.loadTrailer("loadingPlanWrong.json");
-        System.out.println("LoadingCorrect?: " + centralUnit.checkLoading() );
 
     }
 

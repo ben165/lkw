@@ -22,8 +22,10 @@ public class LoadingArea {
     public void placePallet(int position) {
         Pallet pallet = new Pallet();
         this.palletArray[position] = pallet;
+        palletDetector.palletDetected(position);
     }
 
+    /*
     public void loadTrailer(String loadingPlan) {
         LoadingScheme plan = Json.readParameters(loadingPlan);
 
@@ -39,4 +41,5 @@ public class LoadingArea {
             }
         }
     }
+    */
 }

@@ -1,5 +1,7 @@
 package org.truck.vehicle;
 
+import org.truck.CentralUnit;
+import org.truck.helper.LoadPlanFlat;
 import org.truck.parts.Indicators;
 import org.truck.parts.Brakelight;
 import org.truck.parts.axle.FixedAxle;
@@ -19,6 +21,7 @@ public class Trailer {
     private final FixedAxle[] backAxles;
     private final Brakelight[] brakelights;
     private final Indicators tailBlinker;
+
 
     private Trailer(Builder builder) {
         this.trailerMediator = builder.trailerMediator;
@@ -46,26 +49,31 @@ public class Trailer {
             this.trailerMediator = new TrailerMediator();
             return this;
         }
+
         public Builder trailerChassis() {
             this.trailerChassis = new TrailerChassis();
             return this;
         }
+
         public Builder trailerCoupler() {
             this.trailerCoupler = new TrailerCoupler();
             return this;
         }
+
         public Builder loadingArea() {
             this.loadingArea = new LoadingArea();
             return this;
         }
+
         public Builder backAxles(int axles) {
             this.amountBackAxles = axles;
             this.backAxles = new FixedAxle[axles];
-            for (int i=0; i<axles; i++) {
+            for (int i = 0; i < axles; i++) {
                 backAxles[i] = new FixedAxle();
             }
             return this;
         }
+
         public Builder brakeLights() {
             this.brakelights = new Brakelight[2];
             this.brakelights[0] = new Brakelight();
@@ -82,6 +90,16 @@ public class Trailer {
             return new Trailer(this);
         }
 
+    }
+
+    public void loadTrailer(String loadingPlan) {
+        LoadPlanFlat loadPlanFlat = new LoadPlanFlat(loadingPlan);
+
+        for (int i=0; i<loadPlanFlat.getLen(); i++) {
+            if (loadPlanFlat.isPallet(i)) {
+                loadingArea.placePallet(i);
+            }
+        }
     }
 
     public boolean checkTrailerBuilder() {
@@ -116,14 +134,14 @@ public class Trailer {
     @Override
     public String toString() {
         return "Trailer{" + "\n" +
-                "trailerMediator=" + trailerMediator +"\n" +
-                ", amountBackAxles=" + amountBackAxles +"\n" +
-                ", trailerChassis=" + trailerChassis +"\n" +
-                ", trailerCoupler=" + trailerCoupler +"\n" +
-                ", loadingArea=" + loadingArea +"\n" +
-                ", backAxles=" + Arrays.toString(backAxles) +"\n" +
-                ", brakelights=" + Arrays.toString(brakelights) +"\n" +
-                ", tailBlinker=" + tailBlinker +"\n" +
+                "trailerMediator=" + trailerMediator + "\n" +
+                ", amountBackAxles=" + amountBackAxles + "\n" +
+                ", trailerChassis=" + trailerChassis + "\n" +
+                ", trailerCoupler=" + trailerCoupler + "\n" +
+                ", loadingArea=" + loadingArea + "\n" +
+                ", backAxles=" + Arrays.toString(backAxles) + "\n" +
+                ", brakelights=" + Arrays.toString(brakelights) + "\n" +
+                ", tailBlinker=" + tailBlinker + "\n" +
                 '}';
     }
 }

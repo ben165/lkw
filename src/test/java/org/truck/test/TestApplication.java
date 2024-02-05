@@ -45,6 +45,7 @@ public class TestApplication {
                 .build();
 
         this.centralUnit = new CentralUnit(truck);
+        truck.setCentralUnit(centralUnit);
     }
 
     // TEST 01
@@ -108,10 +109,24 @@ public class TestApplication {
 
     }
 
+    // TEST 05
+    // Trailer recognised by Central unit with sensor
     @Test()
     @Order(5)
-    public void test5() {}
+    public void test5() {
+        // Trailer detection
+        assertFalse(centralUnit.isTrailerIsConnected());
+        truck.connectTrailerToHitch(trailer);
+        assertTrue(centralUnit.isTrailerIsConnected());
 
+        // Loading detection
+        assertTrue(centralUnit.checkLoading());
+
+        // Wrong loading plan
+    }
+
+    // TEST 06
+    //
     @Test()
     @Order(6)
     public void test6() {}

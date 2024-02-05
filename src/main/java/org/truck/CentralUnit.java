@@ -16,7 +16,6 @@ import java.util.Arrays;
 public class CentralUnit implements ITrailerListener, IPalletListener {
     private boolean trailerIsConnected = false;
     private Trailer trailer;
-    private final Truck truck;
     private final Control control = new Control();
     private final TruckMediator mediator;
     private final ICommand brake;
@@ -39,7 +38,6 @@ public class CentralUnit implements ITrailerListener, IPalletListener {
 
 
     public CentralUnit(Truck truck) {
-        this.truck = truck;
         this.mediator = truck.truckMediator;
 
         brake = new Brake(this.mediator);
@@ -163,17 +161,15 @@ public class CentralUnit implements ITrailerListener, IPalletListener {
         }
     }
 
-
     public boolean isTrailerIsConnected() {
         return trailerIsConnected;
     }
 
     @Override
-    public boolean trailerDetected(Trailer trailer) {
+    public void trailerDetected(Trailer trailer) {
         System.out.println("Method in CU: Trailer connection: " + trailer.hashCode());
         this.trailerIsConnected = true;
         this.trailer = trailer;
-        return true;
     }
 
     @Override
@@ -181,16 +177,6 @@ public class CentralUnit implements ITrailerListener, IPalletListener {
         //System.out.println("Method in CU: Pallet placed on location: " + location);
         actualLoadingPlan[location] = 1;
         //System.out.println("Correct? " + intLoadingPlan[location]);
-    }
-
-    public void loadTrailer(String loadingPlan) {
-        if (this.trailerIsConnected) {
-            LoadPlanFlat loadPlanFlat = new LoadPlanFlat();
-            this.realLoadingPlan = loadPlanFlat.flatIntMap("loadingPlan.json");
-
-            // Loading happening, sensors informs CU
-            trailer.loadingArea.loadTrailer(loadingPlan);
-        }
     }
 
     public boolean checkLoading() {
