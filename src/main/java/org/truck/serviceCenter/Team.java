@@ -3,11 +3,25 @@ package org.truck.serviceCenter;
 import org.truck.commands.ICommand;
 
 public class Team {
-    EngineTeam engineTeam;
-    SensorTeam sensorTeam;
+    Supervisor supervisor;
+    OperationTeamManager operationTeamManager;
+    EmergencyTeamManager emergencyTeamManager;
 
-    public Team(){
-        engineTeam = new EngineTeam();
-        sensorTeam = new SensorTeam();
+    public Team() {
+        supervisor = new Supervisor();
+        operationTeamManager = new OperationTeamManager();
+        emergencyTeamManager = new EmergencyTeamManager();
+    }
+
+    public Supervisor getSupervisor() {
+        return supervisor;
+    }
+
+    public OperationTeamManager getOperationTeamManager() {
+        return operationTeamManager;
+    }
+
+    public EmergencyTeamManager getEmergencyTeamManager() {
+        return emergencyTeamManager;
     }
 }
