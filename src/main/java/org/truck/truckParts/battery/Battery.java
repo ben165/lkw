@@ -43,7 +43,6 @@ public class Battery extends ACell{
     public void setStatus(int status) {}
 
 
-
     public int getAvailableEnergy() {
         int sum = 0;
         for (int i=0; i<amountMainCells; i++) {

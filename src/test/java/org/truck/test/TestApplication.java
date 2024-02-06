@@ -26,8 +26,8 @@ public class TestApplication {
                 .truckChassis()
                 .hitch()
                 .cabin()
-                .engine()
                 .battery()
+                .engine()
                 .frontAxle()
                 .backAxles(2)
                 .headlights()
@@ -191,11 +191,26 @@ public class TestApplication {
             assertEquals(50, truck.getBackAxles()[i].getBrake());
         }
 
-        // Engine Start
+        // Engine Start and shutdown
         centralUnit.engineOn();
         assertTrue(truck.getEngine().isEngineOn());
         centralUnit.engineOff();
         assertFalse(truck.getEngine().isEngineOn());
+
+        // MoveStraight
+        centralUnit.moveStraight(50);
+        assertEquals(50, truck.getEngine().getEngineSpeed());
+        assertEquals(0, truck.getFrontAxle().getAngle());
+
+        // TurnLeft
+        centralUnit.turnLeft(20, 30);
+        assertEquals(30, truck.getEngine().getEngineSpeed());
+        assertEquals(90+20, truck.getFrontAxle().getAngle());
+
+        // TurnRight
+        centralUnit.turnRight(30, 40);
+        assertEquals(40, truck.getEngine().getEngineSpeed());
+        assertEquals(30, truck.getFrontAxle().getAngle());
     }
 
 
@@ -231,4 +246,73 @@ public class TestApplication {
         assertTrue(centralUnit.getState().getState().stateAsBoolean());
     }
 
+    // TEST 08 //TODO trailer connection
+    // moveStraight test
+    @Test()
+    @Order(7)
+    public void test8() {
+        // turn on indicator right
+        centralUnit.indicatorOn(RIGHT.ordinal());
+
+        // Safe speed test
+        centralUnit.moveStraight(100);
+        assertEquals(75, truck.getEngine().getEngineSpeed());
+
+        // indicator is now off
+        assertFalse(truck.getFrontIndicators().isRightBlinker());
+        assertFalse(truck.getTailIndicators().isRightBlinker());
+    }
+
+    // TEST 09 //TODO trailer connection
+    // turn left test
+    @Test()
+    @Order(9)
+    public void test9() {
+        // turn left
+        centralUnit.brake(25);
+        centralUnit.turnLeft(15, 50);
+
+        // indicators right are off
+        assertFalse(truck.getFrontIndicators().isRightBlinker());
+        assertFalse(truck.getTailIndicators().isRightBlinker());
+
+        // indicators left are on
+        assertTrue(truck.getFrontIndicators().isLeftBlinker());
+        assertTrue(truck.getTailIndicators().isLeftBlinker());
+
+        // safe speed test while turning
+        centralUnit.turnLeft(15, 75);
+        assertEquals(50, truck.getEngine().getEngineSpeed());
+    }
+
+
+    // TEST 10 //TODO trailer connection
+    // turn right test
+    @Test()
+    @Order(10)
+    public void test10() {
+        // turn right
+        centralUnit.brake(25);
+        centralUnit.turnRight(15, 50);
+
+        // indicators left are off
+        assertFalse(truck.getFrontIndicators().isLeftBlinker());
+        assertFalse(truck.getTailIndicators().isLeftBlinker());
+
+        // indicators right are on
+        assertTrue(truck.getFrontIndicators().isRightBlinker());
+        assertTrue(truck.getTailIndicators().isRightBlinker());
+
+        // safe speed test while turning
+        centralUnit.turnRight(15, 75);
+        assertEquals(50, truck.getEngine().getEngineSpeed());
+    }
+
+    // TEST 11
+    // Composite energy consumption test
+    @Test()
+    @Order(11)
+    public void test11() {
+        
+    }
 }

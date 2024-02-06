@@ -8,7 +8,7 @@ public class Brake {
     }
 
     public void setPercentage(int percentage) {
-        System.out.println("Brake "+ this.hashCode() +" changed to: " + percentage);
+        //System.out.println("Brake "+ this.hashCode() +" changed to: " + percentage);
         this.percentage = percentage;
     }
 }

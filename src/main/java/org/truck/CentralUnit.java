@@ -121,19 +121,19 @@ public class CentralUnit implements ITrailerListener, IPalletListener {
         control.action();
     }
 
-    public void moveStraight() {
+    public void moveStraight(int percentage) {
         control.setCommand(moveStraight);
-        control.action();
+        control.action(percentage);
     }
 
-    public void turnLeft(int angle) {
+    public void turnLeft(int angle, int percentage) {
         control.setCommand(turnLeft);
-        control.action(angle);
+        control.action(angle, percentage);
     }
 
-    public void turnRight(int angle) {
+    public void turnRight(int angle, int percentage) {
         control.setCommand(turnRight);
-        control.action(angle);
+        control.action(angle, percentage);
     }
 
     public void receiver(String password) {
@@ -148,12 +148,12 @@ public class CentralUnit implements ITrailerListener, IPalletListener {
                 cameraOn();
                 lidarOn();
                 engineOn();
-                moveStraight();
+                moveStraight(0);
             } else {
                 cameraOff();
                 lidarOff();
                 engineOff();
-                moveStraight();
+                moveStraight(0);
             }
         }
     }

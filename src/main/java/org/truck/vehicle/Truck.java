@@ -79,13 +79,14 @@ public class Truck {
             return this;
         }
 
-        public Builder engine() {
-            this.engine = new Engine();
+        public Builder battery() {
+            this.battery = new Battery();
             return this;
         }
 
-        public Builder battery() {
-            this.battery = new Battery();
+        public Builder engine() {
+            this.engine = new Engine();
+            this.engine.setBattery(this.battery);
             return this;
         }
 
