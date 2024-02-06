@@ -2,8 +2,8 @@ package org.truck.serviceCenter;
 
 public class ServiceCenter {
 
-    Team sensorTeam;
-    Team engineTeam;
+    SensorTeam sensorTeam;
+    EngineTeam engineTeam;
     Team nextResponsibleTeam;
 
     public ServiceCenter() {

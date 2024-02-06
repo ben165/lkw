@@ -11,4 +11,15 @@ public class SensorTeam extends Team{
         emergencyTeamManager = new EmergencyTeamManager();
     }
 
+    public Supervisor getSupervisor() {
+        return supervisor;
+    }
+
+    public OperationTeamManager getOperationTeamManager() {
+        return operationTeamManager;
+    }
+
+    public EmergencyTeamManager getEmergencyTeamManager() {
+        return emergencyTeamManager;
+    }
 }

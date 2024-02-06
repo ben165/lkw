@@ -2,7 +2,7 @@ package org.truck.serviceCenter;
 
 import org.truck.commands.ICommand;
 
-public abstract class Team {
+public class Team {
     EngineTeam engineTeam;
     SensorTeam sensorTeam;
 

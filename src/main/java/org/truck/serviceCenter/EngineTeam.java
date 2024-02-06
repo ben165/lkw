@@ -1,6 +1,6 @@
 package org.truck.serviceCenter;
 
-public class EngineTeam extends Team{
+public class EngineTeam{
     Supervisor supervisor;
     OperationTeamManager operationTeamManager;
     EmergencyTeamManager emergencyTeamManager;
@@ -11,4 +11,15 @@ public class EngineTeam extends Team{
         emergencyTeamManager = new EmergencyTeamManager();
     }
 
+    public Supervisor getSupervisor() {
+        return supervisor;
+    }
+
+    public OperationTeamManager getOperationTeamManager() {
+        return operationTeamManager;
+    }
+
+    public EmergencyTeamManager getEmergencyTeamManager() {
+        return emergencyTeamManager;
+    }
 }
