@@ -198,11 +198,18 @@ public class Truck {
     }
 
     public void checkTruckPartsWithVisitor() {
-        if (visitor == null) {
-            visitor = new Visitor();
+        if (this.visitor == null) {
+            this.visitor = new Visitor();
         }
+        engine.accept(visitor);
+        mirrors[LEFT.ordinal()].getCamera().accept(visitor);
+        mirrors[RIGHT.ordinal()].getCamera().accept(visitor);
+        mirrors[LEFT.ordinal()].getLidar().accept(visitor);
+        mirrors[RIGHT.ordinal()].getLidar().accept(visitor);
+    }
 
-
+    public Visitor getVisitor() {
+        return this.visitor;
     }
 
     public boolean checkTruckBuilder() {

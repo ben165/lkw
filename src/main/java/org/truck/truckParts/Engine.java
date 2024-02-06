@@ -48,8 +48,8 @@ public class Engine implements IVisitor {
 
     @Override
     public void accept(Visitor visitor) {
-        if (Rand.rand() <= Config.PERCENTAGE) {
-            System.out.println("Error detected");
+        if (Rand.rand() <= Config.DAMAGE_PERCENTAGE) {
+            //System.out.println("Error detected " + this);
             visitor.addPart(this);
             visitor.addCategory(Rand.randError());
         };

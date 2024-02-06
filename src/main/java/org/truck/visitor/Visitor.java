@@ -11,7 +11,15 @@ public class Visitor {
         damagedParts.add(o);
     }
 
-    public void addCategory(Object o) {
-        damagedParts.add(o);
+    public void addCategory(String error) {
+        category.add(error);
+    }
+
+    public List<Object> getDamagedParts() {
+        return damagedParts;
+    }
+
+    public List<String> getCategory() {
+        return category;
     }
 }

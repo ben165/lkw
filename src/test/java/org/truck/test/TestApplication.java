@@ -3,6 +3,7 @@ package org.truck.test;
 import com.google.common.hash.Hashing;
 import org.junit.jupiter.api.*;
 import org.truck.CentralUnit;
+import org.truck.Config;
 import org.truck.Key;
 import org.truck.vehicle.Trailer;
 import org.truck.vehicle.Truck;
@@ -340,6 +341,12 @@ public class TestApplication {
     @Test()
     @Order(12)
     public void test12() {
-
+        // Visitor collects broken parts. For testing, we
+        // change the probability for damage to 100%.
+        // All visiting parts are broken now.
+        // 1*engine + 2*camera = 2*lidar = 5!
+        Config.DAMAGE_PERCENTAGE = 1;
+        truck.checkTruckPartsWithVisitor();
+        assertEquals(5, truck.getVisitor().getDamagedParts().size());
     }
 }
