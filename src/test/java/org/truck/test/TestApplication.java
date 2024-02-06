@@ -1,11 +1,13 @@
 package org.truck.test;
 
 import com.google.common.hash.Hashing;
+import com.google.common.hash.HashingOutputStream;
 import org.junit.jupiter.api.*;
 import org.truck.CentralUnit;
 import org.truck.Config;
 import org.truck.Key;
 import org.truck.cor.CheckPart;
+import org.truck.serviceCenter.EngineTeam;
 import org.truck.serviceCenter.ServiceCenter;
 import org.truck.truckParts.Engine;
 import org.truck.vehicle.Trailer;
@@ -365,17 +367,20 @@ public class TestApplication {
 
         ServiceCenter serviceCenter = new ServiceCenter();
 
+        // Define damaged engine
         Engine engine = new Engine();
         engine.setIsDamaged(true);
 
+        // CoR Part
         CheckPart checkPart = new CheckPart();
         checkPart.setServiceCenter(serviceCenter);
-
         checkPart.check(engine);
+        // Result is saved in ServiceCenter
 
-        System.out.println( serviceCenter.getTeam() );
-        serviceCenter.getTeams()[0].getEmergencyTeamManager();
+        var engineTeam = serviceCenter.getTeams()[serviceCenter.getTeam()];
+        assertInstanceOf(EngineTeam.class, engineTeam);
 
+        //var b = serviceCenter.getTeams()[serviceCenter.getTeam()];
 
         //var a = serviceCenter.getNextResponsibleTeam().getManagerByCategory("E01");
         //System.out.println(a);

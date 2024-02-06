@@ -1,15 +1,7 @@
 package org.truck.serviceCenter;
 
-public class OperationTeamManager {
-    TechnicalEngineer[] technicalEngineers = new TechnicalEngineer[3];
-
+public class OperationTeamManager extends Manager{
     public OperationTeamManager() {
-        for (int i = 0; i< technicalEngineers.length; i++) {
-            technicalEngineers[i] = new TechnicalEngineer();
-        }
-    }
-
-    public TechnicalEngineer[] getTechnicalEngineers() {
-        return technicalEngineers;
+        super();
     }
 }

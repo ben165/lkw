@@ -7,10 +7,14 @@ public class Team {
     OperationTeamManager operationTeamManager;
     EmergencyTeamManager emergencyTeamManager;
 
+    Manager[] managers = new Manager[2];
+
     public Team() {
         supervisor = new Supervisor();
         operationTeamManager = new OperationTeamManager();
         emergencyTeamManager = new EmergencyTeamManager();
+        managers[0] = emergencyTeamManager;
+        managers[1] = operationTeamManager;
     }
 
     public Supervisor getSupervisor() {
@@ -23,5 +27,10 @@ public class Team {
 
     public EmergencyTeamManager getEmergencyTeamManager() {
         return emergencyTeamManager;
+    }
+
+    public int getCorrectManager(String category) {
+        
+        return 1;
     }
 }

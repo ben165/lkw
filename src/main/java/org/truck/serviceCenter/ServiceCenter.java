@@ -1,8 +1,8 @@
 package org.truck.serviceCenter;
 
 public class ServiceCenter {
-    Team sensorTeam;
-    Team engineTeam;
+    EngineTeam engineTeam;
+    SensorTeam sensorTeam;
     Team[] teams = new Team[2];
     int team;
 
