@@ -1,16 +1,19 @@
 package org.truck.serviceCenter;
 
 public class ServiceCenter {
-    SensorTeam sensorTeam;
-    EngineTeam engineTeam;
-    Team nextResponsibleTeam;
+    Team sensorTeam;
+    Team engineTeam;
+    Team[] teams = new Team[2];
+    int team;
 
     public ServiceCenter() {
         engineTeam = new EngineTeam();
         sensorTeam = new SensorTeam();
+        teams[0] = engineTeam;
+        teams[1] = sensorTeam;
     }
 
-    public SensorTeam getSensorTeam() {
+    public Team getSensorTeam() {
         return sensorTeam;
     }
 
@@ -18,7 +21,7 @@ public class ServiceCenter {
         this.sensorTeam = sensorTeam;
     }
 
-    public EngineTeam getEngineTeam() {
+    public Team getEngineTeam() {
         return engineTeam;
     }
 
@@ -26,11 +29,19 @@ public class ServiceCenter {
         this.engineTeam = engineTeam;
     }
 
-    public Object getNextResponsibleTeam() {
-        return nextResponsibleTeam;
+    public Team[] getTeams() {
+        return teams;
     }
 
-    public void setNextResponsibleTeam(Team nextResponsibleTeam) {
-        this.nextResponsibleTeam = nextResponsibleTeam;
+    public void setTeams(Team[] teams) {
+        this.teams = teams;
+    }
+
+    public int getTeam() {
+        return team;
+    }
+
+    public void setTeam(int team) {
+        this.team = team;
     }
 }

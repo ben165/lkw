@@ -6,7 +6,7 @@ public class EngineChecker extends Checker implements IChecker{
     public void check(Object part) {
         if (canHandlePart(part)) {
             System.out.println("Engine Team needs to check: " + part);
-            getServiceCenter().setNextResponsibleTeam(getServiceCenter().getEngineTeam());
+            getServiceCenter().setTeam(0);
         } else {
             super.check(part);
         }
