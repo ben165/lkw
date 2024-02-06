@@ -7,9 +7,10 @@ import org.truck.CentralUnit;
 import org.truck.Config;
 import org.truck.Key;
 import org.truck.cor.CheckPart;
-import org.truck.serviceCenter.EngineTeam;
-import org.truck.serviceCenter.ServiceCenter;
+import org.truck.serviceCenter.*;
+import org.truck.truckParts.Camera;
 import org.truck.truckParts.Engine;
+import org.truck.truckParts.Lidar;
 import org.truck.vehicle.Trailer;
 import org.truck.vehicle.Truck;
 
@@ -380,10 +381,65 @@ public class TestApplication {
         var engineTeam = serviceCenter.getTeams()[serviceCenter.getTeam()];
         assertInstanceOf(EngineTeam.class, engineTeam);
 
-        //var b = serviceCenter.getTeams()[serviceCenter.getTeam()];
+        var managerNr = engineTeam.getCorrectManager("E01");
+        var manager = engineTeam.getManagers()[managerNr];
+        assertInstanceOf(OperationTeamManager.class, manager);
 
-        //var a = serviceCenter.getNextResponsibleTeam().getManagerByCategory("E01");
-        //System.out.println(a);
+        managerNr = engineTeam.getCorrectManager("E02");
+        manager = engineTeam.getManagers()[managerNr];
+        assertInstanceOf(OperationTeamManager.class, manager);
 
+        managerNr = engineTeam.getCorrectManager("E03");
+        manager = engineTeam.getManagers()[managerNr];
+        assertInstanceOf(EmergencyTeamManager.class, manager);
+
+
+
+        // Define damaged camera
+        Camera camera = new Camera(0);
+        camera.setDamaged(true);
+
+        // CoR Part
+        checkPart.check(camera);
+
+        var sensorTeam = serviceCenter.getTeams()[serviceCenter.getTeam()];
+        assertInstanceOf(SensorTeam.class, sensorTeam);
+
+        managerNr = sensorTeam.getCorrectManager("E01");
+        manager = sensorTeam.getManagers()[managerNr];
+        assertInstanceOf(OperationTeamManager.class, manager);
+
+        managerNr = engineTeam.getCorrectManager("E02");
+        manager = engineTeam.getManagers()[managerNr];
+        assertInstanceOf(OperationTeamManager.class, manager);
+
+        managerNr = engineTeam.getCorrectManager("E03");
+        manager = engineTeam.getManagers()[managerNr];
+        assertInstanceOf(EmergencyTeamManager.class, manager);
+
+
+
+        // Define damaged lidar
+        Lidar lidar = new Lidar(0);
+        lidar.setDamaged(true);
+
+        // CoR Part
+        checkPart.check(lidar);
+
+        sensorTeam = serviceCenter.getTeams()[serviceCenter.getTeam()];
+        assertInstanceOf(SensorTeam.class, sensorTeam);
+
+        managerNr = sensorTeam.getCorrectManager("E01");
+        manager = sensorTeam.getManagers()[managerNr];
+        assertInstanceOf(OperationTeamManager.class, manager);
+
+        managerNr = engineTeam.getCorrectManager("E02");
+        manager = engineTeam.getManagers()[managerNr];
+        assertInstanceOf(OperationTeamManager.class, manager);
+
+        managerNr = engineTeam.getCorrectManager("E03");
+        manager = engineTeam.getManagers()[managerNr];
+        assertInstanceOf(EmergencyTeamManager.class, manager);
+        
     }
 }

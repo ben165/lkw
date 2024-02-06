@@ -30,7 +30,14 @@ public class Team {
     }
 
     public int getCorrectManager(String category) {
-        
-        return 1;
+        if (category.equals("E01") || category.equals("E02")) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    public Manager[] getManagers() {
+        return managers;
     }
 }
