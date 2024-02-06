@@ -1,13 +1,13 @@
 package org.truck.serviceCenter;
 
+import org.truck.commands.ICommand;
+
 public abstract class Team {
-    Supervisor supervisor;
-    OperationTeamManager operationTeamManager;
-    EmergencyTeamManager emergencyTeamManager;
+    EngineTeam engineTeam;
+    SensorTeam sensorTeam;
 
     public Team(){
-        supervisor = new Supervisor();
-        operationTeamManager = new OperationTeamManager();
-        emergencyTeamManager = new EmergencyTeamManager();
+        engineTeam = new EngineTeam();
+        sensorTeam = new SensorTeam();
     }
 }

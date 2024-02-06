@@ -372,7 +372,8 @@ public class TestApplication {
         checkPart.setServiceCenter(serviceCenter);
 
         checkPart.check(engine);
-        System.out.println(serviceCenter.getNextResponsibleTeam());
+        var a = serviceCenter.getNextResponsibleTeam().getManagerByCategory("E01");
+        System.out.println(a);
 
     }
 }
