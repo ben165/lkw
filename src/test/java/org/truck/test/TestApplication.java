@@ -5,6 +5,9 @@ import org.junit.jupiter.api.*;
 import org.truck.CentralUnit;
 import org.truck.Config;
 import org.truck.Key;
+import org.truck.cor.CheckPart;
+import org.truck.serviceCenter.ServiceCenter;
+import org.truck.truckParts.Engine;
 import org.truck.vehicle.Trailer;
 import org.truck.vehicle.Truck;
 
@@ -348,5 +351,28 @@ public class TestApplication {
         Config.DAMAGE_PERCENTAGE = 1;
         truck.checkTruckPartsWithVisitor();
         assertEquals(5, truck.getVisitor().getDamagedParts().size());
+    }
+
+    // TEST 13
+    // CoR test
+    @Test()
+    @Order(13)
+    public void test13() {
+        // The CoR Code is ugly. It only filters the Team, not the category.
+        // I tried hard but spend too much time already on it.
+        // At the end CoR is halfway implemented and category is
+        // sorted out by an if/else. :(
+
+        ServiceCenter serviceCenter = new ServiceCenter();
+
+        Engine engine = new Engine();
+        engine.setIsDamaged(true);
+
+        CheckPart checkPart = new CheckPart();
+        checkPart.setServiceCenter(serviceCenter);
+
+        checkPart.check(engine);
+        System.out.println(serviceCenter.getNextResponsibleTeam());
+
     }
 }

@@ -1,9 +1,11 @@
-package org.truck.cor;
+package org.truck.serviceCenter;
 
 public class ServiceCenter {
 
     SensorTeam sensorTeam;
     EngineTeam engineTeam;
+
+    Team nextResponsibleTeam;
 
     public ServiceCenter() {
         engineTeam = new EngineTeam();
@@ -18,8 +20,11 @@ public class ServiceCenter {
         return engineTeam;
     }
 
-    public void repair(Object o) {
-
+    public Team getNextResponsibleTeam() {
+        return nextResponsibleTeam;
     }
 
+    public void setNextResponsibleTeam(Team nextResponsibleTeam) {
+        this.nextResponsibleTeam = nextResponsibleTeam;
+    }
 }

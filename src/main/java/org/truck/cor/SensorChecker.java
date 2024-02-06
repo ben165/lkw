@@ -1,7 +1,6 @@
-package org.truck.cor3;
+package org.truck.cor;
 
 import org.truck.truckParts.Camera;
-import org.truck.truckParts.Engine;
 import org.truck.truckParts.Lidar;
 
 public class SensorChecker extends Checker implements IChecker{
@@ -11,7 +10,8 @@ public class SensorChecker extends Checker implements IChecker{
 
     public void check(Object part) {
         if (canHandlePart(part)) {
-            System.out.println("Lidar/Camera : " + part);
+            System.out.println("Sensor Team needs to check: " + part);
+            getServiceCenter().setNextResponsibleTeam(getServiceCenter().getSensorTeam());
         } else {
             super.check(part);
         }

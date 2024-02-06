@@ -1,8 +1,8 @@
-package org.truck.cor;
+package org.truck.serviceCenter;
 
-public class EmergencyTeamManager {
+public abstract class TeamManager {
     TechnicalEngineer[] technicalEngineers = new TechnicalEngineer[3];
-    public EmergencyTeamManager() {
+    public TeamManager() {
         for (int i=0; i< technicalEngineers.length; i++) {
             technicalEngineers[i] = new TechnicalEngineer();
         }

@@ -1,4 +1,4 @@
-package org.truck.cor;
+package org.truck.serviceCenter;
 
 public class TechnicalEngineer {
 }
