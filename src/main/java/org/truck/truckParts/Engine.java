@@ -1,11 +1,14 @@
 package org.truck.truckParts;
 
 import org.truck.truckParts.battery.Battery;
+import org.truck.visitor.IVisitor;
+import org.truck.visitor.Visitor;
 
-public class Engine {
+public class Engine implements IVisitor {
     private boolean engineOn = false;
-    int engineSpeed = 0;
-    Battery battery;
+    private int engineSpeed = 0;
+    private Battery battery;
+    boolean isDamaged;
 
     public boolean isEngineOn() {
         return engineOn;
@@ -21,6 +24,8 @@ public class Engine {
 
     public void setEngineSpeed(int engineSpeed) {
         this.engineSpeed = engineSpeed;
+        // energy consumption
+        battery.unload(2*engineSpeed);
     }
 
     public Battery getBattery() {
@@ -31,5 +36,16 @@ public class Engine {
         this.battery = battery;
     }
 
+    public boolean getIsDamaged() {
+        return isDamaged;
+    }
 
+    public void setIsDamaged(boolean isDamaged) {
+        this.isDamaged = isDamaged;
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+
+    }
 }

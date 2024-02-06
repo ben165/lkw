@@ -1,8 +1,13 @@
 package org.truck.truckParts;
 
-public class Camera {
+import org.truck.visitor.IVisitor;
+import org.truck.visitor.Visitor;
+
+public class Camera implements IVisitor {
     boolean isOn = false;
-    public Camera() {
+    int side;
+    public Camera(int side) {
+        this.side = side;
     }
 
     public boolean getIsOn() {
@@ -11,5 +16,14 @@ public class Camera {
 
     public void setIsOn(boolean status) {
         this.isOn = status;
+    }
+
+    public int getSide() {
+        return side;
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        
     }
 }

@@ -116,8 +116,8 @@ public class Truck {
 
         public Builder mirrors() {
             this.mirrors = new Mirror[2];
-            this.mirrors[LEFT.ordinal()] = new Mirror();
-            this.mirrors[RIGHT.ordinal()] = new Mirror();
+            this.mirrors[LEFT.ordinal()] = new Mirror(LEFT.ordinal());
+            this.mirrors[RIGHT.ordinal()] = new Mirror(RIGHT.ordinal());
             this.truckMediator.setMirrors(this.mirrors);
             return this;
         }

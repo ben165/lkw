@@ -1,8 +1,13 @@
 package org.truck.truckParts;
 
-public class Lidar {
+import org.truck.visitor.IVisitor;
+import org.truck.visitor.Visitor;
+
+public class Lidar implements IVisitor {
     boolean isOn = false;
-    public Lidar() {
+    int side;
+    public Lidar(int side) {
+        this.side = side;
     }
 
     public boolean getIsOn() {
@@ -11,5 +16,14 @@ public class Lidar {
 
     public void setIsOn(boolean status) {
         this.isOn = status;
+    }
+
+    public int getSide() {
+        return side;
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+
     }
 }

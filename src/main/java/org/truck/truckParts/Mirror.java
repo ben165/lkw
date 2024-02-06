@@ -4,9 +4,9 @@ public class Mirror {
     Camera camera;
     Lidar lidar;
 
-    public Mirror() {
-        this.camera = new Camera();
-        this.lidar = new Lidar();
+    public Mirror(int side) {
+        this.camera = new Camera(side);
+        this.lidar = new Lidar(side);
     }
 
     public void setCameraStatus(boolean status) {

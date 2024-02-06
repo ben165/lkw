@@ -313,6 +313,33 @@ public class TestApplication {
     @Test()
     @Order(11)
     public void test11() {
-        
+
+        int full = 500*100*5;
+
+        // full battery at the beginning
+        assertEquals(full, truck.getEngine().getBattery().getAvailableEnergy());
+
+        // moveStraight
+        centralUnit.moveStraight(75);
+        full -= 75*2;
+        assertEquals(full, truck.getEngine().getBattery().getAvailableEnergy());
+
+        // turnLeft
+        centralUnit.turnLeft(15, 50);
+        full -= 50*2;
+        assertEquals(full, truck.getEngine().getBattery().getAvailableEnergy());
+
+        // turnRight
+        centralUnit.turnRight(15, 40);
+        full -= 40*2;
+        assertEquals(full, truck.getEngine().getBattery().getAvailableEnergy());
+    }
+
+    // TEST 12
+    // Visitor test
+    @Test()
+    @Order(12)
+    public void test12() {
+
     }
 }
