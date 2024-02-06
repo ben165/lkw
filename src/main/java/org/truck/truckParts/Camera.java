@@ -1,11 +1,14 @@
 package org.truck.truckParts;
 
+import org.truck.Config;
+import org.truck.helper.Rand;
 import org.truck.visitor.IVisitor;
 import org.truck.visitor.Visitor;
 
 public class Camera implements IVisitor {
     boolean isOn = false;
     int side;
+    boolean isDamaged;
     public Camera(int side) {
         this.side = side;
     }
@@ -22,8 +25,20 @@ public class Camera implements IVisitor {
         return side;
     }
 
+    public boolean isDamaged() {
+        return isDamaged;
+    }
+
+    public void setDamaged(boolean damaged) {
+        isDamaged = damaged;
+    }
+
     @Override
     public void accept(Visitor visitor) {
-        
+        if (Rand.rand() <= Config.PERCENTAGE) {
+            System.out.println("Error detected");
+            visitor.addPart(this);
+            visitor.addCategory(Rand.randError());
+        };
     }
 }

@@ -1,5 +1,7 @@
 package org.truck.truckParts;
 
+import org.truck.Config;
+import org.truck.helper.Rand;
 import org.truck.truckParts.battery.Battery;
 import org.truck.visitor.IVisitor;
 import org.truck.visitor.Visitor;
@@ -46,6 +48,10 @@ public class Engine implements IVisitor {
 
     @Override
     public void accept(Visitor visitor) {
-
+        if (Rand.rand() <= Config.PERCENTAGE) {
+            System.out.println("Error detected");
+            visitor.addPart(this);
+            visitor.addCategory(Rand.randError());
+        };
     }
 }

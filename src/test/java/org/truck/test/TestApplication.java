@@ -249,7 +249,7 @@ public class TestApplication {
     // TEST 08 //TODO trailer connection
     // moveStraight test
     @Test()
-    @Order(7)
+    @Order(8)
     public void test8() {
         // turn on indicator right
         centralUnit.indicatorOn(RIGHT.ordinal());

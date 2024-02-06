@@ -8,6 +8,7 @@ import org.truck.parts.axle.TurningAxle;
 import org.truck.truckParts.*;
 import org.truck.truckParts.battery.Battery;
 import org.truck.truckParts.mediator.TruckMediator;
+import org.truck.visitor.Visitor;
 
 import static org.truck.helper.PositionEnum.*;
 
@@ -30,6 +31,7 @@ public class Truck {
     private final Brakelight[] brakelights;
     public final Hitch hitch;
     private CentralUnit centralUnit;
+    private Visitor visitor;
 
 
     private Truck(Builder builder) {
@@ -193,6 +195,14 @@ public class Truck {
 
     public Brakelight[] getBrakelights() {
         return brakelights;
+    }
+
+    public void checkTruckPartsWithVisitor() {
+        if (visitor == null) {
+            visitor = new Visitor();
+        }
+
+
     }
 
     public boolean checkTruckBuilder() {
