@@ -156,7 +156,7 @@ public class Truck {
         this.centralUnit = centralUnit;
     }
 
-    public void connectTrailer(Trailer trailer) {
+    public void connectTrailerToClutch(Trailer trailer) {
         this.trailer = trailer;
 
         // Needed for loading sensors
@@ -165,6 +165,14 @@ public class Truck {
 
         // Needed for sensors
         trailer.loadingArea.setCentralUnit(centralUnit);
+    }
+
+    public void connectCableToTrailer(boolean connect) {
+        if (connect) {
+
+        } else {
+
+        }
     }
 
     public Engine getEngine() {

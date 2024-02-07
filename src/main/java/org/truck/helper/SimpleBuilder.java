@@ -24,13 +24,14 @@ public class SimpleBuilder {
 
     static public Trailer createTrailer() {
         return new Trailer.Builder()
+                .eventBus()
                 .trailerMediator()
                 .trailerChassis()
                 .hitch()
                 .loadingArea()
                 .backAxles(2)
                 .brakeLights()
-                .tailBlinkers()
+                .tailIndicators()
                 .build();
     }
 }

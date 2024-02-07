@@ -1,5 +1,6 @@
 package org.truck.vehicle;
 
+import org.truck.eventBus.Event;
 import org.truck.helper.LoadPlanFlat;
 import org.truck.parts.Indicators;
 import org.truck.parts.Brakelight;
@@ -11,6 +12,7 @@ import org.truck.trailerParts.mediator.TrailerMediator;
 
 public class Trailer {
     public final TrailerMediator trailerMediator;
+    public final Event event;
     private final int amountBackAxles;
     private final TrailerChassis trailerChassis;
     private final Hitch hitch;
@@ -21,6 +23,7 @@ public class Trailer {
 
 
     private Trailer(Builder builder) {
+        this.event = builder.event;
         this.trailerMediator = builder.trailerMediator;
         this.amountBackAxles = builder.amountBackAxles;
         this.trailerChassis = builder.trailerChassis;
@@ -32,6 +35,7 @@ public class Trailer {
     }
 
     public static class Builder {
+        private Event event;
         private TrailerMediator trailerMediator;
         private int amountBackAxles;
         private TrailerChassis trailerChassis;
@@ -42,6 +46,10 @@ public class Trailer {
         private Indicators tailIndicators;
 
 
+        public Builder eventBus() {
+            this.event = new Event();
+            return this;
+        }
         public Builder trailerMediator() {
             this.trailerMediator = new TrailerMediator();
             return this;
@@ -68,6 +76,7 @@ public class Trailer {
             for (int i = 0; i < axles; i++) {
                 backAxles[i] = new FixedAxle();
             }
+            this.trailerMediator.setBackAxles(backAxles);
             return this;
         }
 
@@ -75,11 +84,13 @@ public class Trailer {
             this.brakelights = new Brakelight[2];
             this.brakelights[0] = new Brakelight();
             this.brakelights[1] = new Brakelight();
+            this.trailerMediator.setBrakelights(brakelights);
             return this;
         }
 
-        public Builder tailBlinkers() {
+        public Builder tailIndicators() {
             this.tailIndicators = new Indicators();
+            this.trailerMediator.setTailIndicators(tailIndicators);
             return this;
         }
 
@@ -99,6 +110,10 @@ public class Trailer {
 
     public boolean checkTrailerBuilder() {
 
+        // EventBus
+        if (this.event == null) {
+            return false;
+        }
         // Chassis
         if (this.trailerChassis == null) {
             return false;

@@ -44,13 +44,14 @@ public class TestApplication {
                 .build();
 
         this.trailer = new Trailer.Builder()
+                .eventBus()
                 .trailerMediator()
                 .trailerChassis()
                 .hitch()
                 .loadingArea()
                 .backAxles(2)
                 .brakeLights()
-                .tailBlinkers()
+                .tailIndicators()
                 .build();
 
         this.centralUnit = new CentralUnit(truck);
@@ -125,7 +126,7 @@ public class TestApplication {
     public void test5() {
         // Trailer detection
         assertFalse(centralUnit.isTrailerIsConnected());
-        truck.connectTrailer(trailer);
+        truck.connectTrailerToClutch(trailer);
         assertTrue(centralUnit.isTrailerIsConnected());
 
         // Correct loading detection
