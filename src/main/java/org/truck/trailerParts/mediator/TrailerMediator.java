@@ -27,35 +27,30 @@ public class TrailerMediator extends Event implements ITrailerMediator {
     public void indicateOff() {
         tailIndicators.setRightIndicator(false);
         tailIndicators.setLeftIndicator(false);
-        System.out.println("trailer off");
     }
 
     @Override
     public void indicateRight() {
         tailIndicators.setRightIndicator(true);
         tailIndicators.setLeftIndicator(false);
-        System.out.println("trailer right");
     }
 
     @Override
     public void indicateLeft() {
         tailIndicators.setLeftIndicator(true);
         tailIndicators.setRightIndicator(false);
-        System.out.println("trailer left");
     }
 
     @Override
     public void brakeLights(boolean status) {
         brakelights[0].setStatus(status);
         brakelights[1].setStatus(status);
-        System.out.println("trailer brake");
     }
 
     @Override
     public void brake(int percentage) {
         for (int i = 0; i < backAxles.length; i++) {
             backAxles[i].setBrake(percentage);
-            System.out.println("brake trailer");
         }
     }
 

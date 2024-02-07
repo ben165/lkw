@@ -258,6 +258,10 @@ public class TestApplication {
     @Test()
     @Order(8)
     public void test8() {
+        // connect trailer
+        truck.connectTrailerToClutch(trailer);
+        truck.connectCableToTrailer();
+
         // turn on indicator right
         centralUnit.indicatorOn(RIGHT.ordinal());
 
@@ -265,16 +269,24 @@ public class TestApplication {
         centralUnit.moveStraight(100);
         assertEquals(75, truck.getEngine().getEngineSpeed());
 
-        // indicator is now off
+        // indicator is now off on truck and trailer
         assertFalse(truck.getFrontIndicators().isRightIndicator());
+        assertFalse(truck.getFrontIndicators().isLeftIndicator());
         assertFalse(truck.getTailIndicators().isRightIndicator());
+        assertFalse(truck.getTailIndicators().isLeftIndicator());
+        assertFalse(trailer.getTailIndicators().isRightIndicator());
+        assertFalse(trailer.getTailIndicators().isLeftIndicator());
     }
 
-    // TEST 09 //TODO trailer connection
+    // TEST 09
     // turn left test
     @Test()
     @Order(9)
     public void test9() {
+        // connect trailer
+        truck.connectTrailerToClutch(trailer);
+        truck.connectCableToTrailer();
+
         // turn left
         centralUnit.brake(25);
         centralUnit.turnLeft(15, 50);
@@ -282,10 +294,12 @@ public class TestApplication {
         // indicators right are off
         assertFalse(truck.getFrontIndicators().isRightIndicator());
         assertFalse(truck.getTailIndicators().isRightIndicator());
+        assertFalse(trailer.getTailIndicators().isRightIndicator());
 
         // indicators left are on
         assertTrue(truck.getFrontIndicators().isLeftIndicator());
         assertTrue(truck.getTailIndicators().isLeftIndicator());
+        assertTrue(trailer.getTailIndicators().isLeftIndicator());
 
         // safe speed test while turning
         centralUnit.turnLeft(15, 75);
@@ -293,11 +307,15 @@ public class TestApplication {
     }
 
 
-    // TEST 10 //TODO trailer connection
+    // TEST 10
     // turn right test
     @Test()
     @Order(10)
     public void test10() {
+        // connect trailer
+        truck.connectTrailerToClutch(trailer);
+        truck.connectCableToTrailer();
+
         // turn right
         centralUnit.brake(25);
         centralUnit.turnRight(15, 50);
@@ -305,10 +323,12 @@ public class TestApplication {
         // indicators left are off
         assertFalse(truck.getFrontIndicators().isLeftIndicator());
         assertFalse(truck.getTailIndicators().isLeftIndicator());
+        assertFalse(trailer.getTailIndicators().isLeftIndicator());
 
         // indicators right are on
         assertTrue(truck.getFrontIndicators().isRightIndicator());
         assertTrue(truck.getTailIndicators().isRightIndicator());
+        assertTrue(trailer.getTailIndicators().isRightIndicator());
 
         // safe speed test while turning
         centralUnit.turnRight(15, 75);

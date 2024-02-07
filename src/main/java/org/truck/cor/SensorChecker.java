@@ -10,7 +10,7 @@ public class SensorChecker extends Checker implements IChecker{
 
     public void check(Object part) {
         if (canHandlePart(part)) {
-            System.out.println("Sensor Team needs to check: " + part);
+            //System.out.println("Sensor Team needs to check: " + part);
             getServiceCenter().setTeam(1);
         } else {
             super.check(part);

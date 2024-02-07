@@ -14,7 +14,7 @@ public class SimpleBuilder {
                 .battery()
                 .engine()
                 .frontAxle()
-                .backAxles(2)
+                .backAxles(axles)
                 .headlights()
                 .mirrors()
                 .frontBlinkers()
@@ -23,13 +23,13 @@ public class SimpleBuilder {
                 .build();
     }
 
-    static public Trailer createTrailer() {
+    static public Trailer createTrailer(int axles) {
         return new Trailer.Builder()
                 .trailerMediator()
                 .trailerChassis()
                 .hitch()
                 .loadingArea()
-                .backAxles(2)
+                .backAxles(axles)
                 .brakeLights()
                 .tailIndicators()
                 .build();

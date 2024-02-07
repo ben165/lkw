@@ -10,7 +10,7 @@ public class Application {
 
         // Builder
         Truck truck = SimpleBuilder.createTruck(2);
-        Trailer trailer = SimpleBuilder.createTrailer();
+        Trailer trailer = SimpleBuilder.createTrailer(2);
 
         CentralUnit centralUnit = new CentralUnit(truck);
         truck.setCentralUnit(centralUnit);
@@ -27,7 +27,7 @@ public class Application {
 
         // Builder
         Truck truck = SimpleBuilder.createTruck(2);
-        Trailer trailer = SimpleBuilder.createTrailer();
+        Trailer trailer = SimpleBuilder.createTrailer(2);
 
         CentralUnit centralUnit = new CentralUnit(truck);
 
@@ -46,7 +46,7 @@ public class Application {
     public void test01() {
         // Builder
         Truck truck = SimpleBuilder.createTruck(2);
-        Trailer trailer = SimpleBuilder.createTrailer();
+        Trailer trailer = SimpleBuilder.createTrailer(2);
 
         CentralUnit centralUnit = new CentralUnit(truck);
 
