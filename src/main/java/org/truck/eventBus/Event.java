@@ -3,7 +3,7 @@ package org.truck.eventBus;
 public class Event implements ISubscriber{
 
     @Override
-    public void trigger(int code) {
+    public void trigger(EventMsg eventMsg) {
 
     }
 }

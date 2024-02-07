@@ -31,6 +31,7 @@ public class TestApplication {
                 .truckMediator()
                 .truckChassis()
                 .clutch()
+                .cable()
                 .cabin()
                 .battery()
                 .engine()
@@ -44,7 +45,6 @@ public class TestApplication {
                 .build();
 
         this.trailer = new Trailer.Builder()
-                .eventBus()
                 .trailerMediator()
                 .trailerChassis()
                 .hitch()
@@ -440,6 +440,34 @@ public class TestApplication {
         managerNr = engineTeam.getCorrectManager("E03");
         manager = engineTeam.getManagers()[managerNr];
         assertInstanceOf(EmergencyTeamManager.class, manager);
+    }
+
+    // TEST 14
+    // Event Test
+    @Test()
+    @Order(14)
+    public void test14() {
+        centralUnit.brake(25);
+
+        //centralUnit.indicatorOn(LEFT.ordinal());
+
+        centralUnit.indicatorOn(RIGHT.ordinal());
+        // indicators right are on
+        assertTrue(truck.getFrontIndicators().isRightBlinker());
+        assertTrue(truck.getTailIndicators().isRightBlinker());
+
+        // Trailer not connected, so right indicators are off
         
+
+
+
+
+
+
+
+        // indicators left are off
+        assertFalse(truck.getFrontIndicators().isLeftBlinker());
+        assertFalse(truck.getTailIndicators().isLeftBlinker());
+
     }
 }

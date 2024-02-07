@@ -1,6 +1,7 @@
 package org.truck.vehicle;
 
 import org.truck.CentralUnit;
+import org.truck.eventBus.Publisher;
 import org.truck.parts.Indicators;
 import org.truck.parts.Brakelight;
 import org.truck.parts.axle.FixedAxle;
@@ -15,7 +16,6 @@ import static org.truck.helper.PositionEnum.*;
 public class Truck {
     public final TruckMediator truckMediator;
     private Trailer trailer;
-    private final int amountBackAxles;
     private final TruckChassis truckChassis;
     private final Cabin cabin;
     private final Engine engine;
@@ -28,13 +28,14 @@ public class Truck {
     private final Indicators tailIndicators;
     private final Brakelight[] brakelights;
     public final Clutch clutch;
+    public final Cable cable;
     private CentralUnit centralUnit;
     private Visitor visitor;
+    private Publisher publisher;
 
 
     private Truck(Builder builder) {
         this.truckMediator = builder.truckMediator;
-        this.amountBackAxles = builder.amountBackAxles;
         this.truckChassis = builder.truckChassis;
         this.cabin = builder.cabin;
         this.engine = builder.engine;
@@ -47,11 +48,11 @@ public class Truck {
         this.tailIndicators = builder.tailIndicators;
         this.brakelights = builder.brakelights;
         this.clutch = builder.clutch;
+        this.cable = builder.cable;
     }
 
     public static class Builder {
         private TruckMediator truckMediator;
-        private int amountBackAxles;
         private TruckChassis truckChassis;
         private Cabin cabin;
         private Engine engine;
@@ -64,6 +65,7 @@ public class Truck {
         private Indicators tailIndicators;
         private Brakelight[] brakelights;
         private Clutch clutch;
+        private Cable cable;
 
         public Builder truckMediator() {
             this.truckMediator = new TruckMediator();
@@ -97,7 +99,6 @@ public class Truck {
         }
 
         public Builder backAxles(int axles) {
-            this.amountBackAxles = axles;
             this.backAxles = new FixedAxle[axles];
             for (int i=0; i<axles; i++) {
                 backAxles[i] = new FixedAxle();
@@ -147,6 +148,11 @@ public class Truck {
             return this;
         }
 
+        public Builder cable() {
+            this.cable = new Cable();
+            return this;
+        }
+
         public Truck build() {
             return new Truck(this);
         }
@@ -167,12 +173,15 @@ public class Truck {
         trailer.loadingArea.setCentralUnit(centralUnit);
     }
 
-    public void connectCableToTrailer(boolean connect) {
-        if (connect) {
+    public void connectCableToTrailer() {
+        var publisher = new Publisher();
+        publisher.addListener(trailer.getTrailerMediator());
+        truckMediator.setPublisher(publisher);
+    }
 
-        } else {
-
-        }
+    public void disconnectCableFromTrailer() {
+        truckMediator.getPublisher().removeAllListener();
+        truckMediator.setPublisher(null);
     }
 
     public Engine getEngine() {
@@ -272,6 +281,10 @@ public class Truck {
         }
         // Clutch
         if (this.clutch == null) {
+            return false;
+        }
+        // Cable
+        if (this.cable == null) {
             return false;
         }
         return true;

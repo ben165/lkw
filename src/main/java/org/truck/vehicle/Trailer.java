@@ -12,8 +12,6 @@ import org.truck.trailerParts.mediator.TrailerMediator;
 
 public class Trailer {
     public final TrailerMediator trailerMediator;
-    public final Event event;
-    private final int amountBackAxles;
     private final TrailerChassis trailerChassis;
     private final Hitch hitch;
     public final LoadingArea loadingArea;
@@ -23,9 +21,7 @@ public class Trailer {
 
 
     private Trailer(Builder builder) {
-        this.event = builder.event;
         this.trailerMediator = builder.trailerMediator;
-        this.amountBackAxles = builder.amountBackAxles;
         this.trailerChassis = builder.trailerChassis;
         this.hitch = builder.hitch;
         this.loadingArea = builder.loadingArea;
@@ -35,9 +31,7 @@ public class Trailer {
     }
 
     public static class Builder {
-        private Event event;
         private TrailerMediator trailerMediator;
-        private int amountBackAxles;
         private TrailerChassis trailerChassis;
         private Hitch hitch;
         private LoadingArea loadingArea;
@@ -46,10 +40,6 @@ public class Trailer {
         private Indicators tailIndicators;
 
 
-        public Builder eventBus() {
-            this.event = new Event();
-            return this;
-        }
         public Builder trailerMediator() {
             this.trailerMediator = new TrailerMediator();
             return this;
@@ -71,7 +61,6 @@ public class Trailer {
         }
 
         public Builder backAxles(int axles) {
-            this.amountBackAxles = axles;
             this.backAxles = new FixedAxle[axles];
             for (int i = 0; i < axles; i++) {
                 backAxles[i] = new FixedAxle();
@@ -108,12 +97,24 @@ public class Trailer {
         }
     }
 
+    public FixedAxle[] getBackAxles() {
+        return backAxles;
+    }
+
+    public Brakelight[] getBrakelights() {
+        return brakelights;
+    }
+
+    public Indicators getTailBlinker() {
+        return tailBlinker;
+    }
+
+    public TrailerMediator getTrailerMediator() {
+        return trailerMediator;
+    }
+
     public boolean checkTrailerBuilder() {
 
-        // EventBus
-        if (this.event == null) {
-            return false;
-        }
         // Chassis
         if (this.trailerChassis == null) {
             return false;

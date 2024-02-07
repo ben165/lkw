@@ -9,6 +9,7 @@ public class SimpleBuilder {
                 .truckMediator()
                 .truckChassis()
                 .clutch()
+                .cable()
                 .cabin()
                 .battery()
                 .engine()
@@ -24,7 +25,6 @@ public class SimpleBuilder {
 
     static public Trailer createTrailer() {
         return new Trailer.Builder()
-                .eventBus()
                 .trailerMediator()
                 .trailerChassis()
                 .hitch()

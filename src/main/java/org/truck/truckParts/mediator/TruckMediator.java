@@ -1,5 +1,7 @@
 package org.truck.truckParts.mediator;
 
+import org.truck.eventBus.EventMsg;
+import org.truck.eventBus.Publisher;
 import org.truck.parts.Brakelight;
 import org.truck.parts.Indicators;
 import org.truck.parts.axle.FixedAxle;
@@ -18,6 +20,8 @@ public class TruckMediator implements ITruckMediator{
     Mirror[] mirrors;
     TurningAxle frontAxle;
     FixedAxle[] backAxles;
+    Publisher publisher;
+    EventMsg eventMsg = new EventMsg();
 
     public void setHeadlight(Headlight[] headlights) {
         this.headlights = headlights;
@@ -62,6 +66,11 @@ public class TruckMediator implements ITruckMediator{
 
         frontIndicators.setLeftBlinker(false);
         tailIndicators.setLeftBlinker(false);
+
+        if (publisher != null) {
+            eventMsg.cmd = 4;
+            publisher.send(eventMsg);
+        }
     }
 
     @Override
@@ -71,6 +80,11 @@ public class TruckMediator implements ITruckMediator{
 
         frontIndicators.setRightBlinker(false);
         tailIndicators.setRightBlinker(false);
+
+        if (publisher != null) {
+            eventMsg.cmd = 3;
+            publisher.send(eventMsg);
+        }
     }
 
     @Override
@@ -105,16 +119,11 @@ public class TruckMediator implements ITruckMediator{
         mirrors[1].setLidarStatus(status);
     }
 
-    @Override
-    public String toString() {
-        return "TruckMediator{" +"\n" +
-                "headlights=" + Arrays.toString(headlights) + "\n" +
-                ", brakelights=" + Arrays.toString(brakelights) +"\n" +
-                ", frontIndicators=" + frontIndicators +"\n" +
-                ", tailIndicators=" + tailIndicators +"\n" +
-                ", mirrors=" + Arrays.toString(mirrors) +"\n" +
-                ", frontAxle=" + frontAxle +"\n" +
-                ", backAxles=" + Arrays.toString(backAxles) +"\n" +
-                '}';
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
     }
 }
