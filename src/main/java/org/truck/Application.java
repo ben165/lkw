@@ -15,7 +15,7 @@ public class Application {
         CentralUnit centralUnit = new CentralUnit(truck);
         truck.setCentralUnit(centralUnit);
 
-        truck.connectTrailerToHitch(trailer);
+        truck.connectTrailer(trailer);
 
         trailer.loadTrailer("loadingPlan.json");
         centralUnit.loadingResult();
@@ -70,7 +70,7 @@ public class Application {
 
         System.out.println("\nTrailer connected? Answer: " + centralUnit.isTrailerIsConnected());
         System.out.println("Connecting...");
-        truck.connectTrailerToHitch(trailer);
+        truck.connectTrailer(trailer);
         System.out.println("\nTrailer connected? Answer: " + centralUnit.isTrailerIsConnected());
 
         System.out.println("\n\n!! LOADING CHECK !!\n");

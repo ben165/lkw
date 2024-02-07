@@ -4,10 +4,10 @@ import org.truck.CentralUnit;
 import org.truck.observer.TrailerDetector;
 import org.truck.vehicle.Trailer;
 
-public class Hitch{
+public class Clutch {
     private boolean connected = false;
     TrailerDetector trailerDetector;
-    public Hitch() {
+    public Clutch() {
         trailerDetector = new TrailerDetector();
     }
 

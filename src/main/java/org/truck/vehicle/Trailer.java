@@ -1,22 +1,19 @@
 package org.truck.vehicle;
 
-import org.truck.CentralUnit;
 import org.truck.helper.LoadPlanFlat;
 import org.truck.parts.Indicators;
 import org.truck.parts.Brakelight;
 import org.truck.parts.axle.FixedAxle;
+import org.truck.trailerParts.Hitch;
 import org.truck.trailerParts.Loading.LoadingArea;
 import org.truck.trailerParts.TrailerChassis;
-import org.truck.trailerParts.TrailerCoupler;
 import org.truck.trailerParts.mediator.TrailerMediator;
-
-import java.util.Arrays;
 
 public class Trailer {
     public final TrailerMediator trailerMediator;
     private final int amountBackAxles;
     private final TrailerChassis trailerChassis;
-    private final TrailerCoupler trailerCoupler;
+    private final Hitch hitch;
     public final LoadingArea loadingArea;
     private final FixedAxle[] backAxles;
     private final Brakelight[] brakelights;
@@ -27,7 +24,7 @@ public class Trailer {
         this.trailerMediator = builder.trailerMediator;
         this.amountBackAxles = builder.amountBackAxles;
         this.trailerChassis = builder.trailerChassis;
-        this.trailerCoupler = builder.trailerCoupler;
+        this.hitch = builder.hitch;
         this.loadingArea = builder.loadingArea;
         this.backAxles = builder.backAxles;
         this.brakelights = builder.brakelights;
@@ -38,7 +35,7 @@ public class Trailer {
         private TrailerMediator trailerMediator;
         private int amountBackAxles;
         private TrailerChassis trailerChassis;
-        private TrailerCoupler trailerCoupler;
+        private Hitch hitch;
         private LoadingArea loadingArea;
         private FixedAxle[] backAxles;
         private Brakelight[] brakelights;
@@ -55,8 +52,8 @@ public class Trailer {
             return this;
         }
 
-        public Builder trailerCoupler() {
-            this.trailerCoupler = new TrailerCoupler();
+        public Builder hitch() {
+            this.hitch = new Hitch();
             return this;
         }
 
@@ -119,7 +116,7 @@ public class Trailer {
             return false;
         }
         // Coupler
-        if (this.trailerCoupler == null) {
+        if (this.hitch == null) {
             return false;
         }
         // Loading Area
@@ -127,19 +124,5 @@ public class Trailer {
             return false;
         }
         return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Trailer{" + "\n" +
-                "trailerMediator=" + trailerMediator + "\n" +
-                ", amountBackAxles=" + amountBackAxles + "\n" +
-                ", trailerChassis=" + trailerChassis + "\n" +
-                ", trailerCoupler=" + trailerCoupler + "\n" +
-                ", loadingArea=" + loadingArea + "\n" +
-                ", backAxles=" + Arrays.toString(backAxles) + "\n" +
-                ", brakelights=" + Arrays.toString(brakelights) + "\n" +
-                ", tailBlinker=" + tailBlinker + "\n" +
-                '}';
     }
 }

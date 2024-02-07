@@ -12,8 +12,6 @@ import org.truck.visitor.Visitor;
 
 import static org.truck.helper.PositionEnum.*;
 
-import java.util.Arrays;
-
 public class Truck {
     public final TruckMediator truckMediator;
     private Trailer trailer;
@@ -29,7 +27,7 @@ public class Truck {
     private final Indicators frontIndicators;
     private final Indicators tailIndicators;
     private final Brakelight[] brakelights;
-    public final Hitch hitch;
+    public final Clutch clutch;
     private CentralUnit centralUnit;
     private Visitor visitor;
 
@@ -48,7 +46,7 @@ public class Truck {
         this.frontIndicators = builder.frontIndicators;
         this.tailIndicators = builder.tailIndicators;
         this.brakelights = builder.brakelights;
-        this.hitch = builder.hitch;
+        this.clutch = builder.clutch;
     }
 
     public static class Builder {
@@ -65,7 +63,7 @@ public class Truck {
         private Indicators frontIndicators;
         private Indicators tailIndicators;
         private Brakelight[] brakelights;
-        private Hitch hitch;
+        private Clutch clutch;
 
         public Builder truckMediator() {
             this.truckMediator = new TruckMediator();
@@ -144,8 +142,8 @@ public class Truck {
             return this;
         }
 
-        public Builder hitch() {
-            this.hitch = new Hitch();
+        public Builder clutch() {
+            this.clutch = new Clutch();
             return this;
         }
 
@@ -158,12 +156,12 @@ public class Truck {
         this.centralUnit = centralUnit;
     }
 
-    public void connectTrailerToHitch(Trailer trailer) {
+    public void connectTrailer(Trailer trailer) {
         this.trailer = trailer;
 
         // Needed for loading sensors
-        hitch.setCentralUnit(centralUnit);
-        hitch.setConnected(trailer);
+        clutch.setCentralUnit(centralUnit);
+        clutch.setConnected(trailer);
 
         // Needed for sensors
         trailer.loadingArea.setCentralUnit(centralUnit);
@@ -264,29 +262,10 @@ public class Truck {
         if (this.mirrors[LEFT.ordinal()].getLidar() == null || this.mirrors[RIGHT.ordinal()].getLidar() == null) {
             return false;
         }
-        // Hitch
-        if (this.hitch == null) {
+        // Clutch
+        if (this.clutch == null) {
             return false;
         }
         return true;
-    }
-
-
-    @Override
-    public String toString() {
-        return "Truck{" +
-                "truckMediator" + truckMediator + "\n" +
-                "amountBackAxles=" + amountBackAxles + "\n" +
-                "truckChassis=" + truckChassis + "\n" +
-                ", cabin=" + cabin + "\n" +
-                ", engine=" + engine + "\n" +
-                ", frontAxle=" + frontAxle + "\n" +
-                ", backAxles=" + Arrays.toString(backAxles) + "\n" +
-                ", headLights=" + Arrays.toString(headLights) + "\n" +
-                ", mirrors=" + Arrays.toString(mirrors) + "\n" +
-                ", frontIndicators=" + frontIndicators + "\n" +
-                ", tailIndicators=" + tailIndicators + "\n" +
-                ", brakeLights=" + Arrays.toString(brakelights) + "\n" +
-                '}';
     }
 }

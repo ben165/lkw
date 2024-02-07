@@ -1,7 +1,6 @@
 package org.truck.test;
 
 import com.google.common.hash.Hashing;
-import com.google.common.hash.HashingOutputStream;
 import org.junit.jupiter.api.*;
 import org.truck.CentralUnit;
 import org.truck.Config;
@@ -31,7 +30,7 @@ public class TestApplication {
         this.truck = new Truck.Builder()
                 .truckMediator()
                 .truckChassis()
-                .hitch()
+                .clutch()
                 .cabin()
                 .battery()
                 .engine()
@@ -47,7 +46,7 @@ public class TestApplication {
         this.trailer = new Trailer.Builder()
                 .trailerMediator()
                 .trailerChassis()
-                .trailerCoupler()
+                .hitch()
                 .loadingArea()
                 .backAxles(2)
                 .brakeLights()
@@ -126,7 +125,7 @@ public class TestApplication {
     public void test5() {
         // Trailer detection
         assertFalse(centralUnit.isTrailerIsConnected());
-        truck.connectTrailerToHitch(trailer);
+        truck.connectTrailer(trailer);
         assertTrue(centralUnit.isTrailerIsConnected());
 
         // Correct loading detection
