@@ -9,8 +9,6 @@ import org.truck.parts.axle.TurningAxle;
 import org.truck.truckParts.Headlight;
 import org.truck.truckParts.Mirror;
 
-import java.util.Arrays;
-
 public class TruckMediator implements ITruckMediator{
 
     Headlight[] headlights;
@@ -52,20 +50,25 @@ public class TruckMediator implements ITruckMediator{
     }
 
     public void indicateOff() {
-        frontIndicators.setRightBlinker(false);
-        tailIndicators.setRightBlinker(false);
+        frontIndicators.setRightIndicator(false);
+        tailIndicators.setRightIndicator(false);
 
-        frontIndicators.setLeftBlinker(false);
-        tailIndicators.setLeftBlinker(false);
+        frontIndicators.setLeftIndicator(false);
+        tailIndicators.setLeftIndicator(false);
+
+        if (publisher != null) {
+            eventMsg.cmd = 2;
+            publisher.send(eventMsg);
+        }
     }
 
     @Override
     public void indicateRight() {
-        frontIndicators.setRightBlinker(true);
-        tailIndicators.setRightBlinker(true);
+        frontIndicators.setRightIndicator(true);
+        tailIndicators.setRightIndicator(true);
 
-        frontIndicators.setLeftBlinker(false);
-        tailIndicators.setLeftBlinker(false);
+        frontIndicators.setLeftIndicator(false);
+        tailIndicators.setLeftIndicator(false);
 
         if (publisher != null) {
             eventMsg.cmd = 4;
@@ -75,11 +78,11 @@ public class TruckMediator implements ITruckMediator{
 
     @Override
     public void indicateLeft() {
-        frontIndicators.setLeftBlinker(true);
-        tailIndicators.setLeftBlinker(true);
+        frontIndicators.setLeftIndicator(true);
+        tailIndicators.setLeftIndicator(true);
 
-        frontIndicators.setRightBlinker(false);
-        tailIndicators.setRightBlinker(false);
+        frontIndicators.setRightIndicator(false);
+        tailIndicators.setRightIndicator(false);
 
         if (publisher != null) {
             eventMsg.cmd = 3;
@@ -91,6 +94,16 @@ public class TruckMediator implements ITruckMediator{
     public void brakeLights(boolean status) {
         brakelights[0].setStatus(status);
         brakelights[1].setStatus(status);
+
+        if (publisher != null) {
+            if (status) {
+                eventMsg.cmd = 1;
+            } else {
+                eventMsg.cmd = 0;
+            }
+
+            publisher.send(eventMsg);
+        }
     }
 
     @Override
@@ -98,6 +111,12 @@ public class TruckMediator implements ITruckMediator{
         frontAxle.setBrake(percentage);
         for (int i=0; i<backAxles.length; i++) {
             backAxles[i].setBrake(percentage);
+        }
+
+        if (publisher != null) {
+            eventMsg.cmd = 5;
+            eventMsg.par = percentage;
+            publisher.send(eventMsg);
         }
     }
 

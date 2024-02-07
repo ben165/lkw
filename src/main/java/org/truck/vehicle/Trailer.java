@@ -1,6 +1,5 @@
 package org.truck.vehicle;
 
-import org.truck.eventBus.Event;
 import org.truck.helper.LoadPlanFlat;
 import org.truck.parts.Indicators;
 import org.truck.parts.Brakelight;
@@ -17,7 +16,7 @@ public class Trailer {
     public final LoadingArea loadingArea;
     private final FixedAxle[] backAxles;
     private final Brakelight[] brakelights;
-    private final Indicators tailBlinker;
+    private final Indicators tailIndicators;
 
 
     private Trailer(Builder builder) {
@@ -27,7 +26,7 @@ public class Trailer {
         this.loadingArea = builder.loadingArea;
         this.backAxles = builder.backAxles;
         this.brakelights = builder.brakelights;
-        this.tailBlinker = builder.tailIndicators;
+        this.tailIndicators = builder.tailIndicators;
     }
 
     public static class Builder {
@@ -105,8 +104,8 @@ public class Trailer {
         return brakelights;
     }
 
-    public Indicators getTailBlinker() {
-        return tailBlinker;
+    public Indicators getTailIndicators() {
+        return tailIndicators;
     }
 
     public TrailerMediator getTrailerMediator() {
@@ -120,7 +119,7 @@ public class Trailer {
             return false;
         }
         // Indicator(s)
-        if (this.tailBlinker == null) {
+        if (this.tailIndicators == null) {
             return false;
         }
         // Brakelights

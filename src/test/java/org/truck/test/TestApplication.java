@@ -151,13 +151,13 @@ public class TestApplication {
     public void test6() {
         // Left indicators
         centralUnit.indicatorOn(LEFT.ordinal());
-        assertTrue(truck.getFrontIndicators().isLeftBlinker());
-        assertTrue(truck.getTailIndicators().isLeftBlinker());
+        assertTrue(truck.getFrontIndicators().isLeftIndicator());
+        assertTrue(truck.getTailIndicators().isLeftIndicator());
 
         // Right indicators
         centralUnit.indicatorOn(RIGHT.ordinal());
-        assertTrue(truck.getFrontIndicators().isRightBlinker());
-        assertTrue(truck.getTailIndicators().isRightBlinker());
+        assertTrue(truck.getFrontIndicators().isRightIndicator());
+        assertTrue(truck.getTailIndicators().isRightIndicator());
 
         // Brake light
         centralUnit.brakeLightsOn();
@@ -266,8 +266,8 @@ public class TestApplication {
         assertEquals(75, truck.getEngine().getEngineSpeed());
 
         // indicator is now off
-        assertFalse(truck.getFrontIndicators().isRightBlinker());
-        assertFalse(truck.getTailIndicators().isRightBlinker());
+        assertFalse(truck.getFrontIndicators().isRightIndicator());
+        assertFalse(truck.getTailIndicators().isRightIndicator());
     }
 
     // TEST 09 //TODO trailer connection
@@ -280,12 +280,12 @@ public class TestApplication {
         centralUnit.turnLeft(15, 50);
 
         // indicators right are off
-        assertFalse(truck.getFrontIndicators().isRightBlinker());
-        assertFalse(truck.getTailIndicators().isRightBlinker());
+        assertFalse(truck.getFrontIndicators().isRightIndicator());
+        assertFalse(truck.getTailIndicators().isRightIndicator());
 
         // indicators left are on
-        assertTrue(truck.getFrontIndicators().isLeftBlinker());
-        assertTrue(truck.getTailIndicators().isLeftBlinker());
+        assertTrue(truck.getFrontIndicators().isLeftIndicator());
+        assertTrue(truck.getTailIndicators().isLeftIndicator());
 
         // safe speed test while turning
         centralUnit.turnLeft(15, 75);
@@ -303,12 +303,12 @@ public class TestApplication {
         centralUnit.turnRight(15, 50);
 
         // indicators left are off
-        assertFalse(truck.getFrontIndicators().isLeftBlinker());
-        assertFalse(truck.getTailIndicators().isLeftBlinker());
+        assertFalse(truck.getFrontIndicators().isLeftIndicator());
+        assertFalse(truck.getTailIndicators().isLeftIndicator());
 
         // indicators right are on
-        assertTrue(truck.getFrontIndicators().isRightBlinker());
-        assertTrue(truck.getTailIndicators().isRightBlinker());
+        assertTrue(truck.getFrontIndicators().isRightIndicator());
+        assertTrue(truck.getTailIndicators().isRightIndicator());
 
         // safe speed test while turning
         centralUnit.turnRight(15, 75);
@@ -449,25 +449,71 @@ public class TestApplication {
     public void test14() {
         centralUnit.brake(25);
 
-        //centralUnit.indicatorOn(LEFT.ordinal());
-
-        centralUnit.indicatorOn(RIGHT.ordinal());
-        // indicators right are on
-        assertTrue(truck.getFrontIndicators().isRightBlinker());
-        assertTrue(truck.getTailIndicators().isRightBlinker());
+        centralUnit.indicatorOn(LEFT.ordinal());
 
         // Trailer not connected, so right indicators are off
-        
+        assertFalse(trailer.getTailIndicators().isLeftIndicator());
 
+        // Trailer connection
+        truck.connectTrailerToClutch(trailer);
+        truck.connectCableToTrailer();
 
+        // turn on left
+        centralUnit.indicatorOn(LEFT.ordinal());
+        // trailer
+        assertTrue(trailer.getTailIndicators().isLeftIndicator());
+        assertFalse(trailer.getTailIndicators().isRightIndicator());
+        // truck (was already tested so we check only one)
+        assertTrue(truck.getTailIndicators().isLeftIndicator());
 
+        // turn on right
+        centralUnit.indicatorOn(RIGHT.ordinal());
+        //trailer
+        assertTrue(trailer.getTailIndicators().isRightIndicator());
+        assertFalse(trailer.getTailIndicators().isLeftIndicator());
+        // truck (was already tested so we check only one)
+        assertTrue(truck.getTailIndicators().isRightIndicator());
 
+        // turn off all
+        centralUnit.indicatorOff();
+        assertFalse(truck.getTailIndicators().isRightIndicator());
+        assertFalse(truck.getTailIndicators().isRightIndicator());
 
+        // brakelight on
+        centralUnit.brakeLightsOn();
+        assertTrue(truck.getBrakelights()[LEFT.ordinal()].isStatus());
+        assertTrue(truck.getBrakelights()[RIGHT.ordinal()].isStatus());
+        assertTrue(trailer.getBrakelights()[LEFT.ordinal()].isStatus());
+        assertTrue(trailer.getBrakelights()[RIGHT.ordinal()].isStatus());
 
+        // brakelight off
+        centralUnit.brakeLightsOff();
+        assertFalse(truck.getBrakelights()[LEFT.ordinal()].isStatus());
+        assertFalse(truck.getBrakelights()[RIGHT.ordinal()].isStatus());
+        assertFalse(trailer.getBrakelights()[LEFT.ordinal()].isStatus());
+        assertFalse(trailer.getBrakelights()[RIGHT.ordinal()].isStatus());
 
-        // indicators left are off
-        assertFalse(truck.getFrontIndicators().isLeftBlinker());
-        assertFalse(truck.getTailIndicators().isLeftBlinker());
+        // brake (percentage)
+        centralUnit.brake(33);
 
+        // check all truck brakes
+        for (int i=0; i<truck.getBackAxles().length; i++) {
+            assertEquals(33, truck.getBackAxles()[i].getBrake());
+        }
+        // check all trailer brakes
+        for (int i=0; i<trailer.getBackAxles().length; i++) {
+            assertEquals(33, trailer.getBackAxles()[i].getBrake());
+        }
+
+        // Disconnect communication cable
+        truck.disconnectCableFromTrailer();
+        // brakelight on
+        centralUnit.brakeLightsOn();
+        // truck brakelight still works
+        assertTrue(truck.getBrakelights()[LEFT.ordinal()].isStatus());
+        assertTrue(truck.getBrakelights()[RIGHT.ordinal()].isStatus());
+        // but trailer won't get info anymore
+        assertFalse(trailer.getBrakelights()[LEFT.ordinal()].isStatus());
+        assertFalse(trailer.getBrakelights()[RIGHT.ordinal()].isStatus());
     }
 }

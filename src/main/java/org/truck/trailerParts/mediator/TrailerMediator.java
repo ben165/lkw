@@ -25,22 +25,22 @@ public class TrailerMediator extends Event implements ITrailerMediator {
 
     @Override
     public void indicateOff() {
-        tailIndicators.setRightBlinker(false);
-        tailIndicators.setLeftBlinker(false);
+        tailIndicators.setRightIndicator(false);
+        tailIndicators.setLeftIndicator(false);
         System.out.println("trailer off");
     }
 
     @Override
     public void indicateRight() {
-        tailIndicators.setRightBlinker(true);
-        tailIndicators.setLeftBlinker(false);
+        tailIndicators.setRightIndicator(true);
+        tailIndicators.setLeftIndicator(false);
         System.out.println("trailer right");
     }
 
     @Override
     public void indicateLeft() {
-        tailIndicators.setLeftBlinker(true);
-        tailIndicators.setRightBlinker(false);
+        tailIndicators.setLeftIndicator(true);
+        tailIndicators.setRightIndicator(false);
         System.out.println("trailer left");
     }
 
