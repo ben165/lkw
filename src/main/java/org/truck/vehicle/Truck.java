@@ -32,7 +32,7 @@ public class Truck {
     public final Cable cable;
     private CentralUnit centralUnit;
     private Visitor visitor;
-    private Publisher publisher;
+
 
 
     private Truck(Builder builder) {
