@@ -417,7 +417,7 @@ public class TestApplication {
 
         // Define damaged camera
         Camera camera = new Camera(0);
-        camera.setDamaged(true);
+        camera.setIsDamaged(true);
 
         // CoR Part
         checkPart.check(camera);
@@ -441,7 +441,7 @@ public class TestApplication {
 
         // Define damaged lidar
         Lidar lidar = new Lidar(0);
-        lidar.setDamaged(true);
+        lidar.setIsDamaged(true);
 
         // CoR Part
         checkPart.check(lidar);

@@ -29,7 +29,7 @@ public class Camera implements IVisitor {
         return isDamaged;
     }
 
-    public void setDamaged(boolean damaged) {
+    public void setIsDamaged(boolean damaged) {
         isDamaged = damaged;
     }
 

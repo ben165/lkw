@@ -4,9 +4,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.truck.CentralUnit;
-import org.truck.Config;
 import org.truck.cor.CheckPart;
 import org.truck.helper.SimpleBuilder;
+import org.truck.proxy.ProxyAccess;
+import org.truck.proxy.RepairRobot;
 import org.truck.serviceCenter.Manager;
 import org.truck.serviceCenter.ServiceCenter;
 import org.truck.serviceCenter.Supervisor;
@@ -15,7 +16,7 @@ import org.truck.truckParts.Engine;
 import org.truck.vehicle.Trailer;
 import org.truck.vehicle.Truck;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestProxy {
     private Truck truck;
@@ -37,6 +38,8 @@ public class TestProxy {
         Engine engine = new Engine();
         engine.setIsDamaged(true);
 
+        assertTrue(engine.getIsDamaged());
+
         CheckPart checkPart = new CheckPart();
         checkPart.setServiceCenter(serviceCenter);
         checkPart.check(engine);
@@ -48,6 +51,11 @@ public class TestProxy {
 
         engineer.setPassword(supervisor.getPw());
 
-        
+        ProxyAccess proxyAccess = new ProxyAccess(engineer);
+
+        RepairRobot repairRobot = new RepairRobot(proxyAccess, engine);
+
+        assertFalse(engine.getIsDamaged());
+
     }
 }
