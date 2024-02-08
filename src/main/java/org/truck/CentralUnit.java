@@ -2,17 +2,15 @@ package org.truck;
 
 import com.google.common.hash.Hashing;
 import org.truck.commands.*;
-import org.truck.eventBus.Event;
-import org.truck.eventBus.EventMsg;
-import org.truck.eventBus.IPublisher;
 import org.truck.helper.LoadPlanFlat;
 import org.truck.observer.IPalletListener;
 import org.truck.observer.ITrailerListener;
 import org.truck.state.Inactive;
 import org.truck.state.State;
+import org.truck.truckParts.mediator.TruckMediator;
 import org.truck.vehicle.Trailer;
 import org.truck.vehicle.Truck;
-import org.truck.truckParts.mediator.TruckMediator;
+
 import java.nio.charset.StandardCharsets;
 
 public class CentralUnit implements ITrailerListener, IPalletListener {
@@ -165,6 +163,14 @@ public class CentralUnit implements ITrailerListener, IPalletListener {
         return trailerIsConnected;
     }
 
+    public boolean loadingResult() {
+        return isLoadingCorrect;
+    }
+
+    public State getState() {
+        return state;
+    }
+
     @Override
     public void trailerDetected(Trailer trailer) {
         System.out.println("Method in CU: Trailer connection: " + trailer.hashCode());
@@ -188,13 +194,4 @@ public class CentralUnit implements ITrailerListener, IPalletListener {
             System.out.println("\nLoading finished\n");
         }
     }
-
-    public boolean loadingResult() {
-        return isLoadingCorrect;
-    }
-
-    public State getState() {
-        return state;
-    }
-
 }
