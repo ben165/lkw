@@ -6,6 +6,8 @@ import org.truck.CentralUnit;
 import org.truck.Config;
 import org.truck.Key;
 import org.truck.cor.CheckPart;
+import org.truck.proxy.ProxyAccess;
+import org.truck.proxy.RepairRobot;
 import org.truck.serviceCenter.*;
 import org.truck.truckParts.Camera;
 import org.truck.truckParts.Engine;
@@ -438,7 +440,6 @@ public class TestApplication {
         assertInstanceOf(EmergencyTeamManager.class, manager);
 
 
-
         // Define damaged lidar
         Lidar lidar = new Lidar(0);
         lidar.setIsDamaged(true);
@@ -460,6 +461,16 @@ public class TestApplication {
         managerNr = engineTeam.getCorrectManager("E03");
         manager = engineTeam.getManagers()[managerNr];
         assertInstanceOf(EmergencyTeamManager.class, manager);
+
+        // Repair
+        Supervisor supervisor = serviceCenter.getTeams()[serviceCenter.getTeam()].getSupervisor();
+        TechnicalEngineer engineer = manager.getTechnicalEngineers()[0];
+
+        engineer.setPassword(supervisor.getPw());
+        ProxyAccess proxyAccess = new ProxyAccess(engineer);
+        RepairRobot repairRobot = new RepairRobot(proxyAccess, engine);
+        assertFalse(engine.getIsDamaged());
+
     }
 
     // TEST 14
