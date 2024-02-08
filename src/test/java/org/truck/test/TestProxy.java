@@ -49,7 +49,7 @@ public class TestProxy {
         Manager manager = serviceCenter.getTeams()[serviceCenter.getTeam()].getManagers()[nr];
         TechnicalEngineer engineer = manager.getTechnicalEngineers()[0];
 
-        engineer.setPassword(supervisor.getPw());
+        engineer.setPassword(supervisor.getPassword());
 
         ProxyAccess proxyAccess = new ProxyAccess(engineer);
 

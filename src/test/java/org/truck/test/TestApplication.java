@@ -255,7 +255,7 @@ public class TestApplication {
         assertTrue(centralUnit.getState().getState().stateAsBoolean());
     }
 
-    // TEST 08 //TODO trailer connection
+    // TEST 08
     // moveStraight test
     @Test()
     @Order(8)
@@ -466,9 +466,9 @@ public class TestApplication {
         Supervisor supervisor = serviceCenter.getTeams()[serviceCenter.getTeam()].getSupervisor();
         TechnicalEngineer engineer = manager.getTechnicalEngineers()[0];
 
-        engineer.setPassword(supervisor.getPw());
+        engineer.setPassword(supervisor.getPassword());
         ProxyAccess proxyAccess = new ProxyAccess(engineer);
-        RepairRobot repairRobot = new RepairRobot(proxyAccess, engine);
+        new RepairRobot(proxyAccess, engine);
         assertFalse(engine.getIsDamaged());
 
     }

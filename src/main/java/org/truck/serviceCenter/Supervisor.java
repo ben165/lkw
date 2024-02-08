@@ -1,13 +1,13 @@
 package org.truck.serviceCenter;
 
 public class Supervisor {
-    String pw = "abc";
+    String password = "abc";
 
-    public String getPw() {
-        return pw;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPw(String pw) {
-        this.pw = pw;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

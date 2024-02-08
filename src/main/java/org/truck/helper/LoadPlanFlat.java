@@ -28,10 +28,6 @@ public class LoadPlanFlat {
         return intPlanArray[i];
     }
 
-    public int[] getIntPlanArray() {
-        return intPlanArray;
-    }
-
     public int getLen() {
         return intPlanArray.length;
     }

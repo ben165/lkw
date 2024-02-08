@@ -7,9 +7,9 @@ import org.truck.truckParts.mediator.TruckMediator;
 import org.truck.vehicle.Truck;
 
 public class MoveStraight implements ICommand{
-    TurningAxle turningAxle;
-    Engine engine;
-    TruckMediator truckMediator;
+    private final TurningAxle turningAxle;
+    private final Engine engine;
+    private final TruckMediator truckMediator;
     public MoveStraight(Truck truck) {
         turningAxle = truck.getFrontAxle();
         engine = truck.getEngine();

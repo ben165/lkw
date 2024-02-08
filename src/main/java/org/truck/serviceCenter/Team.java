@@ -1,7 +1,5 @@
 package org.truck.serviceCenter;
 
-import org.truck.commands.ICommand;
-
 public class Team {
     Supervisor supervisor;
     OperationTeamManager operationTeamManager;

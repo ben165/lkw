@@ -1,8 +1,6 @@
-package org.truck.trailerParts.Loading;
+package org.truck.trailerParts.loading;
 
 import org.truck.CentralUnit;
-import org.truck.entity.LoadingScheme;
-import org.truck.helper.Json;
 import org.truck.observer.PalletDetector;
 
 public class LoadingArea {
@@ -26,22 +24,4 @@ public class LoadingArea {
         }
         palletDetector.palletDetected(position, isPallet);
     }
-
-    /*
-    public void loadTrailer(String loadingPlan) {
-        LoadingScheme plan = Json.readParameters(loadingPlan);
-
-        // Flatmapping and filling with Pallets
-        for (int i=0; i<plan.getLeft().size(); i++) {
-            if (plan.getLeft().get(i) == 1) {
-                palletDetector.palletDetected(i);
-                palletArray[i] = new Pallet();
-            }
-            if (plan.getRight().get(i) == 1) {
-                palletDetector.palletDetected(i+8);
-                palletArray[i+8] = new Pallet();
-            }
-        }
-    }
-    */
 }

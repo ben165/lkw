@@ -10,15 +10,8 @@ public class LoadingScheme {
         return left;
     }
 
-    public void setLeft(List<Integer> left) {
-        this.left = left;
-    }
-
     public List<Integer> getRight() {
         return right;
     }
 
-    public void setRight(List<Integer> right) {
-        this.right = right;
-    }
 }

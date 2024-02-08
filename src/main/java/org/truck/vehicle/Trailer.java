@@ -5,7 +5,7 @@ import org.truck.parts.Indicators;
 import org.truck.parts.Brakelight;
 import org.truck.parts.axle.FixedAxle;
 import org.truck.trailerParts.Hitch;
-import org.truck.trailerParts.Loading.LoadingArea;
+import org.truck.trailerParts.loading.LoadingArea;
 import org.truck.trailerParts.TrailerChassis;
 import org.truck.trailerParts.mediator.TrailerMediator;
 

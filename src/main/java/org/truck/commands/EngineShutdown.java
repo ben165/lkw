@@ -4,7 +4,7 @@ import org.truck.truckParts.Engine;
 import org.truck.vehicle.Truck;
 
 public class EngineShutdown implements ICommand{
-    Engine engine;
+    private Engine engine;
     public EngineShutdown(Truck truck) {
         engine = truck.getEngine();
     }
