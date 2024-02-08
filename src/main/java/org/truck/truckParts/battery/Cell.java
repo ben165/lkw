@@ -1,9 +1,11 @@
 package org.truck.truckParts.battery;
 
-public class Cell extends ACell{
+public class Cell extends ACell {
     private int status = 0;
+
     @Override
-    public void add(ACell cell) {}
+    public void add(ACell cell) {
+    }
 
     @Override
     public ACell getChild(int i) {

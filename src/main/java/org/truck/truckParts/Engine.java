@@ -27,7 +27,7 @@ public class Engine implements IVisitor {
     public void setEngineSpeed(int engineSpeed) {
         this.engineSpeed = engineSpeed;
         // energy consumption
-        battery.unload(2*engineSpeed);
+        battery.unload(2 * engineSpeed);
     }
 
     public Battery getBattery() {
@@ -52,6 +52,7 @@ public class Engine implements IVisitor {
             //System.out.println("Error detected " + this);
             visitor.addPart(this);
             visitor.addCategory(Rand.randError());
-        };
+        }
+        ;
     }
 }

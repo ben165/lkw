@@ -9,6 +9,7 @@ public class SubCell extends ACell {
     public SubCell() {
         super();
     }
+
     @Override
     public void add(ACell cell) {
         cellList.add(cell);
@@ -25,6 +26,7 @@ public class SubCell extends ACell {
     }
 
     @Override
-    public void setStatus(int status) {}
+    public void setStatus(int status) {
+    }
 
 }

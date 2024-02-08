@@ -9,6 +9,7 @@ public class Camera implements IVisitor {
     boolean isOn = false;
     int side;
     boolean isDamaged;
+
     public Camera(int side) {
         this.side = side;
     }
@@ -39,6 +40,7 @@ public class Camera implements IVisitor {
             //System.out.println("Error detected: " + this);
             visitor.addPart(this);
             visitor.addCategory(Rand.randError());
-        };
+        }
+        ;
     }
 }

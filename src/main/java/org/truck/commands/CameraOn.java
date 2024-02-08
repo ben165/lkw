@@ -2,7 +2,7 @@ package org.truck.commands;
 
 import org.truck.truckParts.mediator.TruckMediator;
 
-public class CameraOn implements ICommand{
+public class CameraOn implements ICommand {
     private final TruckMediator truckMediator;
 
     public CameraOn(TruckMediator truckMediator) {

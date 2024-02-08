@@ -19,7 +19,7 @@ public class LoadPlanFlat {
     }
 
     public void showPlan() {
-        for (int i=0; i<intPlanArray.length; i++) {
+        for (int i = 0; i < intPlanArray.length; i++) {
             System.out.print(intPlanArray[i]);
         }
     }

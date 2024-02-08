@@ -5,15 +5,17 @@ import org.truck.truckParts.Engine;
 import org.truck.truckParts.mediator.TruckMediator;
 import org.truck.vehicle.Truck;
 
-public class TurnLeft implements ICommand{
+public class TurnLeft implements ICommand {
     TurningAxle turningAxle;
     Engine engine;
     TruckMediator truckMediator;
+
     public TurnLeft(Truck truck) {
         turningAxle = truck.getFrontAxle();
         engine = truck.getEngine();
         truckMediator = truck.truckMediator;
     }
+
     @Override
     public void execute(int... numbers) {
         turningAxle.turnLeft(numbers[0] + 90);

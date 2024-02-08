@@ -2,8 +2,8 @@ package org.truck.vehicle;
 
 import org.truck.CentralUnit;
 import org.truck.eventBus.Publisher;
-import org.truck.parts.Indicators;
 import org.truck.parts.Brakelight;
+import org.truck.parts.Indicators;
 import org.truck.parts.axle.FixedAxle;
 import org.truck.parts.axle.TurningAxle;
 import org.truck.truckParts.*;
@@ -11,7 +11,8 @@ import org.truck.truckParts.battery.Battery;
 import org.truck.truckParts.mediator.TruckMediator;
 import org.truck.visitor.Visitor;
 
-import static org.truck.helper.PositionEnum.*;
+import static org.truck.helper.PositionEnum.LEFT;
+import static org.truck.helper.PositionEnum.RIGHT;
 
 public class Truck {
     public final TruckMediator truckMediator;
@@ -71,6 +72,7 @@ public class Truck {
             this.truckMediator = new TruckMediator();
             return this;
         }
+
         public Builder truckChassis() {
             this.truckChassis = new TruckChassis();
             return this;
@@ -100,7 +102,7 @@ public class Truck {
 
         public Builder backAxles(int axles) {
             this.backAxles = new FixedAxle[axles];
-            for (int i=0; i<axles; i++) {
+            for (int i = 0; i < axles; i++) {
                 backAxles[i] = new FixedAxle();
             }
             this.truckMediator.setBackAxles(this.backAxles);
@@ -246,7 +248,7 @@ public class Truck {
             return false;
         }
         // backAxle(s)
-        for (int i=0; i < backAxles.length; i++) {
+        for (int i = 0; i < backAxles.length; i++) {
             if (backAxles[i] == null) {
                 return false;
             }

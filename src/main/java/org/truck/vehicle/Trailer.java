@@ -1,12 +1,12 @@
 package org.truck.vehicle;
 
 import org.truck.helper.LoadPlanFlat;
-import org.truck.parts.Indicators;
 import org.truck.parts.Brakelight;
+import org.truck.parts.Indicators;
 import org.truck.parts.axle.FixedAxle;
 import org.truck.trailerParts.Hitch;
-import org.truck.trailerParts.loading.LoadingArea;
 import org.truck.trailerParts.TrailerChassis;
+import org.truck.trailerParts.loading.LoadingArea;
 import org.truck.trailerParts.mediator.TrailerMediator;
 
 public class Trailer {
@@ -91,8 +91,8 @@ public class Trailer {
     public void loadTrailer(String loadingPlan) {
         LoadPlanFlat loadPlanFlat = new LoadPlanFlat(loadingPlan);
 
-        for (int i=0; i<loadPlanFlat.getLen(); i++) {
-                loadingArea.placePallet(i, loadPlanFlat.getInfo(i));
+        for (int i = 0; i < loadPlanFlat.getLen(); i++) {
+            loadingArea.placePallet(i, loadPlanFlat.getInfo(i));
         }
     }
 

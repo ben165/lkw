@@ -4,6 +4,7 @@ import org.truck.Config;
 import org.truck.helper.Rand;
 import org.truck.visitor.IVisitor;
 import org.truck.visitor.Visitor;
+
 public class Lidar implements IVisitor {
     boolean isOn = false;
     int side;
@@ -39,6 +40,7 @@ public class Lidar implements IVisitor {
             //System.out.println("Error detected " + this);
             visitor.addPart(this);
             visitor.addCategory(Rand.randError());
-        };
+        }
+        ;
     }
 }

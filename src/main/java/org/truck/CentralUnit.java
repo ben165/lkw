@@ -185,12 +185,12 @@ public class CentralUnit implements ITrailerListener, IPalletListener {
             loadPlanFlat = new LoadPlanFlat("loadingPlan.json");
         }
 
-        if(loadPlanFlat.getInfo(location) != isPallet) {
+        if (loadPlanFlat.getInfo(location) != isPallet) {
             System.out.println("\nLoading wrong on place " + location + "\n");
             isLoadingCorrect = false;
         }
 
-        if(location == 15) {
+        if (location == 15) {
             System.out.println("\nLoading finished\n");
         }
     }

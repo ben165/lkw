@@ -3,13 +3,14 @@ package org.truck.truckParts.battery;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Battery extends ACell{
+public class Battery extends ACell {
     private final int amountMainCells = 500;
     private final int amountSubCells = 100;
     private final int amountCells = 5;
     private final List<ACell> mainCells = new ArrayList<>();
+
     public Battery() {
-        for (int k=0; k<amountMainCells; k++) {
+        for (int k = 0; k < amountMainCells; k++) {
             MainCell mainCell = new MainCell();
             mainCells.add(mainCell);
             for (int j = 0; j < amountSubCells; j++) {
@@ -40,14 +41,15 @@ public class Battery extends ACell{
     }
 
     @Override
-    public void setStatus(int status) {}
+    public void setStatus(int status) {
+    }
 
 
     public int getAvailableEnergy() {
         int sum = 0;
-        for (int i=0; i<amountMainCells; i++) {
-            for (int j=0; j<amountSubCells; j++) {
-                for (int k=0; k<amountCells; k++) {
+        for (int i = 0; i < amountMainCells; i++) {
+            for (int j = 0; j < amountSubCells; j++) {
+                for (int k = 0; k < amountCells; k++) {
                     var temp = mainCells.get(i).getChild(j).getChild(k).getStatus();
                     sum += temp;
                 }
@@ -62,9 +64,9 @@ public class Battery extends ACell{
         }
 
         int sum = 0;
-        for (int i=0; i<amountMainCells; i++) {
-            for (int j=0; j<amountSubCells; j++) {
-                for (int k=0; k<amountCells; k++) {
+        for (int i = 0; i < amountMainCells; i++) {
+            for (int j = 0; j < amountSubCells; j++) {
+                for (int k = 0; k < amountCells; k++) {
                     var temp = mainCells.get(i).getChild(j).getChild(k).getStatus();
                     if (temp == 1) {
                         sum += 1;

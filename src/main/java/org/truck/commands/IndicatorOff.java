@@ -2,7 +2,7 @@ package org.truck.commands;
 
 import org.truck.truckParts.mediator.TruckMediator;
 
-public class IndicatorOff implements ICommand{
+public class IndicatorOff implements ICommand {
 
     private final TruckMediator truckMediator;
 

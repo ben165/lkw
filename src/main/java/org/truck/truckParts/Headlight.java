@@ -2,6 +2,7 @@ package org.truck.truckParts;
 
 public class Headlight {
     boolean status = false;
+
     public Headlight() {
     }
 

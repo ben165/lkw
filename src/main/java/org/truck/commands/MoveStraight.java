@@ -1,20 +1,21 @@
 package org.truck.commands;
 
-import org.truck.parts.Indicators;
 import org.truck.parts.axle.TurningAxle;
 import org.truck.truckParts.Engine;
 import org.truck.truckParts.mediator.TruckMediator;
 import org.truck.vehicle.Truck;
 
-public class MoveStraight implements ICommand{
+public class MoveStraight implements ICommand {
     private final TurningAxle turningAxle;
     private final Engine engine;
     private final TruckMediator truckMediator;
+
     public MoveStraight(Truck truck) {
         turningAxle = truck.getFrontAxle();
         engine = truck.getEngine();
         truckMediator = truck.truckMediator;
     }
+
     @Override
     public void execute(int... numbers) {
         turningAxle.turnLeft(0);

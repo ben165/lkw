@@ -3,7 +3,7 @@ package org.truck.cor;
 import org.truck.truckParts.Camera;
 import org.truck.truckParts.Lidar;
 
-public class SensorChecker extends Checker implements IChecker{
+public class SensorChecker extends Checker implements IChecker {
     public SensorChecker(Checker successor) {
         setSuccessor(successor);
     }

@@ -2,8 +2,9 @@ package org.truck.proxy;
 
 import org.truck.serviceCenter.TechnicalEngineer;
 
-public class ProxyAccess implements IAccess{
+public class ProxyAccess implements IAccess {
     TechnicalEngineer technicalEngineer;
+
     public ProxyAccess(TechnicalEngineer technicalEngineer) {
         this.technicalEngineer = technicalEngineer;
     }

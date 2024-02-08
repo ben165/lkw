@@ -2,7 +2,7 @@ package org.truck.commands;
 
 import org.truck.truckParts.mediator.TruckMediator;
 
-public class LidarOn implements ICommand{
+public class LidarOn implements ICommand {
     private final TruckMediator truckMediator;
 
     public LidarOn(TruckMediator truckMediator) {

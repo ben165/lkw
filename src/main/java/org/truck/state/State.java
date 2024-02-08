@@ -1,6 +1,6 @@
 package org.truck.state;
 
-public class State{
+public class State {
     private IState state;
 
     public IState getState() {

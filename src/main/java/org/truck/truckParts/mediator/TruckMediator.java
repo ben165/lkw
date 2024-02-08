@@ -9,7 +9,7 @@ import org.truck.parts.axle.TurningAxle;
 import org.truck.truckParts.Headlight;
 import org.truck.truckParts.Mirror;
 
-public class TruckMediator implements ITruckMediator{
+public class TruckMediator implements ITruckMediator {
 
     Headlight[] headlights;
     Brakelight[] brakelights;
@@ -109,7 +109,7 @@ public class TruckMediator implements ITruckMediator{
     @Override
     public void brake(int percentage) {
         frontAxle.setBrake(percentage);
-        for (int i=0; i<backAxles.length; i++) {
+        for (int i = 0; i < backAxles.length; i++) {
             backAxles[i].setBrake(percentage);
         }
 

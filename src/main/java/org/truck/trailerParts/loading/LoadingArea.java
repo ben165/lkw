@@ -8,7 +8,7 @@ public class LoadingArea {
     PalletDetector palletDetector = new PalletDetector();
     Pallet[] palletArray = new Pallet[16];
 
-    public LoadingArea(){
+    public LoadingArea() {
 
     }
 

@@ -6,6 +6,7 @@ import java.nio.charset.StandardCharsets;
 
 public class Key {
     String sha256Hex;
+
     public Key() {
         sha256Hex = Hashing.sha256()
                 .hashString("Kodiak2024", StandardCharsets.UTF_8)

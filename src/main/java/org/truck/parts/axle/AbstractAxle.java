@@ -15,11 +15,14 @@ public abstract class AbstractAxle {
         brakes[0].setPercentage(percentage);
         brakes[1].setPercentage(percentage);
     }
+
     public int getBrake() {
         return brakes[0].getPercentage();
     }
 
     public abstract void turnRight(int angle);
+
     public abstract void turnLeft(int angle);
+
     public abstract int getAngle();
 }

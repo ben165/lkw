@@ -4,6 +4,7 @@ import org.truck.serviceCenter.ServiceCenter;
 
 public class CheckPart {
     ServiceCenter serviceCenter;
+
     public void check(Object part) {
         Checker engineChecker = new EngineChecker();
         engineChecker.setServiceCenter(serviceCenter);

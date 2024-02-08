@@ -7,6 +7,7 @@ import org.truck.vehicle.Trailer;
 public class Clutch {
     private boolean connected = false;
     TrailerDetector trailerDetector;
+
     public Clutch() {
         trailerDetector = new TrailerDetector();
     }

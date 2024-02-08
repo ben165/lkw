@@ -1,7 +1,6 @@
 package org.truck.cor;
 
 import org.truck.serviceCenter.ServiceCenter;
-import org.truck.serviceCenter.Team;
 
 public class Checker {
     private Checker successor;

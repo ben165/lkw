@@ -1,6 +1,6 @@
 package org.truck.parts.axle;
 
-public class TurningAxle extends AbstractAxle{
+public class TurningAxle extends AbstractAxle {
     private int angle;
 
     public TurningAxle() {
