@@ -34,7 +34,6 @@ public class Truck {
     private Visitor visitor;
 
 
-
     private Truck(Builder builder) {
         this.truckMediator = builder.truckMediator;
         this.truckChassis = builder.truckChassis;
