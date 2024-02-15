@@ -173,25 +173,25 @@ public class CentralUnit implements ITrailerListener, IPalletListener {
 
     @Override
     public void trailerDetected(Trailer trailer) {
-        System.out.println("Method in CU: Trailer connection: " + trailer.hashCode());
         this.trailerIsConnected = true;
         this.trailer = trailer;
-        this.isLoadingCorrect = true;
+        this.isLoadingCorrect = false;
+        this.loadPlanFlat = null;
     }
 
     @Override
-    public void palletDetected(int location, int isPallet) {
+    public void palletDetected(int location) {
         if (loadPlanFlat == null) {
             loadPlanFlat = new LoadPlanFlat("loadingPlan.json");
-        }
-
-        if (loadPlanFlat.getInfo(location) != isPallet) {
-            System.out.println("\nLoading wrong on place " + location + "\n");
             isLoadingCorrect = false;
         }
 
-        if (location == 15) {
-            System.out.println("\nLoading finished\n");
+        loadPlanFlat.updatePlan(location);
+
+        if (loadPlanFlat.isLoadingFinished()) {
+            isLoadingCorrect = true;
+            loadPlanFlat = null;
+            //System.out.println("Loading finished");
         }
     }
 }

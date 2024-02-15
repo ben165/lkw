@@ -4,24 +4,30 @@ import org.truck.CentralUnit;
 import org.truck.observer.PalletDetector;
 
 public class LoadingArea {
-    CentralUnit centralUnit;
-    PalletDetector palletDetector = new PalletDetector();
-    Pallet[] palletArray = new Pallet[16];
+    StoragePlace[] storagePlaces = new StoragePlace[16];
+
+	// +---------+
+	// | 0  | 8  |
+	// | 1  | 9  |
+	// | 2  | 10 |
+	// | 3  | 11 |
+	// | 4  | 12 |
+	// | 5  | 13 |
+	// | 6  | 14 |
+	// | 7  | 15 |
+	// +---------+    
 
     public LoadingArea() {
 
     }
 
-    public void setCentralUnit(CentralUnit centralUnit) {
-        this.centralUnit = centralUnit;
-        palletDetector.addListener(centralUnit);
+    public void setPallet(int pos) {
+        storagePlaces[pos].setPallet();
     }
 
-    public void placePallet(int position, int isPallet) {
-        if (isPallet == 1) {
-            Pallet pallet = new Pallet();
-            this.palletArray[position] = pallet;
+    public void setCentralUnit(CentralUnit centralUnit) {
+        for (int i=0; i<16; i++) {
+            storagePlaces[i] = new StoragePlace(i, centralUnit);
         }
-        palletDetector.palletDetected(position, isPallet);
     }
 }

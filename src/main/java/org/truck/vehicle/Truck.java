@@ -167,11 +167,9 @@ public class Truck {
         this.trailer = trailer;
 
         // Needed for loading sensors
+        clutch.setTrailer(trailer);
         clutch.setCentralUnit(centralUnit);
         clutch.setConnected(trailer);
-
-        // Needed for sensors
-        trailer.loadingArea.setCentralUnit(centralUnit);
     }
 
     public void connectCableToTrailer() {

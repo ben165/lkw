@@ -92,7 +92,9 @@ public class Trailer {
         LoadPlanFlat loadPlanFlat = new LoadPlanFlat(loadingPlan);
 
         for (int i = 0; i < loadPlanFlat.getLen(); i++) {
-            loadingArea.placePallet(i, loadPlanFlat.getInfo(i));
+            if (loadPlanFlat.getInfo(i) == 1) {
+                loadingArea.setPallet(i);
+            }
         }
     }
 
